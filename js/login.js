@@ -2,8 +2,8 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     event.preventDefault();  // Prevenir el comportamiento por defecto del formulario (recarga de la página)
 
     // Obtener valores de los campos
-    var usuario = document.getElementById("usuario").value;
-    var contraseña = document.getElementById("contraseña").value;
+    let usuario = document.getElementById("usuario").value;
+    let contraseña = document.getElementById("contraseña").value;
 
     // Validar que ambos campos no estén vacíos
     if (usuario === "" || contraseña === "") {
