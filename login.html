@@ -11,7 +11,52 @@
   <link href="css/styles.css" rel="stylesheet">
   <style>
     body {
-      background-color: rgb(248, 249, 250);
+      background-image: url(img/background\ img.png);
+      background-size: cover;
+    }
+    .login-container{
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      background: linear-gradient(to bottom, #fcaf52, #ffd07a);
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .log-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #212529BD;
+
+    }
+    .form-group {
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .form-control {
+      border-radius: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    .btn-log {
+      width: 100%;
+      background: linear-gradient(to right, #FF8C00, #FFD700);
+      border: none;
+      border-radius: 20px;
+      padding: 10px;
+      font-weight: bold;
+    }
+    .btn-log:hover {
+      background: linear-gradient(to right, #FFD700, #FF8C00);
+    }
+    a {
+      display: block;
+      margin-top: 10px;
+      color: #007bff;
+    }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -19,9 +64,23 @@
 <body>
   <main class="mt-5">
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+      <div class="login-container">
+        <h2 class="log-title">Iniciar Sesión</h2>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="usuario">Usuario</label>
+            <input type="text" class="form-control" id="usuario" placeholder="Ingresa tu usuario">
+          </div>
+          <div class="form-group">
+            <label for="contraseña">Contraseña</label>
+            <input type="text" class="form-control" id="contraseña" placeholder="Ingresa tu contraseña">
+          </div>
+          <button type="submit" class="btn-log">Ingresar</button>
+          <a href="#">Olvidé mi contraseña</a>
+          <hr>
+          <p>No tienes una cuenta? <a href="#">Regístrate</a></p>
+        </form>
+        </div>
     </div>
   </main>
   <footer class="text-muted">
