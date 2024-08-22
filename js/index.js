@@ -13,3 +13,14 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
+function checkLogin() {
+    // Verificar si hay una sesión activa
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+    // Si no hay sesión activa, redirigir a login.html
+    if (!isLoggedIn) {
+        window.location.href = "login.html";
+    }
+}
+
+// Ejecutar checkLogin cuando la página cargue
+window.onload = checkLogin;
