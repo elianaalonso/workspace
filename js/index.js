@@ -16,10 +16,11 @@ document.addEventListener("DOMContentLoaded", function(){
 /*Pilar*/
 
 function checkLogin() {
-    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
-    if (!isLoggedIn) {
+    let isLoggedIn = sessionStorage.getItem("isLoggedIn");
+    if (isLoggedIn===false) {
         window.location.href = "login.html";
     }
 }
 
 window.onload = checkLogin;
+
