@@ -1,13 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
   const productGrid = document.getElementById('product-grid');
 
-  // URL del API donde se encuentran los productos (reemplaza con la URL correcta)
   const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      // Asegúrate de que data.products sea un array
       if (Array.isArray(data.products)) {
         data.products.forEach(product => {
           // Crear la tarjeta del producto
