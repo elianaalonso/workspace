@@ -13,8 +13,10 @@ document.getElementById("login-form").addEventListener("submit", function(event)
         // Redireccionar a la página de portada 
         window.location.href = "index.html";
     }
+});
+
+
   sessionStorage.setItem("isLoggedIn", "true");
 function isValidUser(username, password) {
     return username !== "" && password !== "";
-});
-
+}
