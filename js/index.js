@@ -15,9 +15,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
 /*Pilar*/
 
+
 function checkLogin() {
     let isLoggedIn = sessionStorage.getItem("isLoggedIn");
-    if (isLoggedIn===false) {
+    if (!isLoggedIn) {
         window.location.href = "login.html";
     }
 }

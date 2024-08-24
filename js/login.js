@@ -1,7 +1,6 @@
 /*Pilar*/
 
-sessionStorage.setItem("isLoggedIn", "false");
-
+sessionStorage.setItem("isLoggedIn", "true");
 function isValidUser(username, password) {
     return username !== "" && password !== "";
 
