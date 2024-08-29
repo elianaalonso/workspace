@@ -67,10 +67,12 @@
 @media (max-width: 1024px) {
   .log-title {
       font-size: 1.75rem;
+      align-content: center;
   }
 
   .form-group {
       width: 90%;
+      align-content: center;
   }
 
   .btn-log {
@@ -78,8 +80,11 @@
   }
 
   .login-container {
-    margin-top: 12%;
+    margin-top: 7%;
     padding: auto;
+
+    align-items: center;
+    height: 80%;
   }
 
   body {
@@ -120,10 +125,9 @@
 }
 
   body {
-  background-image: url(/img/background\ img.png);
+  background-image: url(/img/small\ background\ img.jpeg);
   background-size: cover;
-  background-repeat: repeat;
-  background-position: top left;
+  background-repeat: no-repeat;
+  background-position: center;
   }
 }
-
