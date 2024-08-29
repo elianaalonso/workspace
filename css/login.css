@@ -1,7 +1,7 @@
 .login-container{
     width: 550px;
     height: 520px;
-    background: linear-gradient(to bottom, rgba(255, 153, 0, 0), rgba(240, 144, 0, 0.363), rgb(230, 224, 233));
+    background: linear-gradient(to bottom, rgba(255, 153, 0, 0.9), rgba(240, 144, 0, 0.363), rgb(230, 224, 233));
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -54,3 +54,76 @@
   a:hover {
     text-decoration: underline;
   }
+
+
+  body {
+    background-image: url(/img/background\ img.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+/* Tableta en modo vertical: 768px a 1024px */
+@media (max-width: 1024px) {
+  .log-title {
+      font-size: 1.75rem;
+  }
+
+  .form-group {
+      width: 90%;
+  }
+
+  .btn-log {
+      width: 90%;
+  }
+
+  .login-container {
+    margin-top: 12%;
+    padding: auto;
+  }
+
+  body {
+    background-image: url(/img/background\ img.png);
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: top left;
+  }
+}
+
+/* Smartphone pequeño (Ej. iPhone SE): 320px a 568px */
+@media (max-width: 568px) {
+  .login-container {
+      padding: 20px;
+      box-shadow: none;
+      margin: auto;
+  }
+
+  .log-title {
+      font-size: 1.5rem;
+  }
+
+  .form-group {
+      width: 100%;
+  }
+
+  .btn-log {
+      width: 100%;
+  }
+
+  .title-container {
+      height: auto;
+      width: auto;
+  }
+
+ .text-muted {
+  align-content: end;
+}
+
+  body {
+  background-image: url(/img/background\ img.png);
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: top left;
+  }
+}
+
