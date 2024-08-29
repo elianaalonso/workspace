@@ -82,9 +82,7 @@
   .login-container {
     margin-top: 7%;
     padding: auto;
-
     align-items: center;
-    height: 80%;
   }
 
   body {
@@ -98,26 +96,35 @@
 /* Smartphone pequeño (Ej. iPhone SE): 320px a 568px */
 @media (max-width: 568px) {
   .login-container {
-      padding: 20px;
+      padding-bottom: 10px;
       box-shadow: none;
-      margin: auto;
+      height: 100%;
+      width: 480px;
   }
 
   .log-title {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
+      display: block;
   }
 
   .form-group {
       width: 100%;
+      padding: 17px;
+      font-size: 1.2rem;
   }
 
   .btn-log {
-      width: 100%;
+      width: 80%;
+      font-size: 1.2rem;
   }
 
   .title-container {
-      height: auto;
-      width: auto;
+      height: 100px;
+      width: 480px;
+  }
+
+  #signUp {
+    padding: auto;
   }
 
  .text-muted {
