@@ -24,6 +24,7 @@ transition: transform 0.3s ease, box-shadow 0.3s ease
 width: 100%;
 height: auto;
 background-color: #f0f0f0; /* Placeholder color */
+border: 0.125rem solid #cbecfa;
 }
 .product-card h2 {
 font-size: 1.5rem;
