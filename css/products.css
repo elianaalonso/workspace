@@ -61,6 +61,7 @@ text-align: right;
 }
 
 
+/* Para Resolución Estándar: 1366 x 768 px */
 @media (min-width: 993px) {
     .product-card {
         width: 32%; /* 3 tarjetas por fila */
