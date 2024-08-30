@@ -60,30 +60,24 @@ text-align: right;
     transition: background 0.3s ease, color 0.3s ease;
 }
 
+
+@media (min-width: 993px) {
+    .product-card {
+        width: 32%; /* 3 tarjetas por fila */
+    }
+}
+
+/* Para Tableta en Modo Vertical: 768 x 1024 px */
 @media (max-width: 992px) {
     .product-card {
         width: 48%; /* 2 tarjetas por fila */
     }
 }
 
-@media (max-width: 768px) {
+/* Para Smartphone Pequeño: 320 x 568 px */
+@media (max-width: 767px) {
     .product-card {
         width: 100%; /* 1 tarjeta por fila */
-    }
-}
-
-@media (max-width: 576px) {
-    .product-card h2 {
-        font-size: 1.2rem;
-    }
-    .product-card p,
-    .product-card h3 {
-        font-size: 0.9rem;
-    }
-    .product-card {
-        padding: 0.75rem;
-        margin-bottom: 1rem;
-        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* Sombras más ligeras en pantallas pequeñas */
     }
 }
 
