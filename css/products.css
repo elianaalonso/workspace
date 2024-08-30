@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+     gap: 1rem; /* En lugar de usar margin individual en cada tarjeta */
   }
 
 
@@ -16,13 +16,14 @@ text-align: left;
 margin:0.3125rem;
 border-radius: 0.5rem;
 border: 0.125rem solid #cbecfa;
+transition: transform 0.3s ease, box-shadow 0.3s ease
 }
 
 
 .product-card img {
 width: 100%;
 height: auto;
-
+background-color: #f0f0f0; /* Placeholder color */
 }
 .product-card h2 {
 font-size: 1.5rem;
@@ -55,6 +56,7 @@ text-align: right;
     box-sizing: border-box;
     border-radius: 0.5rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 @media (max-width: 992px) {
@@ -68,6 +70,22 @@ text-align: right;
         width: 100%; /* 1 tarjeta por fila */
     }
 }
+
+@media (max-width: 576px) {
+    .product-card h2 {
+        font-size: 1.2rem;
+    }
+    .product-card p,
+    .product-card h3 {
+        font-size: 0.9rem;
+    }
+    .product-card {
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* Sombras más ligeras en pantallas pequeñas */
+    }
+}
+
 .product-card:hover,
 .product-card:focus {
     transform: translateY(-5px);
