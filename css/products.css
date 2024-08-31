@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+     gap: 1rem; /* En lugar de usar margin individual en cada tarjeta */
   }
 
 
@@ -9,35 +9,38 @@
 text-align: center;
 width: 32%;
 background-color: #97cfe7;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-padding: 10px;
-margin-bottom: 20px;
+box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+padding: 1rem;
+margin-bottom: 1.25rem;
 text-align: left;
-margin: 5px;
-border-radius: 8px;
+margin:0.3125rem;
+border-radius: 0.5rem;
+border: 0.125rem solid #cbecfa;
+transition: transform 0.3s ease, box-shadow 0.3s ease
 }
 
 
 .product-card img {
 width: 100%;
 height: auto;
-
+background-color: #f0f0f0; /* Placeholder color */
+border: 0.125rem solid #cbecfa;
 }
 .product-card h2 {
 font-size: 1.5rem;
 color: #333;
-margin-top: 5px;
+margin-top: 0.3125rem;
 font-weight: bold;
 }
 .product-card p {
 font-size: 1rem;
 color: #363636;
-margin-top: 1px;
+margin-top: 0.0625rem;
 }
 .product-card h3 {
 font-size: 1.2rem;
 color: #333;
-margin-top: 2px;
+margin-top: 0.125rem;
 }
 
 .product-card .sold-count {
@@ -46,22 +49,41 @@ text-align: right;
 }
 
 .text-center {
-    background-color: orange;
-    color: white;
+    background: linear-gradient(to bottom, rgb(240, 145, 0), rgb(235, 212, 51));
+    color: rgb(33, 37, 41, 74%);
     text-align: center;
-    padding: 15px ; 
+    padding: 1rem ; 
     width: 99%; 
     box-sizing: border-box;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
+
+/* Para Resolución Estándar: 1366 x 768 px */
+@media (min-width: 993px) {
+    .product-card {
+        width: 32%; /* 3 tarjetas por fila */
+    }
+}
+
+/* Para Tableta en Modo Vertical: 768 x 1024 px */
 @media (max-width: 992px) {
     .product-card {
         width: 48%; /* 2 tarjetas por fila */
     }
 }
 
-@media (max-width: 768px) {
+/* Para Smartphone Pequeño: 320 x 568 px */
+@media (max-width: 767px) {
     .product-card {
         width: 100%; /* 1 tarjeta por fila */
     }
+}
+
+.product-card:hover,
+.product-card:focus {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
