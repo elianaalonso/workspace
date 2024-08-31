@@ -188,3 +188,9 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+#usuario {
+  float: right; 
+  color:white;
+  margin-top: 0.5em
+}

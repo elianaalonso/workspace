@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const productGrid = document.getElementById('product-grid');
 
   const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
-
+  
   fetch(url)
     .then(response => response.json())
     .then(data => {
