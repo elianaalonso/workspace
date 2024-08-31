@@ -47,3 +47,10 @@ document.addEventListener("DOMContentLoaded", function() {
     })
     .catch(error => console.error('Error en la solicitud:', error));
 });
+
+//- obtener el nombre de usuario almacenado en localStorage
+let usuario = localStorage.getItem("usuario");
+// Si hay un nombre de usuario, mostrarlo en la barra de navegación
+if(usuario){
+    document.getElementById("usuario").textContent = usuario;
+}
