@@ -65,6 +65,9 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         updateTotalCosts();
     });
+    
+    let usuario = localStorage.getItem("usuario");
+    document.getElementById("usuario").textContent = usuario;
 
 
     //Configuraciones para el elemento que sube archivos

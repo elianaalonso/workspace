@@ -139,5 +139,9 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
 
         showCategoriesList();
+        
     });
+    let usuario = localStorage.getItem("usuario");
+    document.getElementById("usuario").textContent = usuario;
+    
 });
