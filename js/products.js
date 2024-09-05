@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
           // Añadir precio del producto
           const price = document.createElement('h3');
-          price.textContent = `USD ${product.cost}`;
+          price.textContent = `${product.currency} ${product.cost}`;
           productCard.appendChild(price);
 
           // Añadir cantidad vendida
