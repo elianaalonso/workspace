@@ -1,11 +1,18 @@
 document.addEventListener("DOMContentLoaded", function() {
   const productGrid = document.getElementById('product-grid');
+  const container = productGrid.parentNode;
+ 
+  let productsURL=PRODUCTS_URL+localStorage.getItem("catID")+ EXT_TYPE
 
-  const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
-  
-  fetch(url)
+  fetch(productsURL)
     .then(response => response.json())
     .then(data => {
+      // Crear y agregar el título
+      const title = document.createElement('h2');
+      title.classList.add('text-center', 'my-4');
+      title.textContent = data.catName;
+      container.insertBefore(title, productGrid);
+
       if (Array.isArray(data.products)) {
         data.products.forEach(product => {
           // Crear la tarjeta del producto
