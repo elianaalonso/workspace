@@ -38,9 +38,31 @@
       </div>
     </div>
   </nav>
-  <main class="pb-5 container">
+  <main class="pb-5">
     <div class="container">
       <h2 class="text-center my-4">Autos</h2>
+      <div class="row form-control no-border" >
+        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+          <div class="row container p-0 m-0">
+            <div class="col">
+              <p class="font-weight-normal text-end my-2">Precio</p>
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="min." id="minPrice">
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="máx." id="maxPrice">
+            </div>
+            <div class="col-3 p-0">
+              <div class="btn-group" role="group">
+                <button class="btn btn-light btn-block" id="priceFilterBtn">Filtrar</button>
+                <button class="btn btn-link btn-sm" id="clearPriceFilter">Limpiar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div id="product-grid" class="row">
         <!-- Los productos se cargarán aquí -->
       </div>
