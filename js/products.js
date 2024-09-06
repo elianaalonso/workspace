@@ -7,22 +7,24 @@ const ORDER_DESC_BY_COST = "DESC";
 const ORDER_BY_PROD_COUNT = "COUNT";
 let currentSortCriteria = ORDER_BY_PROD_COUNT;
 
-    // TRAER LOS DATOS DEL JSON Y ARMAR EL ARRAY //
+    // se traen los datos con la función getJSONData para reutilizar el código, manejo de errores y visualizacion de carga //
 document.addEventListener("DOMContentLoaded", function() {
   productGrid = document.getElementById('product-grid');
-  const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
-  
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      if (Array.isArray(data.products)) {
-        productArray = data.products;
-        showProductsList(); 
+  const url = PRODUCTS_URL + '101.json'; // cambié a la constante products_url
+
+  getJSONData(url).then(result => {
+    if (result.status === 'ok') {
+      if (Array.isArray(result.data.products)) {
+        productArray = result.data.products;
+        showProductsList();
+
       } else {
-        console.error('Data.products no es un array:', data.products);
+        console.error('Data.products no es un array:', result.data.products);
       }
-    })
-    .catch(error => console.error('Error en la solicitud:', error));
+    } else {
+      console.error('Error en la solicitud:', result.data);
+    }
+  });
 
     // BOTÓN DE FILTRAR //
     document.getElementById("priceFilterBtn").addEventListener("click", function(){
@@ -107,7 +109,7 @@ function sortCategories(criteria, array){
 }
 
     // ARMAR Y MOSTRAR LAS TARJETAS SEGÚN EL FILTRO //
-function showProductsList (products = productArray) {
+function showProductsList () {
   productArray.forEach(product => {
 
     if (((minPrice == undefined) || (minPrice != undefined && parseInt(product.cost) >= minPrice)) && 
