@@ -3,6 +3,8 @@ let productGrid = undefined;
 let minPrice = undefined;
 let maxPrice = undefined;
 
+
+    // TRAER LOS DATOS DEL JSON Y ARMAR EL ARRAY //
 document.addEventListener("DOMContentLoaded", function() {
   productGrid = document.getElementById('product-grid');
   const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
@@ -21,10 +23,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // BOTÓN DE FILTRAR //
     document.getElementById("priceFilterBtn").addEventListener("click", function(){
-      
+      //se obtienen los valores ingresados por el usario
       minPrice = document.getElementById("minPrice").value;
       maxPrice = document.getElementById("maxPrice").value;
 
+      //si el valor ingresado es válido lo convierte en número con parseINT de lo contrario queda indefinido
       if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0){
         minPrice = parseInt(minPrice);
       }
@@ -38,8 +41,10 @@ document.addEventListener("DOMContentLoaded", function() {
       else{
         maxPrice = undefined;
       }
-      productGrid.innerHTML="";
 
+      //se limpia el contenido actual del grid para que se muestren solo los filtrados
+      productGrid.innerHTML="";
+      //se llama a la función que muestra los productos filtrados
       showProductsList();
       
   });
@@ -59,9 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-
-
-
+    // ARMAR Y MOSTRAR LAS TARJETAS SEGÚN EL FILTRO //
 function showProductsList () {
   productArray.forEach(product => {
 
@@ -110,8 +113,7 @@ function showProductsList () {
 
 
 
-
-
+    // NOMBRE DE USUARIO EN LA BARRA SUPERIOR//
 //- obtener el nombre de usuario almacenado en localStorage
 let usuario = localStorage.getItem("usuario");
 // Si hay un nombre de usuario, mostrarlo en la barra de navegación
