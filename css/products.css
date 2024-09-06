@@ -94,3 +94,7 @@ text-align: right;
     box-shadow: none;
 }
 
+/*le arregla la distancia entre los botones*/
+.text-end {
+    height:1.5em;
+}

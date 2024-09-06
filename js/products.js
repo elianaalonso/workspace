@@ -2,7 +2,10 @@ let productArray = [];
 let productGrid = undefined;
 let minPrice = undefined;
 let maxPrice = undefined;
-
+const ORDER_ASC_BY_COST = "ASC";
+const ORDER_DESC_BY_COST = "DESC";
+const ORDER_BY_PROD_COUNT = "COUNT";
+let currentSortCriteria = ORDER_BY_PROD_COUNT;
 
     // TRAER LOS DATOS DEL JSON Y ARMAR EL ARRAY //
 document.addEventListener("DOMContentLoaded", function() {
@@ -60,12 +63,51 @@ document.addEventListener("DOMContentLoaded", function() {
       productGrid.innerHTML = '';
       //se llama nuevamente a mostrar todos los productos
       showProductsList();
+
+      
 });
 
 });
+
+
+// Ordenar por precio ascendente
+document.getElementById("priceAsc").addEventListener("click", function(){
+  currentSortCriteria = ORDER_ASC_BY_COST;
+  sortAndShowCategories(currentSortCriteria);
+});
+
+// Ordenar por precio descendente
+document.getElementById("priceDesc").addEventListener("click", function(){
+  currentSortCriteria = ORDER_DESC_BY_COST;
+  sortAndShowCategories(currentSortCriteria);
+});
+
+// Ordenar por cantidad de productos vendidos
+document.getElementById("sortByPrice").addEventListener("click", function(){
+  currentSortCriteria = ORDER_BY_PROD_COUNT;
+  sortAndShowCategories(currentSortCriteria);
+});
+
+function sortAndShowCategories(criteria) {
+let sortedArray = sortCategories(criteria, productArray);
+productGrid.innerHTML = ""; // Limpiar el grid actual
+showProductsList(sortedArray); // Mostrar los productos ordenados
+}
+
+function sortCategories(criteria, array){
+  let result = [];
+  if (criteria === ORDER_ASC_BY_COST) {
+    result = array.sort((a, b) => a.cost - b.cost);
+  } else if (criteria === ORDER_DESC_BY_COST) {
+    result = array.sort((a, b) => b.cost - a.cost);
+  } else if (criteria === ORDER_BY_PROD_COUNT) {
+    result = array.sort((a, b) => b.soldCount - a.soldCount);
+  }
+  return result;
+}
 
     // ARMAR Y MOSTRAR LAS TARJETAS SEGÚN EL FILTRO //
-function showProductsList () {
+function showProductsList (products = productArray) {
   productArray.forEach(product => {
 
     if (((minPrice == undefined) || (minPrice != undefined && parseInt(product.cost) >= minPrice)) && 
@@ -109,9 +151,6 @@ function showProductsList () {
 
   });
 }
-
-
-
 
     // NOMBRE DE USUARIO EN LA BARRA SUPERIOR//
 //- obtener el nombre de usuario almacenado en localStorage
