@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   productGrid = document.getElementById('product-grid');
   btnorder= document.getElementById('btnorder');
+
   const container = productGrid.parentNode;
  
   let productsURL=PRODUCTS_URL+localStorage.getItem("catID")+ EXT_TYPE
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
         container.insertBefore(title, btnorder);
 
         showProductsList();
+
       } else {
         console.error('Data.products no es un array:', result.data.products);
       }
@@ -162,7 +164,7 @@ function showProductsList () {
 
     // Añadir precio del producto
     const price = document.createElement('h3');
-    price.textContent = `USD ${product.cost}`;
+    price.textContent = `${product.currency} ${product.cost}`;
     productCard.appendChild(price);
 
     // Añadir cantidad vendida
