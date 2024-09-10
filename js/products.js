@@ -10,8 +10,9 @@ let currentSortCriteria = ORDER_BY_PROD_COUNT;
     // se traen los datos con la función getJSONData para reutilizar el código, manejo de errores y visualizacion de carga //
 document.addEventListener("DOMContentLoaded", function() {
 
-  const productGrid = document.getElementById('product-grid');
+  productGrid = document.getElementById('product-grid');
   const container = productGrid.parentNode;
+ 
   let productsURL=PRODUCTS_URL+localStorage.getItem("catID")+ EXT_TYPE
 
   getJSONData(productsURL).then(result => {
