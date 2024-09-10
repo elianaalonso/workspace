@@ -11,6 +11,7 @@ let currentSortCriteria = ORDER_BY_PROD_COUNT;
 document.addEventListener("DOMContentLoaded", function() {
 
   productGrid = document.getElementById('product-grid');
+  btnorder= document.getElementById('btnorder');
   const container = productGrid.parentNode;
  
   let productsURL=PRODUCTS_URL+localStorage.getItem("catID")+ EXT_TYPE
@@ -19,8 +20,14 @@ document.addEventListener("DOMContentLoaded", function() {
     if (result.status === 'ok') {
       if (Array.isArray(result.data.products)) {
         productArray = result.data.products;
-        showProductsList();
 
+        // Crear y agregar el título
+      const title = document.createElement('h2');
+        title.classList.add('text-center', 'my-4');
+        title.textContent = result.data.catName; // Suponiendo que catName está en result.data
+        container.insertBefore(title, btnorder);
+
+        showProductsList();
       } else {
         console.error('Data.products no es un array:', result.data.products);
       }
@@ -128,13 +135,12 @@ function sortCategories(criteria, array) {
 
     // ARMAR Y MOSTRAR LAS TARJETAS SEGÚN EL FILTRO //
 function showProductsList () {
-  productArray.forEach(product => {
+   productArray.forEach(product => {
 
     if (((minPrice == undefined) || (minPrice != undefined && parseInt(product.cost) >= minPrice)) && 
     ((maxPrice == undefined) || (maxPrice != undefined && parseInt(product.cost) <= maxPrice)))
       
     {
-      
     // Crear la tarjeta del producto
     const productCard = document.createElement('div');
     productCard.classList.add('col-md-4', 'product-card');
