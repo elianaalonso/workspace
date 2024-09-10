@@ -145,3 +145,12 @@ document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("usuario").textContent = usuario;
     
 });
+
+function checkLogin() {
+    let isLoggedIn = sessionStorage.getItem("isLoggedIn");
+    if (!isLoggedIn) {
+        window.location.href = "login.html";
+    }
+  }
+  
+  window.onload = checkLogin;
