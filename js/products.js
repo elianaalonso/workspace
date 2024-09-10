@@ -96,15 +96,30 @@ productGrid.innerHTML = ""; // Limpiar el grid actual
 showProductsList(sortedArray); // Mostrar los productos ordenados
 }
 
-function sortCategories(criteria, array){
+
+ // Función que ordena los elementos segun los diferentes criterios
+function sortCategories(criteria, array) {
   let result = [];
+
   if (criteria === ORDER_ASC_BY_COST) {
-    result = array.sort((a, b) => a.cost - b.cost);
+    result = array.sort(function(a, b) {
+      return a.cost - b.cost;
+    });
   } else if (criteria === ORDER_DESC_BY_COST) {
-    result = array.sort((a, b) => b.cost - a.cost);
+    result = array.sort(function(a, b) {
+      return b.cost - a.cost;
+    });
   } else if (criteria === ORDER_BY_PROD_COUNT) {
-    result = array.sort((a, b) => b.soldCount - a.soldCount);
+    result = array.sort(function(a, b) {
+      let aCount = parseInt(a.soldCount);
+      let bCount = parseInt(b.soldCount);
+
+      if (aCount > bCount) return -1;
+      if (aCount < bCount) return 1;
+      return 0;
+    });
   }
+
   return result;
 }
 
