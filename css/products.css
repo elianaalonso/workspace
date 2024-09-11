@@ -1,5 +1,5 @@
 .container {
-    display: flex;
+    display: block;
     flex-wrap: wrap;
      gap: 1rem; /* En lugar de usar margin individual en cada tarjeta */
   }
