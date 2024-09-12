@@ -99,9 +99,32 @@ text-align: right;
     height:1.5em;
 }
 
+.search-container {
+  position: relative;
+  padding: 1rem;
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+}
+
+.search-wrapper {
+  position: absolute;
+  right: 1rem;
+  top: 0;
+  width: auto;
+}
+
 .search-text {
-    height: 3rem ;
-    width: 25rem;
+  padding-left: 40px;
+  width: 33rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Ajustes en el contenedor del filtro de precio */
