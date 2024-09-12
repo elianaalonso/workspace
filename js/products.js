@@ -22,14 +22,20 @@ document.addEventListener("DOMContentLoaded", function() {
       if (Array.isArray(result.data.products)) {
         productArray = result.data.products;
 
+       
+        // Eliminar cualquier título anterior si existe
+        const existingTitle = container.querySelector('h2');
+        if (existingTitle) {
+          existingTitle.remove();
+        }
+
         // Crear y agregar el título
-      const title = document.createElement('h2');
+        const title = document.createElement('h2');
         title.classList.add('text-center', 'my-4');
-        title.textContent = result.data.catName; // Suponiendo que catName está en result.data
+        title.textContent = result.data.catName;
         container.insertBefore(title, btnorder);
-
+  
         showProductsList();
-
       } else {
         console.error('Data.products no es un array:', result.data.products);
       }
@@ -186,10 +192,17 @@ function showProductsList (productList = productArray) {
 
     // Añadir la tarjeta al grid de productos
     productGrid.appendChild(productCard);
+
+    // Agregar evento de clic para redirigir
+    productCard.addEventListener('click', function() {
+      localStorage.setItem("selectedProductId", product.id);
+      window.location.href = 'product-info.html';
+    });
     }
 
   });
 }
+
 
     // NOMBRE DE USUARIO EN LA BARRA SUPERIOR//
 //- obtener el nombre de usuario almacenado en localStorage
