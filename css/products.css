@@ -99,6 +99,11 @@ text-align: right;
     height:1.5em;
 }
 
+.search-text {
+    height: 3rem ;
+    width: 25rem;
+}
+
 /* Ajustes en el contenedor del filtro de precio */
 .price-filter-container {
     display: flex;
@@ -116,3 +121,4 @@ text-align: right;
     align-items: center;
     padding: 1em
   }
+
