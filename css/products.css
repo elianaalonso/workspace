@@ -98,3 +98,21 @@ text-align: right;
 .text-end {
     height:1.5em;
 }
+
+/* Ajustes en el contenedor del filtro de precio */
+.price-filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem; 
+  }
+  
+  .price-filter-container .form-control {
+    width: 8em; 
+  }
+  
+  .price-filter-container .btn-group {
+    display: flex;
+    align-items: center;
+    padding: 1em
+  }
