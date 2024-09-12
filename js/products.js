@@ -10,7 +10,6 @@ let currentSortCriteria = ORDER_BY_PROD_COUNT;
     // se traen los datos con la función getJSONData para reutilizar el código, manejo de errores y visualizacion de carga //
 document.addEventListener("DOMContentLoaded", function() {
 
-
   productGrid = document.getElementById('product-grid');
   btnorder= document.getElementById('btnorder');
 
@@ -22,11 +21,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if (result.status === 'ok') {
       if (Array.isArray(result.data.products)) {
         productArray = result.data.products;
-        
-         // Eliminar cualquier título anterior si existe
-        const existingTitle = container.querySelector('h2');
-        if (existingTitle) {
-        existingTitle.remove();
 
         // Crear y agregar el título
       const title = document.createElement('h2');
@@ -186,12 +180,6 @@ function showProductsList () {
   });
 }
 
-// Agregar evento de clic para redirigir
-          productCard.addEventListener('click', function() {
-            localStorage.setItem("selectedProductId", product.id);
-            window.location.href = 'product-info.html';
-          });
-
     // NOMBRE DE USUARIO EN LA BARRA SUPERIOR//
 //- obtener el nombre de usuario almacenado en localStorage
 let usuario = localStorage.getItem("usuario");
@@ -209,5 +197,4 @@ function checkLogin() {
 }
 
 window.onload = checkLogin;
-
 
