@@ -1,5 +1,5 @@
 .container {
-    display: flex;
+    display: block;
     flex-wrap: wrap;
      gap: 1rem; /* En lugar de usar margin individual en cada tarjeta */
   }
@@ -86,4 +86,15 @@ text-align: right;
 .product-card:focus {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+  /*le saca el borde a el row que tiene los controladores de precios*/
+.no-border {
+    border: none;
+    box-shadow: none;
+}
+
+/*le arregla la distancia entre los botones*/
+.text-end {
+    height:1.5em;
 }
