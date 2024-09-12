@@ -38,6 +38,17 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
+  document.getElementById('searchInput').addEventListener('input', (event) => {
+    const query = event.target.value.toLowerCase();
+
+    const filteredProducts = productArray.filter(product => {
+      return product.name.toLowerCase().includes(query) || product.description.toLowerCase().includes(query);
+    });
+    productGrid.innerHTML = '';
+    showProductsList(filteredProducts); // Función para mostrar los productos filtrados
+  });
+
+
     // BOTÓN DE FILTRAR //
     document.getElementById("priceFilterBtn").addEventListener("click", function(){
       //se obtienen los valores ingresados por el usario
@@ -136,8 +147,8 @@ function sortCategories(criteria, array) {
 }
 
     // ARMAR Y MOSTRAR LAS TARJETAS SEGÚN EL FILTRO //
-function showProductsList () {
-   productArray.forEach(product => {
+function showProductsList (productList = productArray) {
+   productList.forEach(product => {
 
     if (((minPrice == undefined) || (minPrice != undefined && parseInt(product.cost) >= minPrice)) && 
     ((maxPrice == undefined) || (maxPrice != undefined && parseInt(product.cost) <= maxPrice)))
