@@ -10,6 +10,10 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/product-info.css" rel="stylesheet"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -31,19 +35,52 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <li class="nav-item" id="usuario">
+            <li class="nav-item" id="usuario" style="color:white; float:right; margin-top:0.5em"></li>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+
+    <p id="route">
+      <a href="index.html">Inicio</a> &gt 
+      <a href="categories.html" id="product-category"></a> &gt 
+      <a href="product-info.html" id="product-route"></a>
+    </p> 
+
+    <div id="product-info">
+
+      <div class="product-info-wrapper">
+        <div class="carousel-container">
+          <div id="large-image">
+            <img src="" alt="Product Large Image">
+          </div>
+          <div class="carousel-controls">
+            <button id="prev-btn">Anterior</button>
+            <button id="next-btn">Siguiente</button>
+          </div>
+          <div class="thumbnails"></div>
+          
+        </div>
+
+        <div class="text">
+          <h1 id="product-name"></h1>
+          <p id="product-description"></p>
+          <button id="product-tech-specs-btn">FICHA TÉCNICA</button>
+          <br>
+          <p id="product-sold-count"></p>
+          <p id="product-cost"></p>
+          <button class="product-buttons">COMPRA EN LÍNEA</button>
+          <button class="product-buttons" id="contact-btn">CONTACTANOS</button>
+
+        </div>
       </div>
     </div>
+
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -52,6 +89,7 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+  
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
