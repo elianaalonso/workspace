@@ -3,7 +3,7 @@ html, body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana */
+    min-height: 100vh; 
 }
 
 body {
@@ -12,7 +12,7 @@ body {
     background-position: center;
     background-color: rgba(255, 255, 255, 0.8);
     font-family: Inter, sans-serif;
-    flex: 1; /* Permite que el cuerpo crezca para ocupar el espacio restante */
+    flex: 1; 
 }
 
 footer {
@@ -44,8 +44,8 @@ footer {
     background-repeat: no-repeat;
     position: relative;
     padding: 20px;
-    margin-bottom: 0 px; /* Para que se superponga con los comentarios */
-    z-index: 0; /* Asegúrate de que esté detrás de los comentarios */
+    margin-bottom: 0 px; 
+    z-index: 0; 
 }
 
 
@@ -199,82 +199,71 @@ footer {
 #contact-btn {
     background-color: #f0960c;
 }
+
+/*Comentarios*/
+
+
+#comments-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Distribuye comentarios en columnas */
+    gap: 20px; /* Espacio entre los comentarios */
+}
+
+
+#comments-background {
+    background-color: rgba(255, 255, 255, 0.8); 
+    flex: 1;
+    padding: 20px; 
+    display: flex;
+    justify-content: left; 
+    align-items: flex-start; 
+}
+
 #comments-section {
     width: 100%;
-    max-width: 650px; /* Ancho máximo de la sección */
-    margin: 0; /* Sin márgenes para que se superponga con el contenedor del producto */
+    max-width: 750px;
+    margin: 0;
     padding: 20px;
-    border-radius: 8px; /* Esquinas redondeadas */
-    box-shadow: none; /* Sin sombra */
-    text-align: left; /* Alinear el texto a la izquierda */
-    float: left; /* Alinear a la izquierda */
-    background: transparent; /* Sin fondo */
+    border-radius: 8px; 
+    text-align: left; 
+    float: left; 
+    background: transparent; 
 }
 
 #comments-section h2 {
-    font-size: 24px; /* Tamaño del encabezado */
-    font-weight: bold; /* Negrita */
-    text-align: left; /* Alinear a la izquierda */
-    margin-bottom: 15px; /* Espacio debajo del encabezado */
+    font-size: 24px; 
+    font-weight: bold; 
+    text-align: left; 
+    margin-bottom: 15px; 
 }
 
 .comment {
-    background-color: #f9f9f9; /* Color de fondo para cada comentario */
-    padding: 15px; /* Espaciado interno */
-    border-radius: 8px; /* Esquinas redondeadas */
-    margin-bottom: 15px; /* Espacio entre comentarios */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    
+    flex: 1 1 calc(33.333% - 20px); 
+    background-color: #f9f9f9;     
+    padding: 15px;          
+    margin-bottom: 15px;  
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px;             
+    min-width: 280px;               
+    box-sizing: border-box;        
+   
 }
 
 .comment h3 {
-    margin: 0; /* Sin margen para el nombre del usuario */
-    font-size: 18px; /* Tamaño del nombre */
-    font-weight: bold; /* Negrita */
-    color: #333; /* Color del texto */
-}
-
-
-.comment h3 {
-    margin: 0; /* Sin margen para el nombre del usuario */
-    font-size: 18px; /* Tamaño del nombre */
-    font-weight: bold; /* Negrita */
-    color: #333; /* Color del texto */
-}
-#comments-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-
-.comment {
-    flex: 1 1 calc(33.333% - 20px); /* Tres columnas, restando el espacio del gap */
-    background-color: #f9f9f9;      /* Color de fondo para cada comentario */
-    padding: 15px;                   /* Espaciado interno */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para el efecto visual */
-    border-radius: 8px;              /* Bordes redondeados */
-    min-width: 280px;                /* Ancho mínimo para evitar que se vuelvan demasiado pequeños */
-    box-sizing: border-box;          /* Asegura que el padding y el borde se incluyan en el ancho total */
+    margin: 0; 
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #333; 
 }
 
 .comment-header {
-    display: flex; /* Utiliza flexbox para alinear elementos */
-    align-items: center; /* Centrar verticalmente */
-    justify-content: space-between; /* Espacio entre nombre y estrellas */
-}
-
+    display: flex; 
+    align-items: center;
+    justify-content: space-between; 
+ }
 
 .stars {
-    margin-left: 10px; /* Espacio entre el nombre y las estrellas */
-    color: #fbc02d; /* Color amarillo para las estrellas */
-    font-size: 30px; /* Ajustar el tamaño de las estrellas si es necesario */
-}
-#comments-background {
-    background-color: rgba(255, 255, 255, 0.8); /* Mismo color que el fondo del body */
-    flex: 1; /* Ocupa el espacio restante */
-    padding: 20px; /* Espaciado interno */
-    display: flex; /* Para usar flexbox */
-    justify-content: left; 
-    align-items: flex-start; /* Alinear hacia arriba */
+    margin-left: 10px; 
+    color: #fbc02d; 
+    font-size: 30px;
 }

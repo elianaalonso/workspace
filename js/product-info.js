@@ -110,31 +110,39 @@ function checkLogin() {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const productId = localStorage.getItem('selectedProductId'); // Obtener el ID del producto seleccionado
-    const apicommentsUrl = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`; // URL de la API
+//COMENTARIOS DE LA API
 
-    fetch(apicommentsUrl)
+document.addEventListener('DOMContentLoaded', function() { 
+    // Se obtiene el id del producto seleccionado
+    const productId = localStorage.getItem('selectedProductId'); 
+      // se construye la url de la API con el id del producto
+    const apicommentsUrl = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`; 
+  
+    //se realiza el fetch a la API para obtener los comentarios
+    fetch(apicommentsUrl) 
         .then(response => {
+            //se verifica si la respuesta es correcta
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
             }
+            //la convierte a objeto javascript
             return response.json();
         })
         .then(comments => {
             const commentsContainer = document.getElementById('comments-container');
 
 
-        // Iterar sobre cada comentario y crearlos en el DOM
+        // se itera sobre cada comentario y crea un div con la clase comment para cada uno
 comments.forEach(comment => {
     const commentDiv = document.createElement('div');
     commentDiv.classList.add('comment');
 
-    // Crea las estrellas basadas en la calificación
+    // para las estrellas se genera un array con 5 posiciones, si el indice es menor que la calificación se pone una estrella llena 
     const stars = Array.from({ length: 5 }, (_, index) => {
         return index < comment.score ? '★' : '☆';
-    }).join('');
-
+    }).join(''); //junta las estrellas en una sola cadena sin espacio entre ellas
+   
+    // se asigna el contenido html al div del comentario
     commentDiv.innerHTML = `
         <div class="comment-header">
             <h3>${comment.user}</h3>
@@ -143,11 +151,12 @@ comments.forEach(comment => {
         <p>${comment.description}</p>
         <div class="date">${new Date(comment.dateTime).toLocaleString()}</div>
     `;
-
+    // se agrega el div al contenedor principal
     commentsContainer.appendChild(commentDiv);
 });
 
         })
+        //se manejan los errores con catch, se muestra en el navegador si no se pueden cargar los comentarios
         .catch(error => {
             console.error('Error fetching comments:', error);
             const commentsContainer = document.getElementById('comments-container');
