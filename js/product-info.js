@@ -51,7 +51,7 @@ function checkLogin() {
                 const body = document.body;
                 switch(product.category) {
                     case 'Autos':
-                        body.style.backgroundImage = 'url("img/cat101_1.jpg")';
+                        body.style.backgroundImage = 'url("img/cars_index.jpg")';
                         break;
                     case 'Juguetes':
                         body.style.backgroundImage = 'url("img/cat102_1.jpg")';
@@ -108,4 +108,19 @@ function checkLogin() {
     } else {
         console.error('No product ID found in localStorage.');
     }
+
+    const stars = document.querySelectorAll('.star');
+let selectedRating = 0; // Para almacenar la calificación seleccionada
+
+stars.forEach((star) => {
+    star.addEventListener('click', () => {
+        selectedRating = star.getAttribute('data-value'); // Obtiene el valor de la estrella seleccionada
+
+        // Actualiza el color de las estrellas
+        stars.forEach((s) => {
+            s.style.color = s.getAttribute('data-value') <= selectedRating ? 'gold' : 'gray';
+        });
+    });
+});
+
 });

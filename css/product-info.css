@@ -5,16 +5,17 @@ html, body {
     flex-direction: column;
 }
 
-body {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    font-family: Inter, sans-serif;
+
+.product-data{
+    background-image: url('../img/cars_index.jpg');
+    background-size: cover; /* O 'contain' si quieres que se ajuste completamente */
+    background-position: center; /* Centrar la imagen */
+    background-repeat: no-repeat; /* Evitar que se repita */
+    height: 100%; /* Altura completa de la ventana */
 }
 
 footer {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.932);
     padding: 20px; 
     width: 100%;
 
@@ -40,8 +41,9 @@ footer {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    position: relative;
     padding: 20px;
+    background: rgba(255, 255, 255, 0.8); 
+    height: 100vh;
 }
 
 #product-info::before {
@@ -51,7 +53,6 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.8); 
     z-index: 1; 
 }
 
@@ -194,3 +195,103 @@ footer {
 #contact-btn {
     background-color: #f0960c;
 }
+
+.rating-container {
+    height: 100vh; 
+}
+
+.rating-section {
+    height: 100vh;
+    width: 100%;
+    position: relative; 
+    background-image: url('../img/cars_index.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    padding: 20px; 
+    z-index: 1; 
+
+}
+
+.rating-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); 
+    z-index: 0; 
+}
+
+.rating-section > * {
+    position: relative;
+    z-index: 1; 
+}
+
+#ratingForm {
+    text-align: end;
+    margin-right: 9em;
+    margin-top: 14em;
+
+}
+
+.rating-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido */
+}
+
+.rating-stars {
+    font-size: 24px; /* Tamaño de las estrellas */
+    color: gray; /* Color por defecto (gris) */
+    margin-bottom: 10px; /* Espacio debajo de las estrellas */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    margin-right: 3.5em;
+}
+
+.rating-stars .star {
+    color: gray; /* Color gris por defecto para todas las estrellas */
+}
+
+/* Esta clase se agregará para cambiar el color a dorado */
+.rating-stars .star.selected {
+    color: gold; /* Color dorado cuando se selecciona */
+}
+
+
+.ratingBtn {
+    background-color: #f0960c; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    font-size: 16px; /* Tamaño de la fuente */
+    transition: background-color 0.3s; /* Efecto de transición */
+}
+
+.ratingBtn:hover {
+    background-color: #f5a731; /* Color al pasar el ratón por encima */
+}
+
+textarea {  
+    width: 17.6em; /* Ancho completo */  
+    height: 7em; /* Altura del textarea */  
+    padding: 10px; /* Espacio interno */  
+    border: 1px solid #ced4da; /* Borde gris claro */  
+    border-radius: 5px; /* Bordes redondeados */  
+    resize: none; /* Evitar el redimensionamiento */  
+    font-family: 'Inter', Arial, sans-serif; /* Tipo de letra */  
+}
+
+#ratingForm h3 {  
+    margin-right: 8em; 
+    margin-bottom: 0;
+}  
+
+
+
+
+
+

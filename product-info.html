@@ -43,16 +43,17 @@
   </nav>
 
   <main>
+    <div class="product-data">
 
-    <p id="route">
-      <a href="index.html">Inicio</a> &gt 
-      <a href="categories.html" id="product-category"></a> &gt 
-      <a href="product-info.html" id="product-route"></a>
-    </p> 
-
-    <div id="product-info">
-
-      <div class="product-info-wrapper">
+      <p id="route">
+        <a href="index.html">Inicio</a> &gt 
+        <a href="categories.html" id="product-category"></a> &gt 
+        <a href="product-info.html" id="product-route"></a>
+      </p> 
+      
+      <div id="product-info">
+        
+        <div class="product-info-wrapper">
         <div class="carousel-container">
           <div id="large-image">
             <img src="" alt="Product Large Image">
@@ -64,7 +65,7 @@
           <div class="thumbnails"></div>
           
         </div>
-
+        
         <div class="text">
           <h1 id="product-name"></h1>
           <p id="product-description"></p>
@@ -74,13 +75,33 @@
           <p id="product-cost"></p>
           <button class="product-buttons">COMPRA EN LÍNEA</button>
           <button class="product-buttons" id="contact-btn">CONTACTANOS</button>
-
+          
         </div>
       </div>
     </div>
-
+    
+  </div>
   </main>
 
+  
+  <div class="rating-container">
+    <div class="rating-section">
+      <form id="ratingForm">
+          <h3>Calificación</h3>
+          <div class="rating-stars">
+            <span class="star" data-value="1">&#9733;</span>
+            <span class="star" data-value="2">&#9733;</span>
+            <span class="star" data-value="3">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+            <span class="star" data-value="5">&#9733;</span>
+        </div>        
+            <textarea id="comment" placeholder="Escribe tu comentario..."></textarea>
+            <button class="ratingBtn" type="submit">Enviar</button>
+        </form>
+    </div>
+</div>
+  
+  
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
