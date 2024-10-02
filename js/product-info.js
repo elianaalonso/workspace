@@ -109,3 +109,44 @@ function checkLogin() {
         console.error('No product ID found in localStorage.');
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const productId = localStorage.getItem('selectedProductId'); // Obtener el ID del producto seleccionado
+    const apicommentsUrl = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`; // URL de la API
+
+    fetch(apicommentsUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(comments => {
+            const commentsContainer = document.getElementById('comments-container');
+
+            // Iterar sobre cada comentario y crearlos en el DOM
+            comments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+
+                // Crea las estrellas basadas en la calificación
+                const stars = Array.from({ length: 5 }, (_, index) => {
+                    return index < comment.score ? '★' : '☆';
+                }).join('');
+
+                commentDiv.innerHTML = `
+                    <h3>${comment.user}</h3>
+                    <div class="stars">${stars}</div>
+                    <p>${comment.description}</p>
+                    <div class="date">${new Date(comment.dateTime).toLocaleString()}</div>
+                `;
+
+                commentsContainer.appendChild(commentDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching comments:', error);
+            const commentsContainer = document.getElementById('comments-container');
+            commentsContainer.innerHTML = '<p>No se pudieron cargar los comentarios.</p>';
+        });
+});

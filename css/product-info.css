@@ -194,3 +194,65 @@ footer {
 #contact-btn {
     background-color: #f0960c;
 }
+#comments-section {
+    width: 100%; /* Hacer que ocupe todo el ancho */
+    max-width: 650px; /* Ancho máximo de la sección */
+    margin: 20px ; /* Margen vertical */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    text-align: left; /* Alinear el texto a la izquierda */
+    float: left; /* Alinear la sección a la izquierda */
+}
+
+#comments-section h2 {
+    font-size: 24px; /* Tamaño del encabezado */
+    font-weight: bold; /* Negrita */
+    text-align: left; /* Alinear a la izquierda */
+    margin-bottom: 15px; /* Espacio debajo del encabezado */
+}
+
+.comment {
+    background-color: #f9f9f9; /* Color de fondo para cada comentario */
+    padding: 15px; /* Espaciado interno */
+    border-radius: 8px; /* Esquinas redondeadas */
+    margin-bottom: 15px; /* Espacio entre comentarios */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+.comment h3 {
+    margin: 0; /* Sin margen para el nombre del usuario */
+    font-size: 18px; /* Tamaño del nombre */
+    font-weight: bold; /* Negrita */
+    color: #333; /* Color del texto */
+}
+
+.comment {
+    background-color: #f9f9f9; /* Color de fondo para cada comentario */
+    padding: 15px; /* Espaciado interno */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    flex: 0 1 calc(50% - 20px); /* Hacer que cada comentario ocupe el 50% del ancho menos el espacio entre ellos */
+    margin-bottom: 15px; /* Espacio entre filas */
+    box-sizing: border-box; /* Incluir padding y border en el ancho total */
+}
+
+.comment h3 {
+    margin: 0; /* Sin margen para el nombre del usuario */
+    font-size: 18px; /* Tamaño del nombre */
+    font-weight: bold; /* Negrita */
+    color: #333; /* Color del texto */
+}
+
+
+#comments-container {
+    display: flex; /* Usar flexbox */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan en filas */
+    gap: 20px; /* Espacio entre comentarios */
+}
+
+
+.stars {
+    color: #fbc02d; /* Color amarillo para las estrellas */
+    font-size: 18px; /* Ajustar el tamaño de las estrellas si es necesario */
+}
