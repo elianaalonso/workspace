@@ -87,6 +87,7 @@
   <div class="rating-container">
     <div class="rating-section">
       <form id="ratingForm">
+        <div class="form-top">
           <h3>Calificación</h3>
           <div class="rating-stars">
             <span class="star" data-value="1">&#9733;</span>
@@ -94,9 +95,13 @@
             <span class="star" data-value="3">&#9733;</span>
             <span class="star" data-value="4">&#9733;</span>
             <span class="star" data-value="5">&#9733;</span>
-        </div>        
+          </div>        
+        </div>
             <textarea id="comment" placeholder="Escribe tu comentario..."></textarea>
-            <button class="ratingBtn" type="submit">Enviar</button>
+            <div class="button-calification">
+              <button class="ratingBtn" type="submit">Enviar</button>
+              <p id="statusMessage" style="display:none;">Gracias por tu calificación.</p>
+            </div>
         </form>
     </div>
 </div>

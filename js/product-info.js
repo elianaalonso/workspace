@@ -123,4 +123,21 @@ stars.forEach((star) => {
     });
 });
 
+ // Simulación de envío del formulario
+ document.getElementById('ratingForm').addEventListener('submit', function(e) {
+    e.preventDefault(); 
+
+    const submitBtn = document.querySelector('.ratingBtn');
+    const statusMessage = document.getElementById('statusMessage');
+
+    submitBtn.disabled = true; 
+    submitBtn.textContent = 'Enviando...';
+
+    setTimeout(function() {
+        submitBtn.textContent = 'Enviar'; 
+        submitBtn.disabled = false;
+        statusMessage.style.display = 'block'; 
+    }, 2000); 
+});
+
 });

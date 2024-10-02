@@ -231,8 +231,8 @@ footer {
 
 #ratingForm {
     text-align: end;
-    margin-right: 9em;
-    margin-top: 14em;
+    margin-right: 3em;
+    margin-top: 10em;
 
 }
 
@@ -243,11 +243,13 @@ footer {
 }
 
 .rating-stars {
-    font-size: 24px; /* Tamaño de las estrellas */
-    color: gray; /* Color por defecto (gris) */
+    font-size: 30px; /* Tamaño de las estrellas */
     margin-bottom: 10px; /* Espacio debajo de las estrellas */
     cursor: pointer; /* Cambia el cursor al pasar por encima */
-    margin-right: 3.5em;
+    margin-right: 1.3em;
+    display: inline-block;
+    width: 6em;
+
 }
 
 .rating-stars .star {
@@ -261,6 +263,7 @@ footer {
 
 
 .ratingBtn {
+    width: 7em;;
     background-color: #f0960c; /* Color de fondo del botón */
     color: white; /* Color del texto */
     padding: 10px 20px; /* Espaciado interno */
@@ -271,24 +274,31 @@ footer {
     transition: background-color 0.3s; /* Efecto de transición */
 }
 
+.button-calification {
+    margin-top: 1em;
+    margin-right: 2em;
+}
+
 .ratingBtn:hover {
     background-color: #f5a731; /* Color al pasar el ratón por encima */
 }
 
 textarea {  
-    width: 17.6em; /* Ancho completo */  
-    height: 7em; /* Altura del textarea */  
+    width: 345px; /* Ancho completo */  
+    height: 163px; /* Altura del textarea */  
     padding: 10px; /* Espacio interno */  
-    border: 1px solid #ced4da; /* Borde gris claro */  
+    border: 1px solid #ced4da00; /* Borde gris claro */  
     border-radius: 5px; /* Bordes redondeados */  
     resize: none; /* Evitar el redimensionamiento */  
     font-family: 'Inter', Arial, sans-serif; /* Tipo de letra */  
+    margin-right: 2em;
 }
 
 #ratingForm h3 {  
-    margin-right: 8em; 
-    margin-bottom: 0;
-}  
+    margin-right: 11.2em; 
+    margin-bottom: -1.6em;
+    font-size: 23px;
+}
 
 
 
