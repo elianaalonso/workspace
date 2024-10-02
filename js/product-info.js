@@ -124,25 +124,29 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(comments => {
             const commentsContainer = document.getElementById('comments-container');
 
-            // Iterar sobre cada comentario y crearlos en el DOM
-            comments.forEach(comment => {
-                const commentDiv = document.createElement('div');
-                commentDiv.classList.add('comment');
 
-                // Crea las estrellas basadas en la calificación
-                const stars = Array.from({ length: 5 }, (_, index) => {
-                    return index < comment.score ? '★' : '☆';
-                }).join('');
+        // Iterar sobre cada comentario y crearlos en el DOM
+comments.forEach(comment => {
+    const commentDiv = document.createElement('div');
+    commentDiv.classList.add('comment');
 
-                commentDiv.innerHTML = `
-                    <h3>${comment.user}</h3>
-                    <div class="stars">${stars}</div>
-                    <p>${comment.description}</p>
-                    <div class="date">${new Date(comment.dateTime).toLocaleString()}</div>
-                `;
+    // Crea las estrellas basadas en la calificación
+    const stars = Array.from({ length: 5 }, (_, index) => {
+        return index < comment.score ? '★' : '☆';
+    }).join('');
 
-                commentsContainer.appendChild(commentDiv);
-            });
+    commentDiv.innerHTML = `
+        <div class="comment-header">
+            <h3>${comment.user}</h3>
+            <div class="stars">${stars}</div>
+        </div>
+        <p>${comment.description}</p>
+        <div class="date">${new Date(comment.dateTime).toLocaleString()}</div>
+    `;
+
+    commentsContainer.appendChild(commentDiv);
+});
+
         })
         .catch(error => {
             console.error('Error fetching comments:', error);

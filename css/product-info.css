@@ -3,6 +3,7 @@ html, body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana */
 }
 
 body {
@@ -11,6 +12,7 @@ body {
     background-position: center;
     background-color: rgba(255, 255, 255, 0.8);
     font-family: Inter, sans-serif;
+    flex: 1; /* Permite que el cuerpo crezca para ocupar el espacio restante */
 }
 
 footer {
@@ -42,7 +44,10 @@ footer {
     background-repeat: no-repeat;
     position: relative;
     padding: 20px;
+    margin-bottom: 0 px; /* Para que se superponga con los comentarios */
+    z-index: 0; /* Asegúrate de que esté detrás de los comentarios */
 }
+
 
 #product-info::before {
     content: '';
@@ -195,15 +200,15 @@ footer {
     background-color: #f0960c;
 }
 #comments-section {
-    width: 100%; /* Hacer que ocupe todo el ancho */
+    width: 100%;
     max-width: 650px; /* Ancho máximo de la sección */
-    margin: 20px ; /* Margen vertical */
+    margin: 0; /* Sin márgenes para que se superponga con el contenedor del producto */
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
     border-radius: 8px; /* Esquinas redondeadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    box-shadow: none; /* Sin sombra */
     text-align: left; /* Alinear el texto a la izquierda */
-    float: left; /* Alinear la sección a la izquierda */
+    float: left; /* Alinear a la izquierda */
+    background: transparent; /* Sin fondo */
 }
 
 #comments-section h2 {
@@ -219,7 +224,9 @@ footer {
     border-radius: 8px; /* Esquinas redondeadas */
     margin-bottom: 15px; /* Espacio entre comentarios */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    
 }
+
 .comment h3 {
     margin: 0; /* Sin margen para el nombre del usuario */
     font-size: 18px; /* Tamaño del nombre */
@@ -251,8 +258,23 @@ footer {
     gap: 20px; /* Espacio entre comentarios */
 }
 
+.comment-header {
+    display: flex; /* Utiliza flexbox para alinear elementos */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: space-between; /* Espacio entre nombre y estrellas */
+}
+
 
 .stars {
+    margin-left: 10px; /* Espacio entre el nombre y las estrellas */
     color: #fbc02d; /* Color amarillo para las estrellas */
-    font-size: 18px; /* Ajustar el tamaño de las estrellas si es necesario */
+    font-size: 30px; /* Ajustar el tamaño de las estrellas si es necesario */
+}
+#comments-background {
+    background-color: rgba(255, 255, 255, 0.8); /* Mismo color que el fondo del body */
+    flex: 1; /* Ocupa el espacio restante */
+    padding: 20px; /* Espaciado interno */
+    display: flex; /* Para usar flexbox */
+    justify-content: left; 
+    align-items: flex-start; /* Alinear hacia arriba */
 }
