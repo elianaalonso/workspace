@@ -234,15 +234,6 @@ footer {
     color: #333; /* Color del texto */
 }
 
-.comment {
-    background-color: #f9f9f9; /* Color de fondo para cada comentario */
-    padding: 15px; /* Espaciado interno */
-    border-radius: 8px; /* Esquinas redondeadas */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    flex: 0 1 calc(50% - 20px); /* Hacer que cada comentario ocupe el 50% del ancho menos el espacio entre ellos */
-    margin-bottom: 15px; /* Espacio entre filas */
-    box-sizing: border-box; /* Incluir padding y border en el ancho total */
-}
 
 .comment h3 {
     margin: 0; /* Sin margen para el nombre del usuario */
@@ -250,12 +241,21 @@ footer {
     font-weight: bold; /* Negrita */
     color: #333; /* Color del texto */
 }
-
-
 #comments-container {
-    display: flex; /* Usar flexbox */
-    flex-wrap: wrap; /* Permitir que los elementos se envuelvan en filas */
-    gap: 20px; /* Espacio entre comentarios */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+
+.comment {
+    flex: 1 1 calc(33.333% - 20px); /* Tres columnas, restando el espacio del gap */
+    background-color: #f9f9f9;      /* Color de fondo para cada comentario */
+    padding: 15px;                   /* Espaciado interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para el efecto visual */
+    border-radius: 8px;              /* Bordes redondeados */
+    min-width: 280px;                /* Ancho mínimo para evitar que se vuelvan demasiado pequeños */
+    box-sizing: border-box;          /* Asegura que el padding y el borde se incluyan en el ancho total */
 }
 
 .comment-header {
