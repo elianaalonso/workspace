@@ -51,7 +51,7 @@ function checkLogin() {
                 const body = document.body;
                 switch(product.category) {
                     case 'Autos':
-                        body.style.backgroundImage = 'url("img/cat101_1.jpg")';
+                        body.style.backgroundImage = 'url("img/cars_index.jpg")';
                         break;
                     case 'Juguetes':
                         body.style.backgroundImage = 'url("img/cat102_1.jpg")';
