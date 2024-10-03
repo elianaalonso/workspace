@@ -163,3 +163,37 @@ comments.forEach(comment => {
             commentsContainer.innerHTML = '<p>No se pudieron cargar los comentarios.</p>';
         });
 });
+
+
+
+const stars = document.querySelectorAll('.star');
+let selectedRating = 0; // Para almacenar la calificación seleccionada
+
+stars.forEach((star) => {
+    star.addEventListener('click', () => {
+        selectedRating = star.getAttribute('data-value'); // Obtiene el valor de la estrella seleccionada
+
+        // Actualiza el color de las estrellas
+        stars.forEach((s) => {
+            s.style.color = s.getAttribute('data-value') <= selectedRating ? 'gold' : 'gray';
+        });
+    });
+});
+
+ // Simulación de envío del formulario
+ document.getElementById('ratingForm').addEventListener('submit', function(e) {
+    e.preventDefault(); 
+
+    const submitBtn = document.querySelector('.ratingBtn');
+    const statusMessage = document.getElementById('statusMessage');
+
+    submitBtn.disabled = true; 
+    submitBtn.textContent = 'Enviando...';
+
+    setTimeout(function() {
+        submitBtn.textContent = 'Enviar'; 
+        submitBtn.disabled = false;
+        statusMessage.style.display = 'block'; 
+    }, 2000); 
+});
+
