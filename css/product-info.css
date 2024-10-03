@@ -7,7 +7,6 @@ html, body {
 
 
 .product-data{
-    background-image: url('../img/cars_index.jpg');
     background-size: cover; /* O 'contain' si quieres que se ajuste completamente */
     background-position: center; /* Centrar la imagen */
     background-repeat: no-repeat; /* Evitar que se repita */
@@ -204,7 +203,6 @@ footer {
     height: 100vh;
     width: 100%;
     position: relative; 
-    background-image: url('../img/cars_index.jpg'); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
