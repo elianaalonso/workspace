@@ -364,3 +364,61 @@ textarea {
     font-size: 23px;
 }
 
+/*SECCION PRODUCTOS RELACIONADOS*/
+
+#related-products-section {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8); 
+
+  }
+  
+  #related-products-carousel {
+    display: flex;
+    align-items: center; /* Centra los elementos verticalmente */
+  }
+  
+  #related-products-container {
+    display: flex;
+    overflow: hidden;
+    width: 70%; /* Ajusta el ancho según sea necesario */
+    margin: 0 10px; /* Espaciado entre botones y el contenedor */
+  }
+  
+  .related-products-grid {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .related-products-grid > div {
+    min-width: 25%; /* Cada producto ocupará un cuarto del contenedor */
+    box-sizing: border-box;
+    padding: 10px;
+  }
+  
+  .related-products-grid img {
+    width: 100%; /* La imagen ocupará el 100% del div */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 10px; /* Bordes redondeados para la imagen */
+  }
+  
+  .carousel-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+  
+  .carousel-btn:hover {
+    background-color: #555;
+  }
+  
+  .carousel-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  
+
