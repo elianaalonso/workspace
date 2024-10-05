@@ -209,23 +209,26 @@ stars.forEach((star) => {
     let storedComments = JSON.parse(sessionStorage.getItem('userComments')) || [];
     
     // Agregar el nuevo comentario
-    storedComments.push(newComment);
+        storedComments.push(newComment);
 
-    // Guardar los comentarios actualizados en sessionStorage como string
-    sessionStorage.setItem('userComments', JSON.stringify(storedComments));
+    // Guardar los comentarios actualizados en sessionStorage
+        sessionStorage.setItem('userComments', JSON.stringify(storedComments));
 
-    // Limpiar el formulario y mostrar mensaje de agradecimiento
-    document.getElementById('comment').value = '';
-    selectedRating = 0; // Reinicia la calificación
-    document.getElementById('statusMessage').style.display = 'block';
+     // Limpiar el formulario y mostrar mensaje de agradecimiento
+        document.getElementById('comment').value = '';
+        selectedRating = 0; // Reinicia la calificación
+        document.getElementById('statusMessage').style.display = 'block';
 
     // Actualizar la visualización de los comentarios
-    showUserComments(storedComments);
+        showUserComments(storedComments);
+   
 });
 
 // Función para mostrar los comentarios almacenados en sessionStorage
 function showUserComments(comments) {
     const commentsContainer = document.getElementById('comments-container');
+
+    sessionStorage.removeItem('userComments');
 
     comments.forEach(comment => {
         const commentDiv = document.createElement('div');
