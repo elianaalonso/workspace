@@ -204,21 +204,6 @@ function showProductsList (productList = productArray) {
 }
 
 
-    // NOMBRE DE USUARIO EN LA BARRA SUPERIOR//
-//- obtener el nombre de usuario almacenado en localStorage
-let usuario = localStorage.getItem("usuario");
-// Si hay un nombre de usuario, mostrarlo en la barra de navegación
-if(usuario){
-    document.getElementById("usuario").textContent = usuario;
-}
 
 
-function checkLogin() {
-  let isLoggedIn = sessionStorage.getItem("isLoggedIn");
-  if (!isLoggedIn) {
-      window.location.href = "login.html";
-  }
-}
-
-window.onload = checkLogin;
 

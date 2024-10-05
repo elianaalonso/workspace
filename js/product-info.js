@@ -1,18 +1,4 @@
-function checkLogin() {
-    let isLoggedIn = sessionStorage.getItem("isLoggedIn");
-    if (!isLoggedIn) {
-        window.location.href = "login.html";
-    }
-  }
-  
-  window.onload = checkLogin;
 
-  //- obtener el nombre de usuario almacenado en localStorage
-  let usuario = localStorage.getItem("usuario");
-  // Si hay un nombre de usuario, mostrarlo en la barra de navegación
-  if(usuario){
-      document.getElementById("usuario").textContent = usuario;
-  }
 
   
   document.addEventListener('DOMContentLoaded', function() {
