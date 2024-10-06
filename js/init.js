@@ -1,3 +1,6 @@
+
+// init.js ya está referenciado en todos los html
+
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publish.json";
 const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
@@ -39,3 +42,27 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+    // NOMBRE DE USUARIO EN LA BARRA SUPERIOR//
+//- obtener el nombre de usuario almacenado en localStorage
+let usuario = localStorage.getItem("usuario");
+// Si hay un nombre de usuario, mostrarlo en la barra de navegación
+if(usuario){
+    document.getElementById("usuario").textContent = usuario;
+}
+
+// localStorage antes estaba en: products.js líneas 206 a 213, index.html líneas 2 a 7, 
+// categories.js líneas 144 y 145, product-info.js líneas 10 a 15.
+
+function checkLogin() {
+  let isLoggedIn = sessionStorage.getItem("isLoggedIn");
+  if (!isLoggedIn) {
+      window.location.href = "login.html";
+  }
+}
+
+window.onload = checkLogin;
+
+// checkLogin antes estaba presente al final de cada código en los siguientes js: 
+// products.js, sell.js, product-info.js (excepcionalmente se encontraba al principio), 
+// my-profile.js, index.js, categories.js, cart.js.

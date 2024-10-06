@@ -207,3 +207,4 @@ function showProductsList(productList = productArray) {
     }
   });
 }
+
