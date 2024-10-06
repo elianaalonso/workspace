@@ -87,62 +87,70 @@
                     updateCarousel();
                 });
 
-            })
-            .catch(error => {
-                console.error('Error fetching product data:', error);
-            });
-    } else {
-        console.error('No product ID found in localStorage.');
-    }
-});
-
 // SECCION PRODUCTOS RELACIONADOS
 
-document.addEventListener('DOMContentLoaded', function() {
-    const productId = localStorage.getItem('selectedProductId');
+// Definir la URL para los productos relacionados basada en la categoría
+let relatedProductsUrl = '';
+switch (product.category) {
+    case 'Autos':
+        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
+        break;
+    case 'Juguetes':
+        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/102.json';
+        break;
+    case 'Muebles':
+        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/103.json';
+        break;
+    case 'Herramientas':
+        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/104.json';
+        break;
+    case 'Computadoras':
+        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/105.json';
+        break;
+    case 'Vestimenta':
+        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/106.json';
+        break;
+    case 'Electrodomésticos':
+        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/107.json';
+        break;
+    case 'Deporte':
+        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/108.json';
+        break;
+    case 'Celulares':
+        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/109.json';
+        break;
+}
 
-    if (productId) {
-        const apiUrl = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
+// Obtener productos relacionados
+fetch(relatedProductsUrl)
+.then(response => response.json())
+.then(data => {
+    const relatedProductsContainer = document.getElementById('related-products-container');
+    relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor
 
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(product => {
-                // URL de productos relacionados con el ID de categoría 101
-                const relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
+    // Iterar sobre los productos relacionados y crear elementos HTML
+    data.products.forEach(relatedProduct => {
+        const productElement = document.createElement('div');
+        productElement.classList.add('related-product');
+        productElement.innerHTML = `
+            <img src="${relatedProduct.image}" alt="${relatedProduct.name}">
+            <h3 style="padding: 10px; height: 70px">${relatedProduct.name}</h3>
+            <p style="font-size: 20px; height: 45px">${relatedProduct.currency} ${relatedProduct.cost}</p>
+            <button class="view-details" data-id="${relatedProduct.id}" style="background-color: rgba(0, 0, 0, 0.9); color: white; border: 3px solid #f3ebeb; padding: 5px 5px; cursor: pointer; font-size: 15px; height: 65px; width: 100px; border-radius: 50px; top: 50%; font-weight: 600;">Ver detalles</button>
+        `;
+        relatedProductsContainer.appendChild(productElement);
+    });
 
-                // Obtener productos relacionados
-                fetch(relatedProductsUrl)
-                    .then(response => response.json())
-                    .then(data => {
-                        const relatedProductsContainer = document.getElementById('related-products-container'); // Cambia por el ID de tu contenedor
-                        relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor
-
-                        // Iterar sobre los productos relacionados y crear elementos HTML
-                        data.products.forEach(relatedProduct => {
-                            const productElement = document.createElement('div');
-                            productElement.classList.add('related-product');
-                            productElement.innerHTML = `
-                                <img src="${relatedProduct.image}" alt="${relatedProduct.name}">
-                                <h3>${relatedProduct.name}</h3>
-                                <p>${relatedProduct.currency} ${relatedProduct.price}</p>
-                                <button class="view-details" data-id="${relatedProduct.id}">Ver detalles</button>
-                            `;
-                            relatedProductsContainer.appendChild(productElement);
-                        });
-
-                        // Añadir event listeners a los botones de "Ver detalles"
-                        const viewDetailsButtons = document.querySelectorAll('.view-details');
-                        viewDetailsButtons.forEach(button => {
-                            button.addEventListener('click', (e) => {
-                                const selectedId = e.target.getAttribute('data-id');
-                                localStorage.setItem('selectedProductId', selectedId);
-                                window.location.href = 'product-info.html'; // Cambia a la URL de tu página de detalles
-                            });
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Error fetching related products:', error);
-                    });
+    // Añadir event listeners a los botones de "Ver detalles"
+    const viewDetailsButtons = document.querySelectorAll('.view-details');
+    viewDetailsButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const selectedId = e.target.getAttribute('data-id');
+            localStorage.setItem('selectedProductId', selectedId);
+            window.location.href = 'product-info.html'; 
+        });
+    });
+})                
             })
             .catch(error => {
                 console.error('Error fetching product data:', error);
@@ -151,6 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('No product ID found in localStorage.');
     }
 });
+
 
 //CARRUSEL PRODUCTOS RELACIONADOS
 let currentSlide = 0;
@@ -290,6 +299,11 @@ stars.forEach((star) => {
     // Actualizar la visualización de los comentarios
         showUserComments(storedComments);
    
+        const submitBtn = document.querySelector('.ratingBtn');
+        const statusMessage = document.getElementById('statusMessage');
+    
+        submitBtn.disabled = true; 
+        submitBtn.textContent = 'Enviando...';
 
     setTimeout(function() {
         submitBtn.textContent = 'Enviar'; 
