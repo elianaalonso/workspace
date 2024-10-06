@@ -82,34 +82,44 @@
     <!-- comentarios de la API (divs para manipular los estilos e insertar los comentarios mediante js) --> 
     <div id="comments-background">
       <div id="comments-section">
-          <div id="comments-container" >
-          </div>
-      </div>
-  </div>
-  </main>
-
-  <div class="rating-container">
-    <div class="rating-section">
-      <form id="ratingForm">
-        <div class="form-top">
-          <h3>Calificación</h3>
-          <div class="rating-stars">
-            <span class="star" data-value="1">&#9733;</span>
-            <span class="star" data-value="2">&#9733;</span>
-            <span class="star" data-value="3">&#9733;</span>
-            <span class="star" data-value="4">&#9733;</span>
-            <span class="star" data-value="5">&#9733;</span>
-          </div>        
+        <div id="comments-container" >
         </div>
+      </div>
+      <div class="rating-container">
+        <div class="rating-section">
+          <form id="ratingForm">
+            <div class="form-top">
+              <h3>Calificación</h3>
+              <div class="rating-stars">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+              </div>        
+            </div>
             <textarea id="comment" placeholder="Escribe tu comentario..."></textarea>
             <div class="button-calification">
               <button class="ratingBtn" type="submit">Enviar</button>
               <p id="statusMessage" style="display:none;">Gracias por tu calificación.</p>
             </div>
-        </form>
+          </form>
+        </div>
+      </div>
     </div>
-</div>
-</div>
+  </div>
+
+  <div id="related-products-section">
+    <h3>Productos relacionados</h3>
+    <div id="related-products-carousel" class="carousel">
+      <button id="prev-button" class="carousel-btn">Anterior</button>
+      <button id="next-button" class="carousel-btn">Siguiente</button>
+      <div id="related-products-container" class="related-products-grid">
+        <!-- Aquí se cargarán los productos relacionados -->
+      </div>
+    </div>
+  </div>
+</main>
 
   
   <footer class="text-muted">

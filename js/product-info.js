@@ -51,7 +51,7 @@ function checkLogin() {
                 const body = document.body;
                 switch(product.category) {
                     case 'Autos':
-                        body.style.backgroundImage = 'url("img/cat101_1.jpg")';
+                        body.style.backgroundImage = 'url("img/cars_index.jpg")';
                         break;
                     case 'Juguetes':
                         body.style.backgroundImage = 'url("img/cat102_1.jpg")';
@@ -109,6 +109,88 @@ function checkLogin() {
         console.error('No product ID found in localStorage.');
     }
 });
+
+// SECCION PRODUCTOS RELACIONADOS
+
+document.addEventListener('DOMContentLoaded', function() {
+    const productId = localStorage.getItem('selectedProductId');
+
+    if (productId) {
+        const apiUrl = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(product => {
+                // URL de productos relacionados con el ID de categoría 101
+                const relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
+
+                // Obtener productos relacionados
+                fetch(relatedProductsUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const relatedProductsContainer = document.getElementById('related-products-container'); // Cambia por el ID de tu contenedor
+                        relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor
+
+                        // Iterar sobre los productos relacionados y crear elementos HTML
+                        data.products.forEach(relatedProduct => {
+                            const productElement = document.createElement('div');
+                            productElement.classList.add('related-product');
+                            productElement.innerHTML = `
+                                <img src="${relatedProduct.image}" alt="${relatedProduct.name}">
+                                <h3>${relatedProduct.name}</h3>
+                                <p>${relatedProduct.currency} ${relatedProduct.price}</p>
+                                <button class="view-details" data-id="${relatedProduct.id}">Ver detalles</button>
+                            `;
+                            relatedProductsContainer.appendChild(productElement);
+                        });
+
+                        // Añadir event listeners a los botones de "Ver detalles"
+                        const viewDetailsButtons = document.querySelectorAll('.view-details');
+                        viewDetailsButtons.forEach(button => {
+                            button.addEventListener('click', (e) => {
+                                const selectedId = e.target.getAttribute('data-id');
+                                localStorage.setItem('selectedProductId', selectedId);
+                                window.location.href = 'product-info.html'; // Cambia a la URL de tu página de detalles
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching related products:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Error fetching product data:', error);
+            });
+    } else {
+        console.error('No product ID found in localStorage.');
+    }
+});
+
+//CARRUSEL PRODUCTOS RELACIONADOS
+let currentSlide = 0;
+const slidesToShow = 3;
+const relatedProductsContainer = document.querySelector('.related-products-grid');
+const products = relatedProductsContainer.children.length; // Número total de productos
+
+document.getElementById('next-button').addEventListener('click', () => {
+  if (currentSlide < products - slidesToShow) {
+    currentSlide++;
+    updateCarousel();
+  }
+});
+
+document.getElementById('prev-button').addEventListener('click', () => {
+  if (currentSlide > 0) {
+    currentSlide--;
+    updateCarousel();
+  }
+});
+
+function updateCarousel() {
+  const slideWidth = relatedProductsContainer.children[0].offsetWidth;
+  relatedProductsContainer.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+}
+
 
 //COMENTARIOS DE LA API
 
@@ -222,6 +304,15 @@ stars.forEach((star) => {
     // Actualizar la visualización de los comentarios
         showUserComments(storedComments);
    
+
+    setTimeout(function() {
+        submitBtn.textContent = 'Enviar'; 
+        submitBtn.disabled = false;
+        statusMessage.style.display = 'block'; 
+    }, 2000); 
+
+
+
 });
 
 // Función para mostrar los comentarios almacenados en sessionStorage
