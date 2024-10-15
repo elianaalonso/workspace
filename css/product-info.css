@@ -205,13 +205,14 @@ footer {
     background-color: #f0960c;
 }
 
-/*Comentarios*/
 
+/*Comentarios*/
 
 #comments-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Distribuye comentarios en columnas */
     gap: 20px; /* Espacio entre los comentarios */
+    margin-bottom: 30px;
 }
 
 
@@ -220,6 +221,7 @@ footer {
     padding: 20px; 
     justify-content: left; 
     align-items: flex-start; 
+    
 }
 
 #comments-section {
@@ -231,7 +233,7 @@ footer {
     text-align: left; 
     float: left; 
     background: transparent; 
-   
+    
 }
 
 #comments-section h2 {
@@ -278,14 +280,10 @@ footer {
     background-color: #f0960c;
 }
 
-.rating-container {
-    height: 100vh; 
-}
-
 .rating-section {
-    height: 100vh;
+    display: block;
     width: 100%;
-    position: relative; 
+   
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
@@ -372,9 +370,23 @@ textarea {
 
 #related-products-section {
     text-align: center;
-    padding: 80px;
-    margin-top: 20px;
+    padding: auto;
+    margin: auto;
+    margin-bottom: 40px;
+  }
 
+  #related-products {
+    display: flexbox;
+    width: 100%;
+    align-content: center;
+  }
+
+  #related-products h3 {
+    text-align: center;
+    margin-left: auto;
+    margin-bottom: 15px; 
+    font-weight: 550;
+    font-size: 2rem;
   }
   
   #related-products-carousel {
@@ -435,7 +447,7 @@ textarea {
     font-size: 15px;
     height: 36px;
     width: 100px;
-    border-radius: 50px;
+    border-radius: 50px; 
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
