@@ -8,6 +8,8 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/my-profile.css" rel="stylesheet">
+
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -44,19 +46,63 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <li class="nav-item" id="usuario">
+          <li class="nav-item" id="usuario">
+          
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  
+  <main class="container mt-4">
+    <h1 class="mb-4 text-center">Perfil de Usuario</h1>
+    <form id="profileForm" class="needs-validation" novalidate>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="name" class="form-label">Nombre*</label>
+          <input type="text" class="form-control" id="name" required>
+          <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="secondName" class="form-label">Segundo Nombre</label>
+          <input type="text" class="form-control" id="secondName">
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="lastName" class="form-label">Apellido*</label>
+          <input type="text" class="form-control" id="lastName" required>
+          <div class="invalid-feedback">Por favor, ingrese su apellido.</div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="secondLastName" class="form-label">Segundo Apellido</label>
+          <input type="text" class="form-control" id="secondLastName">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="email" class="form-label">E-mail*</label>
+          <input type="email" class="form-control" id="email" required>
+          <div class="invalid-feedback">Por favor, ingrese un correo válido.</div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="phone" class="form-label">Teléfono de contacto</label>
+          <input type="tel" class="form-control" id="phone">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="profilePic" class="form-label">Foto de Perfil</label>
+        <input type="file" class="form-control" id="profilePic" accept="image/*">
+        <img id="profilePicPreview" class="mt-3" src="img/placeholder.png" alt="Foto de perfil" width="100">
+      </div>
+
+      <div class="form-check form-switch mb-3">
+        <input class="form-check-input" type="checkbox" id="themeSwitch">
+        <label class="form-check-label" for="themeSwitch">Modo Noche</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Guardar cambios</button>
+    </form>
   </main>
   <footer class="text-muted">
     <div class="container">
