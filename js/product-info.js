@@ -1,12 +1,13 @@
 
 
-  
   document.addEventListener('DOMContentLoaded', function() {
+        // se obtiene el id del producto seleccionado
     const productId = localStorage.getItem('selectedProductId');
     
     if (productId) {
         const apiUrl = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
 
+        // Obtener datos del producto
         fetch(apiUrl)
             .then(response => response.json())
             .then(product => {
@@ -34,6 +35,7 @@
                     });
                 };               
 
+                // Cambio de la background image en products-info.html según categoría del producto seleccionado
                 const body = document.body;
                 switch(product.category) {
                     case 'Autos':
@@ -65,7 +67,7 @@
                         break;           
                 }
 
-
+                //Sección del carrusel de imágenes del producto
                 let currentIndex = 0;
                 const nextButton = document.getElementById('next-btn');
                 const prevButton = document.getElementById('prev-btn');
@@ -158,10 +160,10 @@ fetch(relatedProductsUrl)
     } else {
         console.error('No product ID found in localStorage.');
     }
-});
 
 
-//CARRUSEL PRODUCTOS RELACIONADOS
+
+// CARRUSEL DE PRODUCTOS RELACIONADOS
 let currentSlide = 0;
 const slidesToShow = 3;
 const relatedProductsContainer = document.querySelector('.related-products-grid');
@@ -188,10 +190,6 @@ function updateCarousel() {
 
 
 //COMENTARIOS DE LA API
-
-document.addEventListener('DOMContentLoaded', function() {
-    // se obtiene el id del producto seleccionado
-    const productId = localStorage.getItem('selectedProductId'); 
     // se construye la url de la API con el id del producto
     const apicommentsUrl = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
 
@@ -209,28 +207,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(comments => {
             const commentsContainer = document.getElementById('comments-container');
 
-            // se itera sobre cada comentario y crea un div con la clase comment para cada uno
-            comments.forEach(comment => {
-                const commentDiv = document.createElement('div');
-                commentDiv.classList.add('comment');
-
-                // para las estrellas se genera un array con 5 posiciones, si el índice es menor que la calificación se pone una estrella llena
-                const stars = Array.from({ length: 5 }, (_, index) => {
-                    return index < comment.score ? '★' : '☆';
-                }).join(''); //junta las estrellas en una sola cadena sin espacio entre ellas
-
-                // se asigna el contenido html al div del comentario
-                commentDiv.innerHTML = `
-                    <div class="comment-header">
-                        <h3>${comment.user}</h3>
-                        <div class="stars">${stars}</div>
-                    </div>
-                    <p>${comment.description}</p>
-                    <div class="date">${new Date(comment.dateTime).toLocaleString()}</div>
-                `;
-                // se agrega el div al contenedor principal
-                commentsContainer.appendChild(commentDiv);
-            });
+            // Llamada a función para mostrar los comentarios
+            showUserComments(comments);
 
             // Obtener y mostrar los comentarios guardados en sessionStorage
             let storedComments = JSON.parse(sessionStorage.getItem('userComments')) || [];
@@ -242,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const commentsContainer = document.getElementById('comments-container');
             commentsContainer.innerHTML = '<p>No se pudieron cargar los comentarios.</p>';
         });
-});
+
 
 
 
@@ -281,7 +259,7 @@ stars.forEach((star) => {
         dateTime: date
     };
 
-    // Para agregar los comentarios escritos en la página abierta - SESSIONSTORAGE
+        // Para agregar los comentarios escritos en la página abierta - SESSIONSTORAGE
     // Obtener los comentarios existentes en sessionStorage convirtiéndolos en objeto js
     let storedComments = JSON.parse(sessionStorage.getItem('userComments')) || [];
     
@@ -310,10 +288,9 @@ stars.forEach((star) => {
         submitBtn.disabled = false;
         statusMessage.style.display = 'block'; 
     }, 2000); 
-
-
-
 });
+
+
 
 // Función para mostrar los comentarios almacenados en sessionStorage
 function showUserComments(comments) {
@@ -321,14 +298,17 @@ function showUserComments(comments) {
 
     sessionStorage.removeItem('userComments');
 
+    // se itera sobre cada comentario y crea un div con la clase comment para cada uno
     comments.forEach(comment => {
         const commentDiv = document.createElement('div');
         commentDiv.classList.add('comment');
 
+        // para las estrellas se genera un array con 5 posiciones, si el índice es menor que la calificación se pone una estrella llena
         const stars = Array.from({ length: 5 }, (_, index) => {
             return index < comment.score ? '★' : '☆';
-        }).join('');
+        }).join(''); //junta las estrellas en una sola cadena sin espacio entre ellas
 
+        // se asigna el contenido html al div del comentario
         commentDiv.innerHTML = `
             <div class="comment-header">
                 <h3>${comment.user}</h3>
@@ -337,8 +317,9 @@ function showUserComments(comments) {
             <p>${comment.description}</p>
             <div class="date">${new Date(comment.dateTime).toLocaleString()}</div>
         `;
+        // se agrega el div al contenedor principal
         commentsContainer.appendChild(commentDiv);
     });
 }
 
-
+});
