@@ -158,6 +158,20 @@ fetch(relatedProductsUrl)
     } else {
         console.error('No product ID found in localStorage.');
     }
+
+// Cambiar entre Día y Noche
+const themeSwitch = document.getElementById('themeSwitch');
+themeSwitch.addEventListener('change', () => {
+  document.body.classList.toggle('dark-mode');
+  
+  // Guardar en localStorage
+  const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+  localStorage.setItem('theme', theme);
+});
+
+
+
+
 });
 
 
