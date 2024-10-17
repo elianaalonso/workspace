@@ -189,3 +189,18 @@ a.custom-card:hover {
   color: orange;
 }
 
+/* Estilo para el botón del usuario */
+.dropdown-toggle {
+  background-color: #212529; /* Fondo blanco */
+  color: white; /* Texto negro */
+  border-color: #212529;
+}
+
+/* Estilo para los elementos del menú */
+.dropdown-item {
+  color: black; /* Texto negro */
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa; /* Fondo gris claro al pasar el mouse */
+}
