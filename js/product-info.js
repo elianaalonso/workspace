@@ -89,47 +89,14 @@
 
 // SECCION PRODUCTOS RELACIONADOS
 
-// Definir la URL para los productos relacionados basada en la categoría
-let relatedProductsUrl = '';
-switch (product.category) {
-    case 'Autos':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
-        break;
-    case 'Juguetes':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/102.json';
-        break;
-    case 'Muebles':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/103.json';
-        break;
-    case 'Herramientas':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/104.json';
-        break;
-    case 'Computadoras':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/105.json';
-        break;
-    case 'Vestimenta':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/106.json';
-        break;
-    case 'Electrodomésticos':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/107.json';
-        break;
-    case 'Deporte':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/108.json';
-        break;
-    case 'Celulares':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/109.json';
-        break;
-}
+let relatedProducts = product.relatedProducts;
 
-// Obtener productos relacionados
-fetch(relatedProductsUrl)
-.then(response => response.json())
-.then(data => {
+if (product.relatedProducts) {
     const relatedProductsContainer = document.getElementById('related-products-container');
     relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor
 
     // Iterar sobre los productos relacionados y crear elementos HTML
-    data.products.forEach(relatedProduct => {
+    relatedProducts.forEach(relatedProduct => {
         const productElement = document.createElement('div');
         productElement.classList.add('related-product');
         productElement.innerHTML = `
@@ -149,16 +116,14 @@ fetch(relatedProductsUrl)
             localStorage.setItem('selectedProductId', selectedId);
             window.location.href = 'product-info.html'; 
         });
-    });
-})                
-            })
+        
             .catch(error => {
                 console.error('Error fetching product data:', error);
             });
     } else {
         console.error('No product ID found in localStorage.');
     }
-});
+
 
 
 //CARRUSEL PRODUCTOS RELACIONADOS
