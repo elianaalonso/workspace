@@ -1,3 +1,123 @@
+/*
+@media (min-width: 1024px) {
+
+}
+
+/* Tableta en modo vertical: 768px a 1024px */
+@media (max-width: 1172px) {
+
+    .product-info-wrapper {
+        align-items: flex-start;
+        flex-flow: wrap;
+        gap: 20px;
+        display: flex;
+    }
+
+    #product-name {
+        font-size: 50px;
+    }
+
+    #product-data {
+    }
+
+    #product-data p {
+        text-align: center;
+        margin-left: 18px;
+    }
+
+
+
+    html, body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-size: cover;
+    }   
+
+    #comments-background {
+        display: flex;
+        flex-direction: column; /* Asegura que los elementos se apilen en columnas */
+        gap: 20px; /* Espacio entre comentarios y el formulario */
+    }
+
+    #comments-section {
+        order: 1; /* Los comentarios primero */
+        min-width: 100%;
+    }
+
+    .rating-container { 
+        order: 2; /* El formulario de calificación después */
+        margin-top: 20px;
+        text-align: center;
+        width: 80%; /* Asegura que ocupe todo el ancho disponible */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #ratingForm {
+        /**
+            text-align: end;
+            margin: 0 auto;
+        */
+        display: grid;
+
+        width: 100%;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        justify-content: space-between;
+        margin-botton: 20px;
+    }
+
+    #comments-container {
+        margin-bottom: 0; /* Evita márgenes extra debajo de los comentarios */
+    }
+
+    textarea {
+        grid-column: 1 / -1; /* Ocupa toda la fila */
+        width: 100%; /* Asegura que el textarea ocupe todo el ancho disponible */
+        resize: none;
+        padding: 10px;
+        margin-bottom: 10px;
+        
+    }
+
+    .rating-stars {
+        margin-right: auto;
+        display: flex;
+        gap: 5px; /* Espacio entre las estrellas */
+        margin: auto;
+    }
+
+    .form-top {
+        align-content: space-evenly;
+        width: 100%;
+        grid-column: 1 / -1;
+        display: block;
+        justify-self: auto;
+        }
+
+    #comment {
+        align-items: center;
+    }
+
+    .form-top h3 {
+        text-align: left;
+        margin: auto;
+    }
+
+    .button-calification {
+        grid-column: 1 / -1; /* Asegura que los botones estén alineados */
+        text-align: right;
+    }
+
+}
+
+/* Smartphone pequeño (Ej. iPhone SE): 320px a 568px */
+@media (max-width: 568px) {
+
+}
+
 
 html, body {
     margin: 0;
@@ -245,7 +365,7 @@ footer {
 
 .comment {
     flex: 1 1 calc(33.333% - 20px); 
-    background-color: #f9f9f9;     
+    background-color: rgb(249, 249, 249);     
     padding: 15px;          
     margin-bottom: 15px;  
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
@@ -300,6 +420,14 @@ footer {
 #ratingForm {
     text-align: end;
     margin-right: 3em;
+    display: grid;
+    justify-items: end;
+    /**
+        text-align: end;
+        margin-right: 3em;
+        display: flow;
+        justify-items: end;
+    */
 }
 
 .rating-container {
@@ -350,14 +478,14 @@ footer {
 }
 
 textarea {  
-    width: 345px; /* Ancho completo */  
+    min-width: 345px; /* Ancho mínimo */  
     height: 163px; /* Altura del textarea */  
     padding: 10px; /* Espacio interno */  
     border: 1px solid #ced4da00; /* Borde gris claro */  
     border-radius: 5px; /* Bordes redondeados */  
     resize: none; /* Evitar el redimensionamiento */  
     font-family: 'Inter', Arial, sans-serif; /* Tipo de letra */  
-    margin-right: 2em;
+    margin-right: auto;
 }
 
 #ratingForm h3 {  
