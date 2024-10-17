@@ -122,3 +122,13 @@ function saveToLocalStorage(key, data) {
       profilePicPreview.src = profileData.profilePic || 'img/placeholder.png';
     }
   });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    // Obtener el email guardado desde localStorage
+    const loggedInEmail = localStorage.getItem('loggedInEmail');
+
+    // Si existe un email guardado, precargarlo en el campo de email del perfil
+    if (loggedInEmail) {
+        document.getElementById('email').value = loggedInEmail;
+    }
+});
