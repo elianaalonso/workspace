@@ -90,56 +90,24 @@
 // SECCION PRODUCTOS RELACIONADOS
 
 // Definir la URL para los productos relacionados basada en la categoría
-let relatedProductsUrl = '';
-switch (product.category) {
-    case 'Autos':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
-        break;
-    case 'Juguetes':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/102.json';
-        break;
-    case 'Muebles':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/103.json';
-        break;
-    case 'Herramientas':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/104.json';
-        break;
-    case 'Computadoras':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/105.json';
-        break;
-    case 'Vestimenta':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/106.json';
-        break;
-    case 'Electrodomésticos':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/107.json';
-        break;
-    case 'Deporte':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/108.json';
-        break;
-    case 'Celulares':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/109.json';
-        break;
-}
+let relatedProducts = product.relatedProducts;
 
-// Obtener productos relacionados
-fetch(relatedProductsUrl)
-.then(response => response.json())
-.then(data => {
     const relatedProductsContainer = document.getElementById('related-products-container');
     relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor
 
     // Iterar sobre los productos relacionados y crear elementos HTML
-    data.products.forEach(relatedProduct => {
+    product.relatedProducts.forEach(relatedProduct => {
         const productElement = document.createElement('div');
         productElement.classList.add('related-product');
         productElement.innerHTML = `
             <img src="${relatedProduct.image}" alt="${relatedProduct.name}">
             <h3 style="padding: 10px; height: 70px">${relatedProduct.name}</h3>
-            <p style="font-size: 20px; height: 45px">${relatedProduct.currency} ${relatedProduct.cost}</p>
+            
             <button class="view-details" data-id="${relatedProduct.id}" style="background-color: rgba(0, 0, 0, 0.9); color: white; border: 3px solid #f3ebeb; padding: 5px 5px; cursor: pointer; font-size: 15px; height: 65px; width: 100px; border-radius: 50px; top: 50%; font-weight: 600;">Ver detalles</button>
         `;
         relatedProductsContainer.appendChild(productElement);
     });
+// <p style="font-size: 20px; height: 45px">${relatedProduct.currency} ${relatedProduct.cost}</p>//
 
     // Añadir event listeners a los botones de "Ver detalles"
     const viewDetailsButtons = document.querySelectorAll('.view-details');
@@ -151,14 +119,11 @@ fetch(relatedProductsUrl)
         });
     });
 })                
-            })
+            
             .catch(error => {
                 console.error('Error fetching product data:', error);
             });
-    } else {
-        console.error('No product ID found in localStorage.');
-    }
-});
+    
 
 
 //CARRUSEL PRODUCTOS RELACIONADOS
@@ -341,4 +306,5 @@ function showUserComments(comments) {
     });
 }
 
-
+    }
+});
