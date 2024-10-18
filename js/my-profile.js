@@ -119,7 +119,7 @@ function saveToLocalStorage(key, data) {
       document.getElementById('secondLastName').value = profileData.secondLastName || '';
       document.getElementById('email').value = profileData.email || '';
       document.getElementById('phone').value = profileData.phone || '';
-      profilePicPreview.src = profileData.profilePic || 'img/placeholder.png';
+      profilePicPreview.src = profileData.profilePic || 'img/img_perfil.png';
     }
   });
 
