@@ -66,7 +66,7 @@
         grid-template-columns: 1fr auto;
         gap: 10px;
         justify-content: space-between;
-        margin-botton: 20px;
+        margin-bottom: 20px;
     }
 
     #comments-container {
@@ -502,7 +502,15 @@ textarea {
     margin: auto;
     margin-bottom: 40px;
   }
-
+  
+  .related-product {
+    min-width: 200px;
+    flex: 0 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden;
+ }
   #related-products {
     display: flexbox;
     width: 100%;
@@ -529,17 +537,22 @@ textarea {
     display: flex;
     justify-content: space-between;
     overflow: hidden;
-    width: 70%; /* Ajusta el ancho según sea necesario */
     margin: 0 20px; /* Espaciado entre botones y el contenedor */
     padding: 20px;
+
+    /*atributos agregados*/
+    align-items: center;
+    position: relative;
   }
   
   .related-products-grid {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease;
     margin-top: 25px;
     padding: 20px;
-    
+    /*atributos agregados*/
+    gap: 10px; /* Ajuste del espacio entre tarjetas */
+
   }
   
   .related-products-grid > div {
@@ -570,16 +583,16 @@ textarea {
     background-color: rgba(0, 0, 0, 0.9);
     color: white;
     border: 3px solid #f3ebeb;
-    padding: 5px 5px;
     cursor: pointer;
     font-size: 15px;
     height: 36px;
     width: 100px;
     border-radius: 50px; 
-    position: absolute;
     top: 50%;
     transform: translateY(-50%);
     font-weight: 600;
+    /*atributos agregados*/
+    z-index: 1
   }
 
   #prev-button {
@@ -594,9 +607,6 @@ textarea {
     background-color: #555;
   }
   
-  .carousel-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  
 
   
