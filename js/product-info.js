@@ -91,23 +91,30 @@
 
 // SECCION PRODUCTOS RELACIONADOS
 
-    const relatedProductsContainer = document.getElementById('related-products-container');
+const relatedProductsContainer = document.getElementById('related-products-container');
+
+relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor
+
+product.relatedProducts.forEach(async (relatedProduct) => {
+    const productElement = document.createElement('div');
+    productElement.classList.add('related-product');
+
+    // Hacer una petición para obtener los detalles del producto relacionado
+    const relatedProductUrl = `https://japceibal.github.io/emercado-api/products/${relatedProduct.id}.json`;
+    const response = await fetch(relatedProductUrl);
+    const fullRelatedProduct = await response.json();
+
+    productElement.innerHTML = `
+        <img src="${relatedProduct.image}" alt="${relatedProduct.name}">
+        <h3 style="padding: 10px; height: 70px">${relatedProduct.name}</h3>
+        <p style="font-size: 20px; height: 45px">${fullRelatedProduct.currency} ${fullRelatedProduct.cost}</p>
+        <button class="view-details" data-id="${relatedProduct.id}" style="background-color: rgba(0, 0, 0, 0.9); color: white; border: 3px solid #f3ebeb; padding: 5px 5px; cursor: pointer; font-size: 15px; height: 65px; width: 100px; border-radius: 50px; top: 50%; font-weight: 600;">Ver detalles</button>
+    `;
+
+    relatedProductsContainer.appendChild(productElement);
+});
+
     
-    relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor
-
-    // Iterar sobre los productos relacionados y crear elementos HTML
-    product.relatedProducts.forEach(relatedProduct => {
-        const productElement = document.createElement('div');
-        productElement.classList.add('related-product');
-        productElement.innerHTML = `
-            <img src="${relatedProduct.image}" alt="${relatedProduct.name}">
-            <h3 style="padding: 10px; height: 70px">${relatedProduct.name}</h3>
-            <p style="font-size: 20px; height: 45px">${product.currency} ${product.cost}</p>
-            <button class="view-details" data-id="${relatedProduct.id}" style="background-color: rgba(0, 0, 0, 0.9); color: white; border: 3px solid #f3ebeb; padding: 5px 5px; cursor: pointer; font-size: 15px; height: 65px; width: 100px; border-radius: 50px; top: 50%; font-weight: 600;">Ver detalles</button>
-        `;
-        relatedProductsContainer.appendChild(productElement);
-    });
-
     // Añadir event listeners a los botones de "Ver detalles"
     const viewDetailsButtons = document.querySelectorAll('.view-details');
     viewDetailsButtons.forEach(button => {
@@ -238,6 +245,7 @@ stars.forEach((star) => {
         document.getElementById('comment').value = '';
         selectedRating = 0; // Reinicia la calificación
         document.getElementById('statusMessage').style.display = 'block';
+        document.getElementById('statusMessage').style.marginRight = '-1.3rem'
 
     // Actualizar la visualización de los comentarios
         showUserComments(storedComments);
