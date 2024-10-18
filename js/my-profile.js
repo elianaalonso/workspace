@@ -104,31 +104,31 @@ function saveToLocalStorage(key, data) {
   });
   
   // Cargar el modo guardado y los datos de perfil al cargar la página
-  window.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = getFromLocalStorage('theme');
-    if (savedTheme === 'dark') {
-      document.body.classList.add('dark-mode');
-      themeSwitch.checked = true;
-    }
-  
-    const profileData = getFromLocalStorage('profileData');
-    if (profileData) {
-      document.getElementById('name').value = profileData.name || '';
-      document.getElementById('secondName').value = profileData.secondName || '';
-      document.getElementById('lastName').value = profileData.lastName || '';
-      document.getElementById('secondLastName').value = profileData.secondLastName || '';
-      document.getElementById('email').value = profileData.email || '';
-      document.getElementById('phone').value = profileData.phone || '';
-      profilePicPreview.src = profileData.profilePic || 'img/placeholder.png';
-    }
-  });
+window.addEventListener('DOMContentLoaded', () => {
+  // Cargar tema guardado
+  const savedTheme = getFromLocalStorage('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeSwitch.checked = true;
+  }
 
-  window.addEventListener('DOMContentLoaded', () => {
-    // Obtener el email guardado desde localStorage
-    const loggedInEmail = localStorage.getItem('loggedInEmail');
+  // Cargar datos de perfil
+  const profileData = getFromLocalStorage('profileData');
+  if (profileData) {
+    document.getElementById('name').value = profileData.name || '';
+    document.getElementById('secondName').value = profileData.secondName || '';
+    document.getElementById('lastName').value = profileData.lastName || '';
+    document.getElementById('secondLastName').value = profileData.secondLastName || '';
+    document.getElementById('email').value = profileData.email || '';
+    document.getElementById('phone').value = profileData.phone || '';
+    profilePicPreview.src = profileData.profilePic || 'img/img_perfil.png';
+  }
 
-    // Si existe un email guardado, precargarlo en el campo de email del perfil
-    if (loggedInEmail) {
-        document.getElementById('email').value = loggedInEmail;
-    }
+  // Obtener el email guardado desde localStorage
+  const loggedInEmail = localStorage.getItem('loggedInEmail');
+
+  // Si existe un email guardado, precargarlo en el campo de email del perfil
+  if (loggedInEmail) {
+    document.getElementById('email').value = loggedInEmail;
+  }
 });
