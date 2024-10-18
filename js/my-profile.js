@@ -105,12 +105,14 @@ function saveToLocalStorage(key, data) {
   
   // Cargar el modo guardado y los datos de perfil al cargar la página
   window.addEventListener('DOMContentLoaded', () => {
+    // Cargar tema guardado
     const savedTheme = getFromLocalStorage('theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark-mode');
       themeSwitch.checked = true;
     }
   
+    // Cargar datos de perfil
     const profileData = getFromLocalStorage('profileData');
     if (profileData) {
       document.getElementById('name').value = profileData.name || '';
@@ -119,16 +121,14 @@ function saveToLocalStorage(key, data) {
       document.getElementById('secondLastName').value = profileData.secondLastName || '';
       document.getElementById('email').value = profileData.email || '';
       document.getElementById('phone').value = profileData.phone || '';
-      profilePicPreview.src = profileData.profilePic || 'img/placeholder.png';
+      profilePicPreview.src = profileData.profilePic || 'img/img_perfil.png';
     }
-  });
-
-  window.addEventListener('DOMContentLoaded', () => {
+  
     // Obtener el email guardado desde localStorage
     const loggedInEmail = localStorage.getItem('loggedInEmail');
-
+  
     // Si existe un email guardado, precargarlo en el campo de email del perfil
     if (loggedInEmail) {
-        document.getElementById('email').value = loggedInEmail;
+      document.getElementById('email').value = loggedInEmail;
     }
-});
+  });
