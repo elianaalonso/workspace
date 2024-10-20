@@ -10,6 +10,16 @@ const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
+
+//// Se crea una función para almacenar los datos en el localStorage
+function saveToLocalStorage(key, value) {
+  localStorage.setItem(key, value);
+}
+
+//// se declara la constante que trae el elemento del switch 
+const themeSwitch = document.getElementById('themeSwitch');
+
+
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
 }
@@ -43,26 +53,63 @@ let getJSONData = function(url){
     });
 }
 
-    // NOMBRE DE USUARIO EN LA BARRA SUPERIOR//
-//- obtener el nombre de usuario almacenado en localStorage
+    // NOMBRE DE USUARIO EN LA BARRA SUPERIOR
+// - obtener el nombre de usuario almacenado en localStorage
 let usuario = localStorage.getItem("usuario");
-// Si hay un nombre de usuario, mostrarlo en la barra de navegación
-if(usuario){
-    document.getElementById("usuario").textContent = usuario;
+
+// Si hay un nombre de usuario, mostrarlo en el botón del menú desplegable
+if (usuario) {
+    document.querySelector(".dropdown-toggle").textContent = usuario;
 }
 
-// localStorage antes estaba en: products.js líneas 206 a 213, index.html líneas 2 a 7, 
-// categories.js líneas 144 y 145, product-info.js líneas 10 a 15.
-
+// Función para verificar si el usuario ha iniciado sesión
 function checkLogin() {
-  let isLoggedIn = sessionStorage.getItem("isLoggedIn");
-  if (!isLoggedIn) {
-      window.location.href = "login.html";
-  }
+    let isLoggedIn = sessionStorage.getItem("isLoggedIn");
+    if (!isLoggedIn) {
+        window.location.href = "login.html"; // Redirigir a la página de inicio de sesión
+    }
 }
+
+// Llamar a la función checkLogin al cargar la página
+document.addEventListener("DOMContentLoaded", function () {
+    checkLogin();
+
+     
+//// se crea el evento que se activa cuando el estado del switch cambia
+themeSwitch.addEventListener('change', () => {
+  document.body.classList.toggle('dark-mode'); //se añade la clase dark-mode al bod si no está presente, o la elimina si ya está presente.
+  
+  const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+  saveToLocalStorage('theme', theme); //se guarda el tema en localStorage con la funcion que definimos antes
+});
+
+
+
+//// al cargar la pagina se aplica el tema guardado
+  const savedTheme = localStorage.getItem('theme'); //se trae el valor de la clave theme del localStorage
+  if (savedTheme) { // se verifica que tenga un valor
+      document.body.classList.toggle('dark-mode', savedTheme === 'dark'); // se accede a la lista de clases del elemento body 
+      // si el el valor guardado es dark, con toggle se añade la clase dark-mode, de lo contrario se elimina.
+      themeSwitch.checked = savedTheme === 'dark'; //se actualiza el estado del switch
+  }
+
+});
+
+document.getElementById("logout").addEventListener("click", function () {
+  // Eliminar el nombre de usuario de localStorage
+  localStorage.removeItem("usuario");
+  // Eliminar el estado de sesión
+  sessionStorage.removeItem("isLoggedIn");
+  // Redirigir a la página de inicio de sesión
+  window.location.href = "login.html";
+});
+
 
 window.onload = checkLogin;
 
 // checkLogin antes estaba presente al final de cada código en los siguientes js: 
 // products.js, sell.js, product-info.js (excepcionalmente se encontraba al principio), 
 // my-profile.js, index.js, categories.js, cart.js.
+
+
+
