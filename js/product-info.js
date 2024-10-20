@@ -108,30 +108,25 @@ product.relatedProducts.forEach(async (relatedProduct) => {
         <img src="${relatedProduct.image}" alt="${relatedProduct.name}">
         <h3 style="padding: 10px; height: 70px">${relatedProduct.name}</h3>
         <p style="font-size: 20px; height: 45px">${fullRelatedProduct.currency} ${fullRelatedProduct.cost}</p>
-        <button class="view-details" data-id="${relatedProduct.id}" style="background-color: rgba(0, 0, 0, 0.9); color: white; border: 3px solid #f3ebeb; padding: 5px 5px; cursor: pointer; font-size: 15px; height: 65px; width: 100px; border-radius: 50px; top: 50%; font-weight: 600;">Ver detalles</button>
+        <button class="view-details" data-id="${relatedProduct.id}" 
+            style="background-color: rgba(0, 0, 0, 0.9); color: white; border: 3px solid #f3ebeb;
+            padding: 5px 5px; cursor: pointer; font-size: 15px; height: 65px;
+            width: 100px; border-radius: 50px; top: 50%; font-weight: 600;">
+            Ver detalles
+            </button>
     `;
 
     relatedProductsContainer.appendChild(productElement);
+
+    productElement.querySelector('.view-details').addEventListener('click', (e) => {
+        const selectedId = e.target.getAttribute('data-id');
+        localStorage.setItem('selectedProductId', selectedId);
+        window.location.href = 'product-info.html';
+    });
 });
 
-    
-    // Añadir event listeners a los botones de "Ver detalles"
-   
-           
-        const viewDetailsButtons = document.querySelectorAll('.view-details');
-    viewDetailsButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            try {
-                const selectedId = e.target.getAttribute('data-id');
-                localStorage.setItem('selectedProductId', selectedId);
-                window.location.href = 'product-info.html';
-            } catch(error) {
-                console.error('Error fetching product data:', error);
-            }
-        }); 
+});
 
-            });
-        });
 
 
 
