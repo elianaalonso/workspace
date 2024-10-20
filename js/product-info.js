@@ -116,22 +116,23 @@ product.relatedProducts.forEach(async (relatedProduct) => {
 
     
     // Añadir event listeners a los botones de "Ver detalles"
-    
+   
+           
         const viewDetailsButtons = document.querySelectorAll('.view-details');
     viewDetailsButtons.forEach(button => {
         button.addEventListener('click', (e) => {
-            const selectedId = e.target.getAttribute('data-id');
-            localStorage.setItem('selectedProductId', selectedId);
-            window.location.href = 'product-info.html'; 
-            });
-        })
-            .catch(error => {
+            try {
+                const selectedId = e.target.getAttribute('data-id');
+                localStorage.setItem('selectedProductId', selectedId);
+                window.location.href = 'product-info.html';
+            } catch(error) {
                 console.error('Error fetching product data:', error);
+            }
+        }); 
+
             });
         });
-    } else {
-        console.error('No product ID found in localStorage.');
-    };
+
 
 
 // CARRUSEL DE PRODUCTOS RELACIONADOS
@@ -294,5 +295,7 @@ function showUserComments(comments) {
     });
 }
   
+
+}
 
 });
