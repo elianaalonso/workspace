@@ -18,16 +18,6 @@ function saveToLocalStorage(key, value) {
 
 //// se declara la constante que trae el elemento del switch 
 const themeSwitch = document.getElementById('themeSwitch');
- 
-//// se crea el evento que se activa cuando el estado del switch cambia
-themeSwitch.addEventListener('change', () => {
-  document.body.classList.toggle('dark-mode'); //se añade la clase dark-mode al bod si no está presente, o la elimina si ya está presente.
-  
-  const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-  saveToLocalStorage('theme', theme); //se guarda el tema en localStorage con la funcion que definimos antes
-});
-
-
 
 
 let showSpinner = function(){
@@ -83,6 +73,17 @@ function checkLogin() {
 // Llamar a la función checkLogin al cargar la página
 document.addEventListener("DOMContentLoaded", function () {
     checkLogin();
+
+     
+//// se crea el evento que se activa cuando el estado del switch cambia
+themeSwitch.addEventListener('change', () => {
+  document.body.classList.toggle('dark-mode'); //se añade la clase dark-mode al bod si no está presente, o la elimina si ya está presente.
+  
+  const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+  saveToLocalStorage('theme', theme); //se guarda el tema en localStorage con la funcion que definimos antes
+});
+
+
 
 //// al cargar la pagina se aplica el tema guardado
   const savedTheme = localStorage.getItem('theme'); //se trae el valor de la clave theme del localStorage
