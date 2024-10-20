@@ -11,6 +11,15 @@ const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
 
+//// Se crea una función para almacenar los datos en el localStorage
+function saveToLocalStorage(key, value) {
+  localStorage.setItem(key, value);
+}
+
+//// se declara la constante que trae el elemento del switch 
+const themeSwitch = document.getElementById('themeSwitch');
+
+
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
 }
@@ -64,6 +73,26 @@ function checkLogin() {
 // Llamar a la función checkLogin al cargar la página
 document.addEventListener("DOMContentLoaded", function () {
     checkLogin();
+
+     
+//// se crea el evento que se activa cuando el estado del switch cambia
+themeSwitch.addEventListener('change', () => {
+  document.body.classList.toggle('dark-mode'); //se añade la clase dark-mode al bod si no está presente, o la elimina si ya está presente.
+  
+  const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+  saveToLocalStorage('theme', theme); //se guarda el tema en localStorage con la funcion que definimos antes
+});
+
+
+
+//// al cargar la pagina se aplica el tema guardado
+  const savedTheme = localStorage.getItem('theme'); //se trae el valor de la clave theme del localStorage
+  if (savedTheme) { // se verifica que tenga un valor
+      document.body.classList.toggle('dark-mode', savedTheme === 'dark'); // se accede a la lista de clases del elemento body 
+      // si el el valor guardado es dark, con toggle se añade la clase dark-mode, de lo contrario se elimina.
+      themeSwitch.checked = savedTheme === 'dark'; //se actualiza el estado del switch
+  }
+
 });
 
 document.getElementById("logout").addEventListener("click", function () {

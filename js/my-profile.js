@@ -8,6 +8,7 @@ function saveToLocalStorage(key, data) {
     return JSON.parse(localStorage.getItem(key));
   }
   
+
   // Alternar entre Modo Día y Noche
   const themeSwitch = document.getElementById('themeSwitch');
   themeSwitch.addEventListener('change', () => {
@@ -17,6 +18,7 @@ function saveToLocalStorage(key, data) {
     const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
     saveToLocalStorage('theme', theme);
   });
+
   
   // Previsualizar la foto de perfil seleccionada
   const profilePicInput = document.getElementById('profilePic');
@@ -102,6 +104,7 @@ function saveToLocalStorage(key, data) {
       alert('Cambios guardados exitosamente');
     }
   });
+
   
   // Cargar el modo guardado y los datos de perfil al cargar la página
   window.addEventListener('DOMContentLoaded', () => {
@@ -140,3 +143,4 @@ function saveToLocalStorage(key, data) {
 
     }
   });
+

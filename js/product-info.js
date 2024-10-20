@@ -158,6 +158,7 @@ fetch(relatedProductsUrl)
     } else {
         console.error('No product ID found in localStorage.');
     }
+
 });
 
 
