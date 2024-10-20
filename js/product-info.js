@@ -1,12 +1,13 @@
 
 
-  
   document.addEventListener('DOMContentLoaded', function() {
+        // se obtiene el id del producto seleccionado
     const productId = localStorage.getItem('selectedProductId');
     
     if (productId) {
         const apiUrl = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
 
+        // Obtener datos del producto
         fetch(apiUrl)
             .then(response => response.json())
             .then(product => {
@@ -34,6 +35,7 @@
                     });
                 };               
 
+                // Cambio de la background image en products-info.html según categoría del producto seleccionado
                 const body = document.body;
                 switch(product.category) {
                     case 'Autos':
@@ -65,7 +67,7 @@
                         break;           
                 }
 
-
+                //Sección del carrusel de imágenes del producto
                 let currentIndex = 0;
                 const nextButton = document.getElementById('next-btn');
                 const prevButton = document.getElementById('prev-btn');
@@ -89,80 +91,46 @@
 
 // SECCION PRODUCTOS RELACIONADOS
 
-// Definir la URL para los productos relacionados basada en la categoría
-let relatedProductsUrl = '';
-switch (product.category) {
-    case 'Autos':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
-        break;
-    case 'Juguetes':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/102.json';
-        break;
-    case 'Muebles':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/103.json';
-        break;
-    case 'Herramientas':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/104.json';
-        break;
-    case 'Computadoras':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/105.json';
-        break;
-    case 'Vestimenta':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/106.json';
-        break;
-    case 'Electrodomésticos':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/107.json';
-        break;
-    case 'Deporte':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/108.json';
-        break;
-    case 'Celulares':
-        relatedProductsUrl = 'https://japceibal.github.io/emercado-api/cats_products/109.json';
-        break;
-}
+const relatedProductsContainer = document.getElementById('related-products-container');
 
-// Obtener productos relacionados
-fetch(relatedProductsUrl)
-.then(response => response.json())
-.then(data => {
-    const relatedProductsContainer = document.getElementById('related-products-container');
-    relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor
+relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor
 
-    // Iterar sobre los productos relacionados y crear elementos HTML
-    data.products.forEach(relatedProduct => {
-        const productElement = document.createElement('div');
-        productElement.classList.add('related-product');
-        productElement.innerHTML = `
-            <img src="${relatedProduct.image}" alt="${relatedProduct.name}">
-            <h3 style="padding: 10px; height: 70px">${relatedProduct.name}</h3>
-            <p style="font-size: 20px; height: 45px">${relatedProduct.currency} ${relatedProduct.cost}</p>
-            <button class="view-details" data-id="${relatedProduct.id}" style="background-color: rgba(0, 0, 0, 0.9); color: white; border: 3px solid #f3ebeb; padding: 5px 5px; cursor: pointer; font-size: 15px; height: 65px; width: 100px; border-radius: 50px; top: 50%; font-weight: 600;">Ver detalles</button>
-        `;
-        relatedProductsContainer.appendChild(productElement);
+product.relatedProducts.forEach(async (relatedProduct) => {
+    const productElement = document.createElement('div');
+    productElement.classList.add('related-product');
+
+    // Hacer una petición para obtener los detalles del producto relacionado
+    const relatedProductUrl = `https://japceibal.github.io/emercado-api/products/${relatedProduct.id}.json`;
+    const response = await fetch(relatedProductUrl);
+    const fullRelatedProduct = await response.json();
+
+    productElement.innerHTML = `
+        <img src="${relatedProduct.image}" alt="${relatedProduct.name}">
+        <h3 style="padding: 10px; height: 70px">${relatedProduct.name}</h3>
+        <p style="font-size: 20px; height: 45px">${fullRelatedProduct.currency} ${fullRelatedProduct.cost}</p>
+        <button class="view-details" data-id="${relatedProduct.id}" 
+            style="background-color: rgba(0, 0, 0, 0.9); color: white; border: 3px solid #f3ebeb;
+            padding: 5px 5px; cursor: pointer; font-size: 15px; height: 65px;
+            width: 100px; border-radius: 50px; top: 50%; font-weight: 600;">
+            Ver detalles
+            </button>
+    `; 
+
+    relatedProductsContainer.appendChild(productElement);
+
+    productElement.querySelector('.view-details').addEventListener('click', (e) => {
+        const selectedId = e.target.getAttribute('data-id');
+        localStorage.setItem('selectedProductId', selectedId);
+        window.location.href = 'product-info.html';
     });
-
-    // Añadir event listeners a los botones de "Ver detalles"
-    const viewDetailsButtons = document.querySelectorAll('.view-details');
-    viewDetailsButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const selectedId = e.target.getAttribute('data-id');
-            localStorage.setItem('selectedProductId', selectedId);
-            window.location.href = 'product-info.html'; 
-        });
-    });
-})                
-            })
-            .catch(error => {
-                console.error('Error fetching product data:', error);
-            });
-    } else {
-        console.error('No product ID found in localStorage.');
-    }
+});
 
 });
 
 
-//CARRUSEL PRODUCTOS RELACIONADOS
+
+
+// CARRUSEL DE PRODUCTOS RELACIONADOS
 let currentSlide = 0;
 const slidesToShow = 3;
 const relatedProductsContainer = document.querySelector('.related-products-grid');
@@ -183,16 +151,12 @@ document.getElementById('prev-button').addEventListener('click', () => {
 });
 
 function updateCarousel() {
-  const slideWidth = relatedProductsContainer.children[0].offsetWidth;
+  const slideWidth = relatedProductsContainer.children[0].offsetWidth + 10;
   relatedProductsContainer.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
 }
 
 
 //COMENTARIOS DE LA API
-
-document.addEventListener('DOMContentLoaded', function() {
-    // se obtiene el id del producto seleccionado
-    const productId = localStorage.getItem('selectedProductId'); 
     // se construye la url de la API con el id del producto
     const apicommentsUrl = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
 
@@ -210,28 +174,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(comments => {
             const commentsContainer = document.getElementById('comments-container');
 
-            // se itera sobre cada comentario y crea un div con la clase comment para cada uno
-            comments.forEach(comment => {
-                const commentDiv = document.createElement('div');
-                commentDiv.classList.add('comment');
-
-                // para las estrellas se genera un array con 5 posiciones, si el índice es menor que la calificación se pone una estrella llena
-                const stars = Array.from({ length: 5 }, (_, index) => {
-                    return index < comment.score ? '★' : '☆';
-                }).join(''); //junta las estrellas en una sola cadena sin espacio entre ellas
-
-                // se asigna el contenido html al div del comentario
-                commentDiv.innerHTML = `
-                    <div class="comment-header">
-                        <h3>${comment.user}</h3>
-                        <div class="stars">${stars}</div>
-                    </div>
-                    <p>${comment.description}</p>
-                    <div class="date">${new Date(comment.dateTime).toLocaleString()}</div>
-                `;
-                // se agrega el div al contenedor principal
-                commentsContainer.appendChild(commentDiv);
-            });
+            // Llamada a función para mostrar los comentarios
+            showUserComments(comments);
 
             // Obtener y mostrar los comentarios guardados en sessionStorage
             let storedComments = JSON.parse(sessionStorage.getItem('userComments')) || [];
@@ -243,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const commentsContainer = document.getElementById('comments-container');
             commentsContainer.innerHTML = '<p>No se pudieron cargar los comentarios.</p>';
         });
-});
+
 
 
 
@@ -282,7 +226,7 @@ stars.forEach((star) => {
         dateTime: date
     };
 
-    // Para agregar los comentarios escritos en la página abierta - SESSIONSTORAGE
+        // Para agregar los comentarios escritos en la página abierta - SESSIONSTORAGE
     // Obtener los comentarios existentes en sessionStorage convirtiéndolos en objeto js
     let storedComments = JSON.parse(sessionStorage.getItem('userComments')) || [];
     
@@ -296,6 +240,7 @@ stars.forEach((star) => {
         document.getElementById('comment').value = '';
         selectedRating = 0; // Reinicia la calificación
         document.getElementById('statusMessage').style.display = 'block';
+        document.getElementById('statusMessage').style.marginRight = '-1.3rem'
 
     // Actualizar la visualización de los comentarios
         showUserComments(storedComments);
@@ -311,10 +256,9 @@ stars.forEach((star) => {
         submitBtn.disabled = false;
         statusMessage.style.display = 'block'; 
     }, 2000); 
-
-
-
 });
+
+
 
 // Función para mostrar los comentarios almacenados en sessionStorage
 function showUserComments(comments) {
@@ -322,14 +266,17 @@ function showUserComments(comments) {
 
     sessionStorage.removeItem('userComments');
 
+    // se itera sobre cada comentario y crea un div con la clase comment para cada uno
     comments.forEach(comment => {
         const commentDiv = document.createElement('div');
         commentDiv.classList.add('comment');
 
+        // para las estrellas se genera un array con 5 posiciones, si el índice es menor que la calificación se pone una estrella llena
         const stars = Array.from({ length: 5 }, (_, index) => {
             return index < comment.score ? '★' : '☆';
-        }).join('');
+        }).join(''); //junta las estrellas en una sola cadena sin espacio entre ellas
 
+        // se asigna el contenido html al div del comentario
         commentDiv.innerHTML = `
             <div class="comment-header">
                 <h3>${comment.user}</h3>
@@ -338,8 +285,12 @@ function showUserComments(comments) {
             <p>${comment.description}</p>
             <div class="date">${new Date(comment.dateTime).toLocaleString()}</div>
         `;
+        // se agrega el div al contenedor principal
         commentsContainer.appendChild(commentDiv);
     });
 }
+  
 
+}
 
+});

@@ -89,14 +89,17 @@
           <p id="product-description"></p>
           <button id="product-tech-specs-btn">FICHA TÉCNICA</button>
           <br>
-          <p id="product-sold-count"></p>
-          <p id="product-cost"></p>
-          <button class="product-buttons">COMPRA EN LÍNEA</button>
-          <button class="product-buttons" id="contact-btn">CONTACTANOS</button>
+          <div id="product-data">
+            <p id="product-sold-count"></p>
+            <p id="product-cost"></p>
+            <button class="product-buttons">COMPRA EN LÍNEA</button>
+            <button class="product-buttons" id="contact-btn">CONTACTANOS</button>
+          </div>
 
         </div>
       </div>
     </div>
+
 <div id="comentarioss">
     
     <!-- comentarios de la API (divs para manipular los estilos e insertar los comentarios mediante js) --> 
@@ -129,12 +132,10 @@
       </div>
     </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <div id="related-products-section">
+  
+  <div id="related-products">
     <h3>Productos relacionados</h3>
+    <div id="related-products-section">
     <div id="related-products-carousel" class="carousel">
       <button id="prev-button" class="carousel-btn">Anterior</button>
       <div id="related-products-container" class="related-products-grid">
@@ -143,6 +144,8 @@
       <button id="next-button" class="carousel-btn">Siguiente</button>
     </div>
   </div>
+</div>
+
 </main>
 
   
