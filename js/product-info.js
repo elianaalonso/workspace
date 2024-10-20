@@ -114,7 +114,7 @@ product.relatedProducts.forEach(async (relatedProduct) => {
             width: 100px; border-radius: 50px; top: 50%; font-weight: 600;">
             Ver detalles
             </button>
-    `;
+    `; 
 
     relatedProductsContainer.appendChild(productElement);
 
