@@ -8,18 +8,6 @@ function saveToLocalStorage(key, data) {
     return JSON.parse(localStorage.getItem(key));
   }
   
-
-  // Alternar entre Modo Día y Noche
-  const themeSwitch = document.getElementById('themeSwitch');
-  themeSwitch.addEventListener('change', () => {
-    document.body.classList.toggle('dark-mode');
-    
-    // Guardar preferencia del modo en localStorage
-    const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-    saveToLocalStorage('theme', theme);
-  });
-
-  
   // Previsualizar la foto de perfil seleccionada
   const profilePicInput = document.getElementById('profilePic');
   const profilePicPreview = document.getElementById('profilePicPreview');
@@ -105,19 +93,17 @@ function saveToLocalStorage(key, data) {
     }
   });
 
-  
   // Cargar el modo guardado y los datos de perfil al cargar la página
   window.addEventListener('DOMContentLoaded', () => {
+    const themeSwitch = document.getElementById('themeSwitch');
 
     // Cargar tema guardado
-
-    const savedTheme = getFromLocalStorage('theme');
-    if (savedTheme === 'dark') {
-      document.body.classList.add('dark-mode');
-      themeSwitch.checked = true;
-    }
+    const savedTheme = localStorage.getItem('theme'); // 
+    if (savedTheme) {
+      document.body.classList.toggle('dark-mode', savedTheme === 'dark');
+    themeSwitch.checked = savedTheme === 'dark';
+  }
   
-
     // Cargar datos de perfil
 
     const profileData = getFromLocalStorage('profileData');
@@ -128,7 +114,6 @@ function saveToLocalStorage(key, data) {
       document.getElementById('secondLastName').value = profileData.secondLastName || '';
       document.getElementById('email').value = profileData.email || '';
       document.getElementById('phone').value = profileData.phone || '';
-
       profilePicPreview.src = profileData.profilePic || 'img/img_perfil.png';
     }
   
@@ -138,9 +123,5 @@ function saveToLocalStorage(key, data) {
     // Si existe un email guardado, precargarlo en el campo de email del perfil
     if (loggedInEmail) {
       document.getElementById('email').value = loggedInEmail;
-
-     
-
     }
   });
-
