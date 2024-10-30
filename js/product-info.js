@@ -289,8 +289,29 @@ function showUserComments(comments) {
         commentsContainer.appendChild(commentDiv);
     });
 }
-  
+
 
 }
-
+// Obtener el botón "Comprar" y agregar evento click
+const buyButton = document.getElementById('buy-button');
+if (buyButton) {
+    buyButton.addEventListener('click', () => {
+        // Guardar la información del producto en localStorage
+        const productData = {
+            id: productId,
+            name: document.getElementById('product-name').textContent,
+            description: document.getElementById('product-description').textContent,
+            cost: document.getElementById('product-cost').textContent,
+            image: document.querySelector('#large-image img').src
+        };
+        
+        // Guardar en localStorage
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        cartItems.push(productData);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        
+        // Redirigir a la pantalla de carrito
+        window.location.href = 'cart.html';
+    });
+}
 });
