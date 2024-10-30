@@ -63,6 +63,31 @@
     background-position: center;
   }
 
+
+   form {
+    margin: 20px;
+}
+
+.password-container {
+  display: flex;
+}
+
+
+.toggle-button {
+    transform: translateY(50%);
+    display: flex;
+    margin-left: auto;
+    padding: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    background: linear-gradient(to left, rgb(255 140 0 / 50%), rgb(255 215 0 / 50%));
+    border: none;
+    border-radius: 15px;
+    color: #212529;
+    font-size: 13px;
+}
+
 /* Tableta en modo vertical: 768px a 1024px */
 @media (max-width: 1024px) {
   .log-title {
