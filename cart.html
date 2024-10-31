@@ -31,13 +31,13 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <!-- Switch para modo noche -->
           <div class="form-check form-switch mb-3" style="margin-top: 0.7%; color: rgb(142, 142, 142);">
             <input class="form-check-input" type="checkbox" id="themeSwitch">
             <label class="form-check-label" for="themeSwitch">Modo Noche</label>
           </div>
           <li class="nav-item dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Nombre de Usuario
             </a>
             <ul class="dropdown-menu">
@@ -54,13 +54,24 @@
   <main>
     <h1>Carrito de compras</h1>
     <button id="continuar-comprando" onclick="window.history.back()">← Continuar comprando</button>
-    
+
     <div id="carrito">
       <section id="articulos">
         <h2>Artículos a comprar</h2>
-        <ul id="lista-productos">
-          <!-- Aquí irán los productos -->
-        </ul>
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>              
+              <th>Nombre</th>
+              <th>Costo</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="lista-productos">
+            <!-- Aquí irán los productos -->
+          </tbody>
+        </table>
         <p id="mensaje-vacio" style="display: none;">No hay productos en el carrito.</p>
       </section>
 
@@ -73,10 +84,10 @@
         <h3>Dirección de envío</h3>
         <label for="calle">Calle:</label>
         <input type="text" id="calle" placeholder="Calle">
-        
+
         <label for="numero">Número:</label>
         <input type="text" id="numero" placeholder="Número">
-        
+
         <label for="esquina">Esquina:</label>
         <input type="text" id="esquina" placeholder="Esquina">
 
@@ -95,7 +106,8 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
 
