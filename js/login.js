@@ -40,3 +40,21 @@ document.getElementById("login-form").addEventListener("submit", function(event)
         window.location.href = "index.html";
     }
 });
+
+// Función para mostrar u ocultar la contraseña
+function togglePassword() {
+    const passwordInput = document.getElementById('contraseña');
+    const toggleButton = document.querySelector('.toggle-button');
+
+    // Cambiar el tipo del input
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleButton.textContent = 'Ocultar contraseña';
+    } else {
+        passwordInput.type = 'password';
+        toggleButton.textContent = 'Mostrar contraseña';
+    }
+}
+
+// Asignar el evento de click al botón
+document.querySelector('.toggle-button').addEventListener('click', togglePassword);
