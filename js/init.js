@@ -74,11 +74,31 @@ function checkLogin() {
 document.addEventListener("DOMContentLoaded", function () {
     checkLogin();
 
-     
+    const album = document.querySelector('.album');
+    const bgImg = document.querySelector('.jumbotron');
+
+    
 //// se crea el evento que se activa cuando el estado del switch cambia
 themeSwitch.addEventListener('change', () => {
   document.body.classList.toggle('dark-mode'); //se añade la clase dark-mode al bod si no está presente, o la elimina si ya está presente.
   
+// Alternar clase 'bg-light' y 'bg-dark' en la clase album
+if (album.classList.contains('bg-light')) {
+  album.classList.replace('bg-light', 'bg-dark');
+} else {
+  album.classList.replace('bg-dark', 'bg-light');
+}
+  
+// Cambiar imagen de fondo en la jumbotron según el tema
+if (document.body.classList.contains('dark-mode')) {
+  bgImg.style.background = 'url("img/cover-back_Dark-mode-1.png")'; // Fondo para tema oscuro
+} else {
+  bgImg.style.background = 'url("img/cover_back.png")'; // Fondo para tema claro
+}
+bgImg.style.backgroundSize = 'cover';  // Asegurar que la imagen se ajuste bien
+bgImg.style.backgroundPosition = 'center';
+
+
   const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
   saveToLocalStorage('theme', theme); //se guarda el tema en localStorage con la funcion que definimos antes
 });
@@ -92,6 +112,20 @@ themeSwitch.addEventListener('change', () => {
       // si el el valor guardado es dark, con toggle se añade la clase dark-mode, de lo contrario se elimina.
       themeSwitch.checked = savedTheme === 'dark'; //se actualiza el estado del switch
   }
+
+  // Asegurarnos de que la clase del álbum sea coherente con el tema guardado
+  if (savedTheme === 'dark') {
+    album.classList.replace('bg-light', 'bg-dark');
+    bgImg.style.background = 'url("img/cover-back_Dark-mode-1.png")';
+
+  } else {
+    album.classList.replace('bg-dark', 'bg-light');
+    bgImg.style.background = 'url("img/cover_back.png")';
+
+  }
+  bgImg.style.backgroundSize = 'cover';
+  bgImg.style.backgroundPosition = 'center';
+
 
 });
 
