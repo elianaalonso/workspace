@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/modonoche.css" rel="stylesheet">
+  <link href="css/cart.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,39 +30,66 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
-
           </li>
-             <!-- Switch para modo noche -->
-             <div class="form-check form-switch mb-3" style="margin-top: 0.7%; color: rgb(142, 142, 142);">
-              <input class="form-check-input" type="checkbox" id="themeSwitch">
-              <label class="form-check-label" for="themeSwitch">Modo Noche</label>
+          <!-- Switch para modo noche -->
+          <div class="form-check form-switch mb-3" style="margin-top: 0.7%; color: rgb(142, 142, 142);">
+            <input class="form-check-input" type="checkbox" id="themeSwitch">
+            <label class="form-check-label" for="themeSwitch">Modo Noche</label>
           </div>
-          <li class="nav-item">
-  
-
-          </li>  
-            <div class="dropdown">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Nombre de Usuario
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-                 <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-                 <li><a class="dropdown-item" href="#" id="logout">Cerrar sesión</a></li>
-              </ul>
-            </div>             
-
+          <li class="nav-item dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Nombre de Usuario
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="#" id="logout">Cerrar sesión</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <h1>Carrito de compras</h1>
+    <button id="continuar-comprando" onclick="window.history.back()">← Continuar comprando</button>
+    
+    <div id="carrito">
+      <section id="articulos">
+        <h2>Artículos a comprar</h2>
+        <ul id="lista-productos">
+          <!-- Aquí irán los productos -->
+        </ul>
+        <p id="mensaje-vacio" style="display: none;">No hay productos en el carrito.</p>
+      </section>
+
+      <section id="resumen">
+        <h3>Tipo de envío</h3>
+        <label><input type="radio" name="envio" value="premium" checked> Premium 2 a 5 días (15%)</label>
+        <label><input type="radio" name="envio" value="express"> Express 5 a 8 días (7%)</label>
+        <label><input type="radio" name="envio" value="standard"> Standard 12 a 15 días (5%)</label>
+
+        <h3>Dirección de envío</h3>
+        <label for="calle">Calle:</label>
+        <input type="text" id="calle" placeholder="Calle">
+        
+        <label for="numero">Número:</label>
+        <input type="text" id="numero" placeholder="Número">
+        
+        <label for="esquina">Esquina:</label>
+        <input type="text" id="esquina" placeholder="Esquina">
+
+        <div id="totales">
+          <p>Subtotal: <span id="subtotal">UYU 0</span></p>
+          <p>Costo de envío: <span id="envio">UYU 0</span></p>
+          <p>Total: <span id="total">UYU 0</span></p>
+        </div>
+        <button id="comprar">COMPRAR</button>
+      </section>
     </div>
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -70,6 +98,7 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -78,6 +107,7 @@
       <div></div>
     </div>
   </div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
