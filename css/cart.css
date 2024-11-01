@@ -8,17 +8,15 @@ h1 {
     color: rgb(0, 0, 0);
     text-align: center;
     padding: 0.5rem;
-    /* Corrige el espaciado, de .50 rem a 0.5rem */
     width: auto;
-    /* Cambiar de 99% a auto */
     margin: 0 auto;
-    /* Centrar el elemento */
     box-sizing: border-box;
     border-radius: 0.5rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
     transition: background 0.3s ease, color 0.3s ease;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Añade sombra al texto */
 }
 
 header {
@@ -173,10 +171,13 @@ header nav a {
     text-align: center;
     margin-top: 20px;
     font-size: 1.2em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 #comprar:hover {
     background-color: #ffcc00;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
 }
 
 /* Botón de continuar comprando */
@@ -186,58 +187,66 @@ header nav a {
     text-decoration: none;
     font-weight: bold;
     margin-bottom: 20px;
-    border: none;
+    background-color: transparent;
+    border: none; /* Sin borde */
+    cursor: pointer;
+}
+
+#continuar-comprando:hover {
+    color: #ff8c00; 
+}
+
+/* Subtotal dinámico */
+.producto-subtotal {
+    font-weight: bold;
+    color: #333;
+    text-align: right;
 }
 
 @media (max-width: 768px) {
     #carrito {
         flex-direction: column;
-        /* Cambia a una columna en pantallas pequeñas */
     }
 
     #articulos {
         width: 100%;
-        /* Ocupa todo el ancho en pantallas pequeñas */
         margin-bottom: 20px;
-        /* Espacio entre secciones */
     }
 
     #resumen {
         width: 100%;
-        /* Ocupa todo el ancho en pantallas pequeñas */
         margin-left: 0;
-        /* Elimina el margen a la izquierda */
     }
 
     #comprar {
         font-size: 1em;
-        /* Reduce el tamaño de la fuente */
+        padding: 12px 15px;
     }
 
     h1 {
         font-size: 1.5em;
-        /* Ajusta el tamaño del encabezado */
     }
 
     #continuar-comprando {
         font-size: 0.9em;
-        /* Ajusta el tamaño del botón */
     }
 }
 
 @media (max-width: 576px) {
     h1 {
         font-size: 1.2em;
-        /* Más pequeño en pantallas muy pequeñas */
     }
 
     #articulos h2 {
         font-size: 1.2em;
-        /* Ajusta el tamaño del subtítulo */
     }
 
     #resumen h3 {
         font-size: 1.2em;
-        /* Ajusta el tamaño del encabezado en resumen */
+    }
+
+    .producto-imagen {
+        width: 50px;
+        height: 50px;
     }
 }
