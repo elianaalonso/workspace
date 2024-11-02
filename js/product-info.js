@@ -1,5 +1,3 @@
-
-
   document.addEventListener('DOMContentLoaded', function() {
         // se obtiene el id del producto seleccionado
     const productId = localStorage.getItem('selectedProductId');
@@ -293,4 +291,39 @@ function showUserComments(comments) {
 
 }
 
+// Obtener el botón "Comprar" y agregar evento click
+const buyButton = document.getElementById('buy-button');
+if (buyButton) {
+    buyButton.addEventListener('click', () => {
+        // Guardar la información del producto en localStorage
+        const productData = {
+            id: productId,
+            name: document.getElementById('product-name').textContent,
+            description: document.getElementById('product-description').textContent,
+            cost: (document.getElementById('product-cost').textContent),
+            image: document.querySelector('#large-image img').src,
+            cantidad: 1 // Establece la cantidad inicial
+        };
+        
+        // Obtener el carrito actual
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        
+        // Verificar si el producto ya está en el carrito
+        const existingProduct = cartItems.find(item => item.id === productData.id);
+
+        if (existingProduct) {
+            // Si el producto ya existe, incrementar la cantidad
+            existingProduct.cantidad += 1; // Puedes cambiar a la cantidad que necesites
+        } else {
+            // Si no existe, agregar el nuevo producto
+            cartItems.push(productData);
+        }
+
+        // Guardar los cambios en localStorage
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        
+        // Redirigir a la pantalla de carrito
+        window.location.href = 'cart.html';
+    });
+}
 });
