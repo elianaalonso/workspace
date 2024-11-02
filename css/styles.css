@@ -199,9 +199,20 @@ a.custom-card:hover {
 /* Estilo para los elementos del menú */
 .dropdown-item {
   color: black; /* Texto negro */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .dropdown-item:hover {
   background-color: #f8f9fa; /* Fondo gris claro al pasar el mouse */
 }
 
+#cart-badge {
+  background-color: #f0960c;
+  color: #212529;
+  
+}
