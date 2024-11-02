@@ -83,3 +83,7 @@ body.dark-mode {
   .dark-mode .eliminar-producto {
     color: #ffffff;
   }
+
+  .dark-mode #comprar {
+    background-color: #eecd1e;
+  }
