@@ -31,25 +31,28 @@ function renderizarProductos(productos) {
         const row = document.createElement("tr");
         const cantidadProducto = producto.cantidad || 1;
 
+        // Convierte el costo a número eliminando el texto "UYU" si lo tiene
+        const costo = parseFloat(producto.cost.replace("UYU", "").trim());
+
         row.innerHTML = `
             <td><img src="${producto.image}" alt="${producto.name}" class="producto-imagen" style="width: 100px;"></td>
             <td>${producto.name}</td>
-            <td>${producto.cost}</td>
+            <td>UYU ${costo}</td>
             <td>
                 <input type="number" value="${cantidadProducto}" min="1" class="producto-cantidad" data-id="${producto.id}">
             </td>
-            <td class="producto-subtotal">${producto.cost}</td>
-            <td><button class="eliminar-producto" data-id="${producto.id}">🗑</button></td> <!-- Agrega un ícono de eliminación -->
+            <td class="producto-subtotal">UYU ${(costo * cantidadProducto).toFixed(2)}</td>
+            <td><button class="eliminar-producto" data-id="${producto.id}">🗑</button></td>
         `;
 
         fragment.appendChild(row);
-        subtotal += parseFloat(producto.cost) * cantidadProducto; // Suma al subtotal
+        subtotal += costo * cantidadProducto; // Suma al subtotal
     });
 
     listaProductos.innerHTML = '';
     listaProductos.appendChild(fragment);
 
-    // Actualiza totales al final
+    // Actualiza los totales al final
     actualizarTotales(subtotal); // Llama a la función para actualizar los totales
 
     // Agrega el evento de cambio en cada input de cantidad
@@ -77,10 +80,10 @@ function actualizarCantidad(event, productos) {
         // Actualiza el subtotal de la fila correspondiente
         const fila = input.closest('tr');
         const subtotalElemento = fila.querySelector('.producto-subtotal');
-        subtotalElemento.innerText = `${(producto.cost * nuevoCantidad).toFixed(2)}`;
+        subtotalElemento.innerText = `UYU ${(parseFloat(producto.cost.replace("UYU", "").trim()) * nuevoCantidad).toFixed(2)}`;
 
         // Recalcula el subtotal total y actualiza los totales
-        const subtotal = productos.reduce((acc, producto) => acc + (parseFloat(producto.cost) * (producto.cantidad || 1)), 0);
+        const subtotal = productos.reduce((acc, producto) => acc + (parseFloat(producto.cost.replace("UYU", "").trim()) * (producto.cantidad || 1)), 0);
         actualizarTotales(subtotal); // Actualiza los totales
     }
 }
