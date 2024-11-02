@@ -250,3 +250,21 @@ header nav a {
         height: 50px;
     }
 }
+
+
+ h2 {
+  margin: 20px;
+  width:200em;
+  justify-content: space-between; /* Empuja el ícono del carrito a la derecha */
+    font-size: 1.5em; /* Ajusta según el tamaño de tu encabezado */
+}
+
+.header-text .fa-shopping-cart {
+  font-size: 1.5rem; /* Ajusta el tamaño del ícono */
+  color: white;       /* Cambia el color si es necesario */
+  margin-left: 11.5em;
+}
+
+.fa-shopping-cart{
+    padding-right: 1%;
+}
