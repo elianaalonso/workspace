@@ -19,6 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
             eliminarProducto(e.target.dataset.id); // Elimina el producto
         }
     });
+
+    // Actualiza el badge con la nueva cantidad de productos
+    const badge = document.querySelector('#cart-badge');
+    badge.textContent = productos.length;
+    
+
 });
 
 // Función para renderizar los productos en la tabla
@@ -62,6 +68,7 @@ function renderizarProductos(productos) {
         input.addEventListener("change", (e) => actualizarCantidad(e, productos));
     });
 }
+
 
 // Función para actualizar la cantidad de un producto
 function actualizarCantidad(event, productos) {
@@ -138,7 +145,12 @@ function eliminarProducto(id) {
     } else {
         mensajeVacio.style.display = "none"; // Oculta el mensaje de vacío
         renderizarProductos(nuevosProductos); // Renderiza los nuevos productos
+        
     }
+
+    // Actualiza el badge con la nueva cantidad de productos
+    const badge = document.querySelector('#cart-badge');
+    badge.textContent = nuevosProductos.length;
 }
 
 // Función para agregar productos al carrito (debe llamarse cuando se agrega un producto)

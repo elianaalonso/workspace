@@ -50,3 +50,36 @@ body.dark-mode {
   .dark-mode .btn {
     border: none;
   }
+
+  .dark-mode #articulos p {
+    color: #1a1a1a;
+  }
+
+  .dark-mode #continuar-comprando {
+    color:#ffffff;
+    background-color: #1a1a1a;
+  }
+
+  .dark-mode #resumen {
+    background-color: #2295c6;
+  }
+
+  .dark-mode #articulos {
+    background-color: #1a1a1a;
+  }
+
+  .dark-mode .table {
+    color: #ffffff;
+  }
+  
+  .dark-mode .table tr {
+    background-color: #ffffff;
+  }
+
+  .dark-mode .producto-subtotal {
+    color:#ffffff;
+  }
+
+  .dark-mode .eliminar-producto {
+    color: #ffffff;
+  }
