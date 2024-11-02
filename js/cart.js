@@ -55,7 +55,7 @@ function renderizarProductos(productos) {
     listaProductos.appendChild(fragment);
 
     // Actualiza los totales al final
-    actualizarTotales(subtotal); // Llama a la función para actualizar los totales
+    actualizarTotales(subtotal,moneda); // Llama a la función para actualizar los totales
 
     // Agrega el evento de cambio en cada input de cantidad
     document.querySelectorAll(".producto-cantidad").forEach(input => {
@@ -96,13 +96,12 @@ function actualizarCantidad(event, productos) {
             return acc + (costoProducto * (producto.cantidad || 1));
         }, 0);
         
-        actualizarTotales(subtotal); // Actualiza los totales
+        actualizarTotales(subtotal,moneda); // Actualiza los totales
     }
 }
 
-// Función para actualizar los totales
-function actualizarTotales(subtotal) {
-    document.getElementById("subtotal").innerText = `UYU ${subtotal.toFixed(2)}`;
+function actualizarTotales(subtotal, moneda) {
+    document.getElementById("subtotal").innerText = `${moneda} ${subtotal.toFixed(2)}`;
 }
 
 // Función para eliminar un producto del carrito
