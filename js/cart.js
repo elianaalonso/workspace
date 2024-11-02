@@ -21,13 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Define la tasa de cambio de USD a UYU
-const TASA_DE_CAMBIO = 41.45;
-
 // Función para renderizar los productos en la tabla
 function renderizarProductos(productos) {
     const listaProductos = document.getElementById("lista-productos");
     const fragment = document.createDocumentFragment();
+    let subtotal = 0; // Inicializa el subtotal
 
     productos.forEach((producto) => {
         const row = document.createElement("tr");
@@ -50,13 +48,14 @@ function renderizarProductos(productos) {
         `;
 
         fragment.appendChild(row);
+        subtotal += costo * cantidadProducto; // Suma al subtotal
     });
 
     listaProductos.innerHTML = '';
     listaProductos.appendChild(fragment);
 
-    // Actualiza los totales al final
-    convertirYActualizarSubtotal(productos); // Llama a la función para actualizar los totales
+    // Llama a la función para convertir y actualizar el subtotal en UYU
+    convertirYActualizarSubtotal(productos);
 
     // Agrega el evento de cambio en cada input de cantidad
     document.querySelectorAll(".producto-cantidad").forEach(input => {
@@ -92,16 +91,18 @@ function actualizarCantidad(event, productos) {
         subtotalElemento.innerText = `${moneda} ${(costo * nuevoCantidad).toFixed(2)}`;
 
         // Recalcula el subtotal total y actualiza los totales
-        convertirYActualizarSubtotal(productos); // Actualiza los totales
+        convertirYActualizarSubtotal(productos);
     }
 }
 
-// Función para convertir USD a UYU y actualizar el subtotal
+// Tasa de cambio USD a UYU
+const TASA_DE_CAMBIO = 42; // Tasa de cambio de ejemplo, ajusta según el valor real
+
+// Función para convertir y actualizar el subtotal a UYU
 function convertirYActualizarSubtotal(productos) {
     let subtotalUYU = 0;
     let subtotalUSD = 0;
 
-    // Calcula subtotales separados para UYU y USD
     productos.forEach((producto) => {
         const costoTexto = producto.cost.trim();
         const cantidadProducto = producto.cantidad || 1;
@@ -115,9 +116,10 @@ function convertirYActualizarSubtotal(productos) {
         }
     });
 
-    // Convierte subtotal en USD a UYU y calcula el total en UYU
     const subtotalEnUYU = subtotalUYU + (subtotalUSD * TASA_DE_CAMBIO);
-    document.getElementById("subtotal").innerText = `UYU ${subtotalEnUYU.toFixed(2)}`;
+
+    // Aplica formato a UYU con separadores de miles y dos decimales
+    document.getElementById("subtotal").innerText = `UYU ${subtotalEnUYU.toLocaleString("es-UY", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
 // Función para eliminar un producto del carrito
