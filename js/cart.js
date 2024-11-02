@@ -31,22 +31,24 @@ function renderizarProductos(productos) {
         const row = document.createElement("tr");
         const cantidadProducto = producto.cantidad || 1;
 
-        // Convierte el costo a número eliminando el texto "UYU" si lo tiene
-        const costo = parseFloat(producto.cost.replace("UYU", "").trim());
+        // Detecta y convierte el costo según la moneda
+        const costoTexto = producto.cost.trim();
+        let costo = parseFloat(costoTexto.replace("UYU", "").replace("USD", "").trim());
+        const moneda = costoTexto.includes("USD") ? "USD" : "UYU";
 
         row.innerHTML = `
             <td><img src="${producto.image}" alt="${producto.name}" class="producto-imagen" style="width: 100px;"></td>
             <td>${producto.name}</td>
-            <td>UYU ${costo}</td>
+            <td>${moneda} ${costo}</td>
             <td>
                 <input type="number" value="${cantidadProducto}" min="1" class="producto-cantidad" data-id="${producto.id}">
             </td>
-            <td class="producto-subtotal">UYU ${(costo * cantidadProducto).toFixed(2)}</td>
+            <td class="producto-subtotal">${moneda} ${(costo * cantidadProducto).toFixed(2)}</td>
             <td><button class="eliminar-producto" data-id="${producto.id}">🗑</button></td>
         `;
 
         fragment.appendChild(row);
-        subtotal += costo * cantidadProducto; // Suma al subtotal
+        subtotal += costo * cantidadProducto; // Suma al subtotal (aquí podrías añadir lógica extra si necesitas separar UYU y USD)
     });
 
     listaProductos.innerHTML = '';
@@ -80,10 +82,20 @@ function actualizarCantidad(event, productos) {
         // Actualiza el subtotal de la fila correspondiente
         const fila = input.closest('tr');
         const subtotalElemento = fila.querySelector('.producto-subtotal');
-        subtotalElemento.innerText = `UYU ${(parseFloat(producto.cost.replace("UYU", "").trim()) * nuevoCantidad).toFixed(2)}`;
+        
+        // Detecta la moneda del producto y calcula el subtotal correctamente
+        const costoTexto = producto.cost.trim();
+        let costo = parseFloat(costoTexto.replace("UYU", "").replace("USD", "").trim());
+        const moneda = costoTexto.includes("USD") ? "USD" : "UYU";
+        
+        subtotalElemento.innerText = `${moneda} ${(costo * nuevoCantidad).toFixed(2)}`;
 
         // Recalcula el subtotal total y actualiza los totales
-        const subtotal = productos.reduce((acc, producto) => acc + (parseFloat(producto.cost.replace("UYU", "").trim()) * (producto.cantidad || 1)), 0);
+        const subtotal = productos.reduce((acc, producto) => {
+            const costoProducto = parseFloat(producto.cost.replace("UYU", "").replace("USD", "").trim());
+            return acc + (costoProducto * (producto.cantidad || 1));
+        }, 0);
+        
         actualizarTotales(subtotal); // Actualiza los totales
     }
 }
