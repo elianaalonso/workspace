@@ -48,14 +48,14 @@ function renderizarProductos(productos) {
         `;
 
         fragment.appendChild(row);
-        subtotal += costo * cantidadProducto; // Suma al subtotal (aquí podrías añadir lógica extra si necesitas separar UYU y USD)
+        subtotal += costo * cantidadProducto; // Suma al subtotal
     });
 
     listaProductos.innerHTML = '';
     listaProductos.appendChild(fragment);
 
-    // Actualiza los totales al final
-    actualizarTotales(subtotal,moneda); // Llama a la función para actualizar los totales
+    // Llama a la función para convertir y actualizar el subtotal en UYU
+    convertirYActualizarSubtotal(productos);
 
     // Agrega el evento de cambio en cada input de cantidad
     document.querySelectorAll(".producto-cantidad").forEach(input => {
@@ -91,17 +91,35 @@ function actualizarCantidad(event, productos) {
         subtotalElemento.innerText = `${moneda} ${(costo * nuevoCantidad).toFixed(2)}`;
 
         // Recalcula el subtotal total y actualiza los totales
-        const subtotal = productos.reduce((acc, producto) => {
-            const costoProducto = parseFloat(producto.cost.replace("UYU", "").replace("USD", "").trim());
-            return acc + (costoProducto * (producto.cantidad || 1));
-        }, 0);
-        
-        actualizarTotales(subtotal,moneda); // Actualiza los totales
+        convertirYActualizarSubtotal(productos);
     }
 }
 
-function actualizarTotales(subtotal, moneda) {
-    document.getElementById("subtotal").innerText = `${moneda} ${subtotal.toFixed(2)}`;
+// Tasa de cambio USD a UYU
+const TASA_DE_CAMBIO = 42; // Tasa de cambio de ejemplo, ajusta según el valor real
+
+// Función para convertir y actualizar el subtotal a UYU
+function convertirYActualizarSubtotal(productos) {
+    let subtotalUYU = 0;
+    let subtotalUSD = 0;
+
+    productos.forEach((producto) => {
+        const costoTexto = producto.cost.trim();
+        const cantidadProducto = producto.cantidad || 1;
+        let costo = parseFloat(costoTexto.replace("UYU", "").replace("USD", "").trim());
+        const moneda = costoTexto.includes("USD") ? "USD" : "UYU";
+
+        if (moneda === "USD") {
+            subtotalUSD += costo * cantidadProducto;
+        } else {
+            subtotalUYU += costo * cantidadProducto;
+        }
+    });
+
+    const subtotalEnUYU = subtotalUYU + (subtotalUSD * TASA_DE_CAMBIO);
+
+    // Aplica formato a UYU con separadores de miles y dos decimales
+    document.getElementById("subtotal").innerText = `UYU ${subtotalEnUYU.toLocaleString("es-UY", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
 // Función para eliminar un producto del carrito
