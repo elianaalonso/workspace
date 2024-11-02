@@ -58,6 +58,7 @@ header nav a {
     align-items: center;
     border-radius: 5px;
     margin-bottom: 20px;
+    justify-content: space-between;
 }
 
 #lista-productos {
@@ -183,6 +184,8 @@ header nav a {
     background-color: transparent;
     border: none; /* Sin borde */
     cursor: pointer;
+    background-color: white;
+    border-radius: 10px;
 }
 
 #continuar-comprando:hover {
