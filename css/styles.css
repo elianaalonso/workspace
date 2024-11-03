@@ -204,3 +204,8 @@ a.custom-card:hover {
 .dropdown-item:hover {
   background-color: #f8f9fa; /* Fondo gris claro al pasar el mouse */
 }
+
+#cart-badge {
+  color:#212529;
+  background-color: #ff8c00;
+}
