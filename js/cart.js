@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Actualizar costos de envío y totales según el tipo de envío seleccionado
     inputEnvio.forEach(radio => {
         radio.addEventListener("change", () => {
+            // Actualizamos el subtotal cada vez que se cambia el tipo de envío
             convertirYActualizarSubtotal(productos);
         });
     });
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
 
 function actualizarBadge(productos) {
     const badge = document.querySelector('#cart-badge');
@@ -152,9 +154,14 @@ function convertirYActualizarSubtotal(productos) {
 function eliminarProducto(id) {
     let productos = JSON.parse(localStorage.getItem("cartItems")) || [];
     const nuevosProductos = productos.filter(producto => producto.id !== id);
+
+    // Actualizamos el array en localStorage
     localStorage.setItem("cartItems", JSON.stringify(nuevosProductos));
+    
+    // Actualizamos el badge y renderizamos nuevamente
     actualizarBadge(nuevosProductos);
 
+    // Vaciamos y actualizamos la lista de productos en el DOM
     const listaProductos = document.getElementById("lista-productos");
     listaProductos.innerHTML = '';
     const mensajeVacio = document.getElementById("mensaje-vacio");
@@ -165,5 +172,7 @@ function eliminarProducto(id) {
         mensajeVacio.style.display = "none";
         renderizarProductos(nuevosProductos);
     }
+
+    // Actualizamos el subtotal después de eliminar el producto
     convertirYActualizarSubtotal(nuevosProductos);
 }
