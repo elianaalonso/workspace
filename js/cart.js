@@ -98,8 +98,7 @@ function actualizarCantidad(event, productos) {
 // Tasa de cambio USD a UYU
 const TASA_DE_CAMBIO = 42; // Tasa de cambio de ejemplo, ajusta según el valor real
 
-
-// Función para convertir y actualizar el subtotal a UYU, valor de envío y total
+// Función para convertir y actualizar el subtotal a UYU
 function convertirYActualizarSubtotal(productos) {
     let subtotalUYU = 0;
     let subtotalUSD = 0;
@@ -117,40 +116,13 @@ function convertirYActualizarSubtotal(productos) {
         }
     });
 
-    // Convertimos todo el subtotal a UYU
     const subtotalEnUYU = subtotalUYU + (subtotalUSD * TASA_DE_CAMBIO);
+
+    // Aplica formato a UYU con separadores de miles y dos decimales
     document.getElementById("subtotal").innerText = `UYU ${subtotalEnUYU.toLocaleString("es-UY", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-    // Determina el tipo de envío seleccionado
-    const tipoEnvio = document.querySelector('input[name="envio"]:checked').value;
-    let envioPorcentaje;
-
-    // Configura el porcentaje según el tipo de envío
-    switch (tipoEnvio) {
-        case "premium":
-            envioPorcentaje = 0.15;
-            break;
-        case "express":
-            envioPorcentaje = 0.07;
-            break;
-        case "standard":
-            envioPorcentaje = 0.05;
-            break;
-        default:
-            envioPorcentaje = 0;
-    }
-
-    // Calcula el valor del envío y el total
-    const valorEnvio = subtotalEnUYU * envioPorcentaje;
-    const total = subtotalEnUYU + valorEnvio;
-
-    // Muestra el costo de envío y el total en la página
-    document.getElementById("envio").innerText = `UYU ${valorEnvio.toLocaleString("es-UY", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    document.getElementById("total").innerText = `UYU ${total.toLocaleString("es-UY", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
-
-//Función para eliminar un producto del carrito
+// Función para eliminar un producto del carrito
 function eliminarProducto(id) {
     let productos = JSON.parse(localStorage.getItem("cartItems")) || [];
     const nuevosProductos = productos.filter(producto => producto.id !== id); // Filtra el producto a eliminar
