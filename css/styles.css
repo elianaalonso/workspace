@@ -205,3 +205,8 @@ a.custom-card:hover {
   background-color: #f8f9fa; /* Fondo gris claro al pasar el mouse */
 }
 
+#cart-badge {
+  background-color: #f0960c;
+  color: #212529;
+  
+}
