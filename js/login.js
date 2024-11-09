@@ -49,10 +49,10 @@ function togglePassword() {
     // Cambiar el tipo del input
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
-        toggleButton.textContent = 'Ocultar contraseña';
+        toggleButton.innerHTML = `<i class="fa-solid fa-eye"></i>`;
     } else {
         passwordInput.type = 'password';
-        toggleButton.textContent = 'Mostrar contraseña';
+        toggleButton.innerHTML = `<i class="fa-solid fa-eye-slash"></i>`;
     }
 }
 
