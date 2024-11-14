@@ -339,7 +339,7 @@ header nav a {
 
 .modal .modal-content h2 {
     text-align: center;
-    color: #ffbe46;
+    color: #ff8c00;
     padding-bottom: 10px;
     margin-top: 0;
     font-weight: bold;
@@ -410,7 +410,7 @@ header nav a {
 
 .dark-mode .modal .modal-content h2 {
     text-shadow: none; /* Sin sombra en el modo noche */
-    color: #ffbe46;
+    color: #ffd700;
 }
 
 .modal .modal-footer button {
@@ -421,6 +421,7 @@ header nav a {
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    
 }
 
 /* Estilo para el botón de "Medios de pago" */
@@ -465,5 +466,27 @@ header nav a {
   
   .fa-percent {
     font-weight: bold;
-    color: rgb(255, 206, 82);
+    color: #ff8c00;
   }
+ 
+  .dark-mode .fa-percent  {
+    color:#ffd700;
+  }
+
+  .modal .modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Opcional: espacio entre los botones */
+    margin-top: 20px;
+}
+
+.modal .modal-footer button {
+    background-color: #97cfe7;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
