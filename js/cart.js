@@ -229,12 +229,26 @@ function ocultarMensajeExito() {
 // Agregar evento al botón de cierre para ocultar el mensaje
 cerrarExitoBtn.addEventListener("click", ocultarMensajeExito);
 
-// Ajustar el evento de finalizar compra para usar el mensaje personalizado
+
+// Función para validar que se haya seleccionado un medio de pago
+function validarMedioDePago() {
+    // Verifica si alguno de los dos métodos de pago (tarjeta o transferencia) está seleccionado
+    return cardRadio.checked || transferRadio.checked;
+}
+
+// Ajustar el evento de finalizar compra para validar el medio de pago
 function finalizarCompra() {
     if (!validarDireccion()) {
-      alert("Por favor, completa todos los campos de la dirección.");
-      return;
+        alert("Por favor, completa todos los campos de la dirección.");
+        return;
     }
+
+    // Verificar si se seleccionó un medio de pago
+    if (!validarMedioDePago()) {
+        alert("Por favor, selecciona un medio de pago.");
+        return;
+    }
+
     // Si todas las validaciones pasan, muestra mensaje de éxito
     mostrarMensajeExito();
 }
