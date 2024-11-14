@@ -293,10 +293,14 @@ header nav a {
     background-color: #fff;
     margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888;
     width: 50%;
     border-radius: 10px;
+    border: none; /* Elimina cualquier borde en el modal */
+    background-color: #fff; /* Fondo blanco para el modo día */
+   font-family: Verdana, sans-serif;
 }
+
+
 
 .modal .close {
     color: #aaa;
@@ -323,7 +327,7 @@ header nav a {
     margin: 10px 0;
     width: 100%;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 25px !important;
     border: 1px solid #ccc;
 }
 
@@ -333,10 +337,22 @@ header nav a {
     color: white;
 }
 
+.modal .modal-content h2 {
+    text-align: center;
+    color: #ffbe46;
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.10); /* Sombra del texto */
+
+}
+
+
 .dark-mode .modal .payment-fields input {
     background-color: #555;
     color: white;
     border: 1px solid #666;
+  
 }
 
 .dark-mode .modal .modal-footer button {
@@ -378,3 +394,73 @@ header nav a {
 .navbar .dropdown-menu a {
     color: #000;
 }
+
+
+/* Estilos para el botón de confirmar en modo noche */
+.dark-mode .modal .modal-footer button {
+    background-color:#97cfe7;
+    color: black; /* Color del texto */
+    border: none; /* Elimina el borde */
+    padding: 10px 20px; /* Relleno del botón */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Transición suave al cambiar de color */
+}
+
+
+.dark-mode .modal .modal-content h2 {
+    text-shadow: none; /* Sin sombra en el modo noche */
+    color: #ffbe46;
+}
+
+.modal .modal-footer button {
+    background-color: #97cfe7;
+    color: #000; /* Color de texto negro */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo para el botón de "Medios de pago" */
+#openModalBtn {
+    background-color:#ffd700; 
+    color: white; /* Texto blanco */
+    border: none;
+    padding: 12px 24px; /* Relleno */
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 20px; /* Tamaño de la fuente */
+    font-weight: bold; /* Texto en negrita */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    transition: background-color 0.3s ease; /* Transición suave */
+    color: black;
+    
+}
+
+/* Estilos en modo noche */
+.dark-mode #openModalBtn  {
+    background-color: #444; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+}
+
+.bold-large-text {
+    font-weight: bold;
+    font-size: 1.2rem; /* Puedes ajustar el tamaño según prefieras */
+  }
+
+  #transferFields p {
+    font-weight: normal;  /* Elimina la negrita */
+    text-align: left;     /* Alinea el texto a la izquierda */
+  }
+
+/* Estilo para el contenedor del campo de código de descuento */
+#discountCodeSection {
+    margin-top: 20px;
+    width: 60%;  /* Asegúrate de que el contenedor sea más pequeño */
+    text-align: left;  /* Alinea el contenido a la izquierda */
+    width: 30%;
+  }
+  
+  
+  
