@@ -243,3 +243,74 @@ function finalizarCompra() {
 finalizarCompraBtn.addEventListener("click", finalizarCompra);
 
   
+// Inicialización de la variable para el modal y los botones
+const openModalBtn = document.getElementById('openModalBtn');
+const paymentModal = document.getElementById('paymentModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const cancelBtn = document.getElementById('cancelBtn');
+const confirmBtn = document.getElementById('confirmBtn');
+const cardRadio = document.getElementById('cardRadio');
+const transferRadio = document.getElementById('transferRadio');
+const cardFields = document.getElementById('cardFields');
+const transferFields = document.getElementById('transferFields');
+
+// Función para abrir el modal
+openModalBtn.addEventListener('click', function () {
+    paymentModal.style.display = "block";
+});
+
+// Función para cerrar el modal
+closeModalBtn.addEventListener('click', function () {
+    paymentModal.style.display = "none";
+});
+
+// Función para cancelar y cerrar el modal
+cancelBtn.addEventListener('click', function () {
+    paymentModal.style.display = "none";
+});
+
+// Función para confirmar la selección y cerrar el modal
+confirmBtn.addEventListener('click', function () {
+    // Aquí podrías agregar la validación para los campos según el método de pago
+    if (cardRadio.checked) {
+        // Validar los campos de tarjeta
+        const cardNumber = document.getElementById('cardNumber').value;
+        const securityCode = document.getElementById('securityCode').value;
+        const expiryDate = document.getElementById('expiryDate').value;
+
+        if (cardNumber && securityCode && expiryDate) {
+            console.log("Pago con tarjeta confirmado");
+            // Redirigir o hacer algo más con los datos
+            paymentModal.style.display = "none";
+        } else {
+            alert("Por favor, complete todos los campos de la tarjeta");
+        }
+    } else if (transferRadio.checked) {
+        console.log("Pago por transferencia confirmado");
+        // Redirigir o hacer algo más con los datos
+        paymentModal.style.display = "none";
+    } else {
+        alert("Por favor, selecciona un método de pago");
+    }
+});
+
+// Mostrar los campos de pago según la selección
+cardRadio.addEventListener('change', function () {
+    cardFields.style.display = cardRadio.checked ? 'block' : 'none';
+    transferFields.style.display = 'none';
+});
+
+transferRadio.addEventListener('change', function () {
+    transferFields.style.display = transferRadio.checked ? 'block' : 'none';
+    cardFields.style.display = 'none';
+});
+
+// Verificar el tema al cargar la página y aplicar
+document.addEventListener('DOMContentLoaded', function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+});

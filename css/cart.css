@@ -275,4 +275,106 @@ header nav a {
     
     
   }
-  
+  /* Estilos del modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos dentro del modal, asegurando que solo los elementos del modal se vean afectados */
+.modal .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.modal .close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.modal .close:hover,
+.modal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal .modal-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.modal .payment-fields input {
+    margin: 10px 0;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Estilos para el tema de modo noche solo dentro del modal */
+.dark-mode .modal .modal-content {
+    background-color: #333;
+    color: white;
+}
+
+.dark-mode .modal .payment-fields input {
+    background-color: #555;
+    color: white;
+    border: 1px solid #666;
+}
+
+.dark-mode .modal .modal-footer button {
+    background-color: #444;
+    color: white;
+}
+
+.dark-mode .modal .close {
+    color: white;
+}
+
+/* Evitar que el modo noche afecte al desplegable del nombre de usuario */
+.dark-mode .navbar {
+    background-color: #343a40; /* Asegúrate de que la barra de navegación tenga un fondo adecuado para el modo noche */
+    color: white; /* Color adecuado para los textos */
+}
+
+/* Evitar que el color de texto del desplegable cambie */
+.dark-mode .navbar .dropdown-menu {
+    background-color: #343a40; /* Asegúrate de que el fondo del menú desplegable no cambie */
+    color: white; /* Texto en blanco para el desplegable */
+}
+
+.dark-mode .navbar .dropdown-menu a {
+    color: white; /* Mantener el color del texto del desplegable */
+}
+
+/* Estilos de la barra de navegación en modo día */
+.navbar {
+    background-color: #fff;
+    color: #000;
+}
+
+.navbar .dropdown-menu {
+    background-color: #fff;
+    color: #000;
+}
+
+.navbar .dropdown-menu a {
+    color: #000;
+}
