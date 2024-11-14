@@ -1,3 +1,17 @@
+
+// Obtener elementos de la página
+const finalizarCompraBtn = document.getElementById("comprar");
+const departamentoInput = document.getElementById("departamento");
+const localidadInput = document.getElementById("localidad");
+const calleInput = document.getElementById("calle");
+const numeroInput = document.getElementById("numero");
+const esquinaInput = document.getElementById("esquina");
+const tipoEnvioRadios = document.getElementsByName("envio");
+// Obtener el contenedor del mensaje de éxito y el botón de cierre
+const mensajeExito = document.getElementById("mensaje-exito");
+const cerrarExitoBtn = document.getElementById("cerrar-exito");
+
+
 // Espera a que el documento HTML esté completamente cargado antes de ejecutar el código
 document.addEventListener("DOMContentLoaded", () => {
     // Recupera los productos del carrito desde localStorage, o un array vacío si no hay productos
@@ -187,3 +201,45 @@ function eliminarProducto(id) {
     // Actualiza el subtotal y el costo de envío después de eliminar el producto
     convertirYActualizarSubtotal(nuevosProductos);
 }
+
+
+// Función para verificar que todos los campos de dirección estén llenos
+function validarDireccion() {
+  return (
+    departamentoInput.value.trim() !== "" &&
+    localidadInput.value.trim() !== "" &&
+    calleInput.value.trim() !== "" &&
+    numeroInput.value.trim() !== "" &&
+    esquinaInput.value.trim() !== ""
+  );
+}
+
+
+
+// Función para mostrar el mensaje de éxito
+function mostrarMensajeExito() {
+    mensajeExito.style.display = "block"; // Muestra el mensaje de éxito
+}
+
+// Función para ocultar el mensaje de éxito
+function ocultarMensajeExito() {
+    mensajeExito.style.display = "none"; // Oculta el mensaje de éxito
+}
+
+// Agregar evento al botón de cierre para ocultar el mensaje
+cerrarExitoBtn.addEventListener("click", ocultarMensajeExito);
+
+// Ajustar el evento de finalizar compra para usar el mensaje personalizado
+function finalizarCompra() {
+    if (!validarDireccion()) {
+      alert("Por favor, completa todos los campos de la dirección.");
+      return;
+    }
+    // Si todas las validaciones pasan, muestra mensaje de éxito
+    mostrarMensajeExito();
+}
+
+// Agregar evento al botón "Finalizar compra"
+finalizarCompraBtn.addEventListener("click", finalizarCompra);
+
+  
