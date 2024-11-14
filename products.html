@@ -26,9 +26,24 @@
           <li class="nav-item">
             <a class="nav-link" href="index.html">Inicio</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
+         <!-- Menú desplegable de Categorías corregido -->
+         <li class="nav-item dropdown">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="categoryMenu" data-bs-toggle="dropdown" aria-expanded="false">
+            Categorías
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="categoryMenu">
+            <li><a class="dropdown-item" href="products.html">Autos</a></li>
+            <li><a class="dropdown-item" href="#">Juguetes</a></li>
+            <li><a class="dropdown-item" href="#">Muebles</a></li>
+            <li><a class="dropdown-item" href="#">Herramientas</a></li>
+            <li><a class="dropdown-item" href="#">Computadoras</a></li>
+            <li><a class="dropdown-item" href="#">Vestimenta</a></li>
+            <li><a class="dropdown-item" href="#">Electrodomésticos</a></li>
+            <li><a class="dropdown-item" href="#">Deporte</a></li>
+            <li><a class="dropdown-item" href="#">Celulares</a></li>
+            <li><a class="dropdown-item" href="categories.html">Mostrar todo</a></li>
+          </ul>
+        </li>
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
@@ -44,7 +59,7 @@
           </li>
 
           <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="btn btn-secondary dropdown-toggle" id="user-menu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Nombre de Usuario
             </a>
             <ul class="dropdown-menu">

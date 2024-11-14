@@ -83,13 +83,12 @@ themeSwitch.addEventListener('change', () => {
   document.body.classList.toggle('dark-mode'); //se añade la clase dark-mode al bod si no está presente, o la elimina si ya está presente.
   
 // Alternar clase 'bg-light' y 'bg-dark' en la clase album
-if(savedTheme === 'light') {
   if (album.classList.contains('bg-light')) {
     album.classList.replace('bg-light', 'bg-dark');
   } else {
     album.classList.replace('bg-dark', 'bg-light');
-  }
-}
+  };
+
   
 // Cambiar imagen de fondo en la jumbotron según el tema
 if (document.body.classList.contains('dark-mode')) {
