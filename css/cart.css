@@ -463,4 +463,7 @@ header nav a {
   }
   
   
-  
+  .fa-percent {
+    font-weight: bold;
+    color: rgb(255, 206, 82);
+  }

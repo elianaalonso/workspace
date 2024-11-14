@@ -114,11 +114,7 @@
         
         <!-- Métodos de pago -->
         <div>
-           <!-- Nuevo campo para el código de descuento -->
-               <div id="discountCodeSection" class="payment-fields">
-                <label for="discountCode">Código promocional:</label>
-                 <input type="text" id="discountCode" placeholder="Ingresa tu código">
-                </div> 
+          
           <label>
             <input type="radio" name="paymentMethod" value="card" id="cardRadio"> 
             <span class="bold-large-text">Pagar con tarjeta</span>
@@ -134,9 +130,10 @@
             </div>
         <!-- Logos de las tarjetas -->
         <div id="cardLogos" class="mt-3">
-          <img src="img/visa.png" alt="Visa" width="50">
-          <img src="img/master.png" alt="Mastercard" width="50">
-          <img src="img/brou.png" alt="Brou" width="90">
+          <img src="img/visa.png" alt="Visa" width="56">
+          <img src="img/master.png" alt="Mastercard" width="49">
+          <img src="img/brou.png" alt="Brou" width="55">
+          <img src="img/scotia.png" alt="Scotiabank" width="62">
         </div>
            
         <label>
@@ -147,6 +144,11 @@
             <div id="transferFields" class="payment-fields" style="display: none;">
                 <p>Cuenta bancaria para transferencia: 1234567890</p>
             </div>
+             <!-- Nuevo campo para el código de descuento -->
+             <div id="discountCodeSection" class="payment-fields ">
+              <label for="discountCode" class="fa-percent">  Código promocional:</label>
+               <input type="text" id="discountCode" placeholder="Ingresa tu código">
+              </div> 
         </div>
         <div class="modal-footer">
             <button id="cancelBtn" class="btn btn-secondary">Cancelar</button>
