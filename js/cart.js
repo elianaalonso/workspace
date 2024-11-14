@@ -1,5 +1,4 @@
-
-// Obtener elementos de la página
+////se obtienen con id los elementos de la página
 const finalizarCompraBtn = document.getElementById("comprar");
 const departamentoInput = document.getElementById("departamento");
 const localidadInput = document.getElementById("localidad");
@@ -7,14 +6,12 @@ const calleInput = document.getElementById("calle");
 const numeroInput = document.getElementById("numero");
 const esquinaInput = document.getElementById("esquina");
 const tipoEnvioRadios = document.getElementsByName("envio");
-// Obtener el contenedor del mensaje de éxito y el botón de cierre
 const mensajeExito = document.getElementById("mensaje-exito");
 const cerrarExitoBtn = document.getElementById("cerrar-exito");
 
 
-// Espera a que el documento HTML esté completamente cargado antes de ejecutar el código
 document.addEventListener("DOMContentLoaded", () => {
-    // Recupera los productos del carrito desde localStorage, o un array vacío si no hay productos
+    // se recuperan los productos del carrito desde localStorage, o un array vacío si no hay productos
     const productos = JSON.parse(localStorage.getItem("cartItems")) || [];
     const listaProductos = document.getElementById("lista-productos"); // Elemento donde se mostrarán los productos
     const mensajeVacio = document.getElementById("mensaje-vacio"); // Elemento para el mensaje de carrito vacío
@@ -203,7 +200,8 @@ function eliminarProducto(id) {
 }
 
 
-// Función para verificar que todos los campos de dirección estén llenos
+
+//Función para verificar que todos los campos de dirección estén llenos
 function validarDireccion() {
   return (
     departamentoInput.value.trim() !== "" &&
@@ -215,49 +213,44 @@ function validarDireccion() {
 }
 
 
-
-// Función para mostrar el mensaje de éxito
-function mostrarMensajeExito() {
-    mensajeExito.style.display = "block"; // Muestra el mensaje de éxito
-}
-
-// Función para ocultar el mensaje de éxito
-function ocultarMensajeExito() {
-    mensajeExito.style.display = "none"; // Oculta el mensaje de éxito
-}
-
-// Agregar evento al botón de cierre para ocultar el mensaje
-cerrarExitoBtn.addEventListener("click", ocultarMensajeExito);
-
-
-// Función para validar que se haya seleccionado un medio de pago
+//// se crea la funcion para validar que se haya seleccionado un medio de pago
 function validarMedioDePago() {
-    // Verifica si alguno de los dos métodos de pago (tarjeta o transferencia) está seleccionado
     return cardRadio.checked || transferRadio.checked;
 }
 
-// Ajustar el evento de finalizar compra para validar el medio de pago
+//// evento de finalizar compra con las validaciones
 function finalizarCompra() {
     if (!validarDireccion()) {
         alert("Por favor, completa todos los campos de la dirección.");
         return;
     }
 
-    // Verificar si se seleccionó un medio de pago
     if (!validarMedioDePago()) {
         alert("Por favor, selecciona un medio de pago.");
         return;
     }
 
-    // Si todas las validaciones pasan, muestra mensaje de éxito
     mostrarMensajeExito();
 }
 
-// Agregar evento al botón "Finalizar compra"
+//// Función para mostrar el mensaje de éxito
+function mostrarMensajeExito() {
+    mensajeExito.style.display = "block"; // Muestra el mensaje de éxito
+}
+
+//// Función para ocultar el mensaje de éxito
+function ocultarMensajeExito() {
+    mensajeExito.style.display = "none"; // Oculta el mensaje de éxito
+}
+
+//// Agregar evento al botón de cierre para ocultar el mensaje
+cerrarExitoBtn.addEventListener("click", ocultarMensajeExito);
+
+
+//// Agregar evento al botón "Finalizar compra"
 finalizarCompraBtn.addEventListener("click", finalizarCompra);
 
-  
-// Inicialización de la variable para el modal y los botones
+///MODAL MEDIOS DE PAGO se obtienen los elementos
 const openModalBtn = document.getElementById('openModalBtn');
 const paymentModal = document.getElementById('paymentModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
@@ -285,7 +278,7 @@ cancelBtn.addEventListener('click', function () {
 
 // Función para confirmar la selección y cerrar el modal
 confirmBtn.addEventListener('click', function () {
-    // Aquí podrías agregar la validación para los campos según el método de pago
+   
     if (cardRadio.checked) {
         // Validar los campos de tarjeta
         const cardNumber = document.getElementById('cardNumber').value;
@@ -301,7 +294,6 @@ confirmBtn.addEventListener('click', function () {
         }
     } else if (transferRadio.checked) {
         console.log("Pago por transferencia confirmado");
-        // Redirigir o hacer algo más con los datos
         paymentModal.style.display = "none";
     } else {
         alert("Por favor, selecciona un método de pago");
