@@ -59,7 +59,7 @@ let usuario = localStorage.getItem("usuario");
 
 // Si hay un nombre de usuario, mostrarlo en el botón del menú desplegable
 if (usuario) {
-    document.querySelector(".dropdown-toggle").textContent = usuario;
+    document.querySelector("#user-menu").textContent = usuario;
 }
 
 // Función para verificar si el usuario ha iniciado sesión
