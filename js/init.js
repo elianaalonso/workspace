@@ -126,7 +126,43 @@ bgImg.style.backgroundPosition = 'center';
   bgImg.style.backgroundSize = 'cover';
   bgImg.style.backgroundPosition = 'center';
 
-
+  
+  document.getElementById("101").addEventListener("click", function() {
+        localStorage.setItem("catID", 101);
+        window.location = "products.html"
+    });
+    document.getElementById("102").addEventListener("click", function() {
+        localStorage.setItem("catID", 102);
+        window.location = "products.html"
+    });
+    document.getElementById("103").addEventListener("click", function() {
+        localStorage.setItem("catID", 103);
+        window.location = "products.html"
+    });
+    document.getElementById("104").addEventListener("click", function() {
+      localStorage.setItem("catID", 104);
+      window.location = "products.html"
+  });
+  document.getElementById("105").addEventListener("click", function() {
+    localStorage.setItem("catID", 105);
+    window.location = "products.html"
+});
+document.getElementById("106").addEventListener("click", function() {
+  localStorage.setItem("catID", 106);
+  window.location = "products.html"
+});
+document.getElementById("107").addEventListener("click", function() {
+  localStorage.setItem("catID", 107);
+  window.location = "products.html"
+});
+document.getElementById("108").addEventListener("click", function() {
+  localStorage.setItem("catID", 108);
+  window.location = "products.html"
+});
+document.getElementById("109").addEventListener("click", function() {
+  localStorage.setItem("catID", 109);
+  window.location = "products.html"
+});
 });
 
 document.getElementById("logout").addEventListener("click", function () {
