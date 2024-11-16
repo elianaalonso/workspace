@@ -199,6 +199,9 @@ header nav a {
     text-align: right;
 }
 
+#numero, #esquina  {
+    color: #000;
+}
 @media (max-width: 768px) {
     #carrito {
         flex-direction: column;
@@ -491,3 +494,4 @@ header nav a {
     transition: background-color 0.3s ease;
     cursor: pointer;
 }
+
