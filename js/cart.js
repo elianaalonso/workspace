@@ -328,3 +328,26 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.remove('dark-mode');
     }
 });
+function finalizarCompra() {
+    // Verifica si hay productos en el carrito
+    const productos = JSON.parse(localStorage.getItem("cartItems")) || [];
+    if (productos.length === 0) {
+        alert("No hay productos en el carrito. Por favor, agrega productos antes de finalizar la compra.");
+        return;
+    }
+
+    // Verifica que todos los campos de dirección estén llenos
+    if (!validarDireccion()) {
+        alert("Por favor, completa todos los campos de la dirección.");
+        return;
+    }
+
+    // Verificar si se seleccionó un medio de pago
+    if (!validarMedioDePago()) {
+        alert("Por favor, selecciona un medio de pago.");
+        return;
+    }
+
+    // Si todas las validaciones pasan, muestra mensaje de éxito
+    mostrarMensajeExito();
+}
