@@ -208,7 +208,7 @@ function showProductsList(productList = productArray) {
   }
   });
   } else {
-    document.querySelector('#product-grid').innerHTML = `<h5 style="color: #212529bd; text-align: center;">No hay productos para mostrar.</h5>`
+    document.querySelector('#product-grid').innerHTML = `<h5 style="text-align: center;">No hay productos para mostrar.</h5>`
 }
 }
 
