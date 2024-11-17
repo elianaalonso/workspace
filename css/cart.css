@@ -246,3 +246,97 @@ header nav a {
         height: 50px;
     }
 }
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.table-container {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 8px;
+    text-align: center;
+}
+
+/* Para pantallas grandes */
+@media (min-width: 768px) {
+    .producto-imagen {
+        width: 120px;
+    }
+
+    td {
+        font-size: 16px;
+    }
+
+    .producto-cantidad {
+        width: 60px;
+    }
+}
+
+/* Para pantallas medianas (tablets) */
+@media (max-width: 767px) {
+    td {
+        font-size: 14px;
+    }
+
+    .producto-imagen {
+        width: 80px;
+    }
+
+    .producto-cantidad {
+        width: 50px;
+    }
+
+    .eliminar-producto {
+        font-size: 14px;
+    }
+
+    /* Mostrar los elementos de la tabla en bloques */
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .producto-cantidad, .producto-subtotal {
+        width: 50%;
+    }
+}
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 480px) {
+    td {
+        font-size: 12px;
+    }
+
+    .producto-imagen {
+        width: 60px;
+    }
+
+    .producto-cantidad {
+        width: 40px;
+    }
+
+    .eliminar-producto {
+        font-size: 12px;
+    }
+
+    /* Ajustar tabla para ocupar toda la pantalla */
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+
+    .producto-cantidad, .producto-subtotal {
+        width: 100%;
+        text-align: left;
+    }
+}
