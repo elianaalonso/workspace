@@ -45,6 +45,7 @@ function saveToLocalStorage(key, data) {
     const lastName = document.getElementById('lastName');
     const email = document.getElementById('email');
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]+$/;
   
     // Validar nombre
     if (!name.value.trim()) {
@@ -69,6 +70,14 @@ function saveToLocalStorage(key, data) {
     } else {
       clearError(email);
     }
+  
+     // Validar teléfono (solo números)
+  if (phone.value.trim() && !phoneRegex.test(phone.value.trim())) {
+    showError(phone, 'Por favor, ingresa solo números en el teléfono.');
+    isValid = false;
+  } else {
+    clearError(phone);
+  }
   
     return isValid;
   }

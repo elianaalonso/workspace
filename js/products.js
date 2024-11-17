@@ -161,50 +161,54 @@ function sortAndShowProducts(criteria) {
 
 // Mostrar los productos
 function showProductsList(productList = productArray) {
-  productList.forEach(product => {
-
-    if (((minPrice == undefined) || (minPrice != undefined && parseInt(product.cost) >= minPrice)) && 
-        ((maxPrice == undefined) || (maxPrice != undefined && parseInt(product.cost) <= maxPrice))) {
-
-    // Crear la tarjeta del producto
-    const productCard = document.createElement('div');
-    productCard.classList.add('col-md-4', 'product-card');
-
-    // Añadir imagen del producto
-    const img = document.createElement('img');
-    img.src = product.image;
-    productCard.appendChild(img);
-
-    // Añadir nombre del producto
-    const name = document.createElement('h2');
-    name.textContent = product.name;
-    productCard.appendChild(name);
-
-    // Añadir descripción del producto
-    const description = document.createElement('p');
-    description.textContent = product.description;
-    productCard.appendChild(description);
-
-    // Añadir precio del producto
-    const price = document.createElement('h3');
-    price.textContent = `${product.currency} ${product.cost}`;
-    productCard.appendChild(price);
-
-    // Añadir cantidad vendida
-    const soldCount = document.createElement('p');
-    soldCount.classList.add('sold-count');
-    soldCount.textContent = `${product.soldCount} Vendidos`;
-    productCard.appendChild(soldCount);
-
-    // Añadir la tarjeta al grid de productos
-    productGrid.appendChild(productCard);
-
-    // Agregar evento de clic para redirigir
-    productCard.addEventListener('click', function() {
-      localStorage.setItem("selectedProductId", product.id);
-      window.location.href = 'product-info.html';
-    });
-    }
+  if(productList.length != 0) {
+    productList.forEach(product => {
+  
+      if (((minPrice == undefined) || (minPrice != undefined && parseInt(product.cost) >= minPrice)) && 
+          ((maxPrice == undefined) || (maxPrice != undefined && parseInt(product.cost) <= maxPrice))) {
+  
+      // Crear la tarjeta del producto
+      const productCard = document.createElement('div');
+      productCard.classList.add('col-md-4', 'product-card');
+  
+      // Añadir imagen del producto
+      const img = document.createElement('img');
+      img.src = product.image;
+      productCard.appendChild(img);
+  
+      // Añadir nombre del producto
+      const name = document.createElement('h2');
+      name.textContent = product.name;
+      productCard.appendChild(name);
+  
+      // Añadir descripción del producto
+      const description = document.createElement('p');
+      description.textContent = product.description;
+      productCard.appendChild(description);
+  
+      // Añadir precio del producto
+      const price = document.createElement('h3');
+      price.textContent = `${product.currency} ${product.cost}`;
+      productCard.appendChild(price);
+  
+      // Añadir cantidad vendida
+      const soldCount = document.createElement('p');
+      soldCount.classList.add('sold-count');
+      soldCount.textContent = `${product.soldCount} Vendidos`;
+      productCard.appendChild(soldCount);
+  
+      // Añadir la tarjeta al grid de productos
+      productGrid.appendChild(productCard);
+  
+      // Agregar evento de clic para redirigir
+      productCard.addEventListener('click', function() {
+        localStorage.setItem("selectedProductId", product.id);
+        window.location.href = 'product-info.html';
+      });
+  }
   });
+  } else {
+    document.querySelector('#product-grid').innerHTML = `<h5 style="color: #212529bd; text-align: center;">No hay productos para mostrar.</h5>`
+}
 }
 

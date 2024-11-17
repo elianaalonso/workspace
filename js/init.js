@@ -78,43 +78,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const album = document.querySelector('.album');
     const bgImg = document.querySelector('.jumbotron');
 
-    document.getElementById("101").addEventListener("click", function() {
-      localStorage.setItem("catID", 101);
-      window.location = "products.html"
-  });
-  document.getElementById("102").addEventListener("click", function() {
-      localStorage.setItem("catID", 102);
-      window.location = "products.html"
-  });
-  document.getElementById("103").addEventListener("click", function() {
-      localStorage.setItem("catID", 103);
-      window.location = "products.html"
-  });
-  document.getElementById("104").addEventListener("click", function() {
-    localStorage.setItem("catID", 104);
-    window.location = "products.html"
-});
-document.getElementById("105").addEventListener("click", function() {
-  localStorage.setItem("catID", 105);
-  window.location = "products.html"
-});
-document.getElementById("106").addEventListener("click", function() {
-localStorage.setItem("catID", 106);
-window.location = "products.html"
-});
-document.getElementById("107").addEventListener("click", function() {
-localStorage.setItem("catID", 107);
-window.location = "products.html"
-});
-document.getElementById("108").addEventListener("click", function() {
-localStorage.setItem("catID", 108);
-window.location = "products.html"
-});
-document.getElementById("109").addEventListener("click", function() {
-localStorage.setItem("catID", 109);
-window.location = "products.html"
-});
-});
+     for (let id = 101; id <= 109; id++) {
+    document.getElementById(id.toString()).addEventListener("click", function () {
+        localStorage.setItem("catID", id);
+        window.location = "products.html";
+    });
+}
+
 
 document.getElementById("logout").addEventListener("click", function () {
 // Eliminar el nombre de usuario de localStorage
@@ -180,8 +150,24 @@ bgImg.style.backgroundPosition = 'center';
   bgImg.style.backgroundSize = 'cover';
   bgImg.style.backgroundPosition = 'center';
 
-  
- 
+});
+
+document.getElementById("logout").addEventListener("click", function () {
+  // Eliminar el nombre de usuario de localStorage
+  localStorage.removeItem("usuario");
+  // Eliminar el estado de sesión
+  sessionStorage.removeItem("isLoggedIn");
+  // Redirigir a la página de inicio de sesión
+  window.location.href = "login.html";
+});
+
+
+window.onload = checkLogin;
+
+// checkLogin antes estaba presente al final de cada código en los siguientes js: 
+// products.js, sell.js, product-info.js (excepcionalmente se encontraba al principio), 
+// my-profile.js, index.js, categories.js, cart.js.
+
 
 
 

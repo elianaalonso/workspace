@@ -1,56 +1,77 @@
+////se obtienen con id los elementos de la página
+const finalizarCompraBtn = document.getElementById("comprar");
+const departamentoInput = document.getElementById("departamento");
+const localidadInput = document.getElementById("localidad");
+const calleInput = document.getElementById("calle");
+const numeroInput = document.getElementById("numero");
+const esquinaInput = document.getElementById("esquina");
+const tipoEnvioRadios = document.getElementsByName("envio");
+const mensajeExito = document.getElementById("mensaje-exito");
+const cerrarExitoBtn = document.getElementById("cerrar-exito");
+
+
 document.addEventListener("DOMContentLoaded", () => {
+    // se recuperan los productos del carrito desde localStorage, o un array vacío si no hay productos
     const productos = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const listaProductos = document.getElementById("lista-productos");
-    const mensajeVacio = document.getElementById("mensaje-vacio");
-    const badge = document.querySelector('#cart-badge');
-    const inputEnvio = document.querySelectorAll('input[name="envio"]');
-    
-    // Renderizar productos y actualizar el badge del carrito
+    const listaProductos = document.getElementById("lista-productos"); // Elemento donde se mostrarán los productos
+    const mensajeVacio = document.getElementById("mensaje-vacio"); // Elemento para el mensaje de carrito vacío
+    const badge = document.querySelector('#cart-badge'); // Badge para mostrar la cantidad total de productos en el carrito
+    const inputEnvio = document.querySelectorAll('input[name="envio"]'); // Opciones de tipo de envío
+
+    // Renderiza productos en el carrito y actualiza el badge del carrito
     actualizarBadge(productos);
     if (productos.length === 0) {
+        // Si el carrito está vacío, muestra el mensaje de "carrito vacío"
         mensajeVacio.style.display = "block";
     } else {
+        // Si hay productos, oculta el mensaje y renderiza los productos
         mensajeVacio.style.display = "none";
         renderizarProductos(productos);
     }
 
-    // Actualizar costos de envío y totales según el tipo de envío seleccionado
+    // Añade un event listener a cada opción de envío para actualizar el subtotal al seleccionar un tipo de envío
     inputEnvio.forEach(radio => {
         radio.addEventListener("change", () => {
-            // Actualizamos el subtotal cada vez que se cambia el tipo de envío
-            convertirYActualizarSubtotal(productos);
+            // Recupera los productos actualizados desde localStorage antes de recalcular el subtotal
+            const productosActualizados = JSON.parse(localStorage.getItem("cartItems")) || [];
+            convertirYActualizarSubtotal(productosActualizados);
         });
     });
 
-    // Event listener para eliminar productos
+    // Event listener para el botón de eliminar productos
     listaProductos.addEventListener("click", (e) => {
         if (e.target.classList.contains("eliminar-producto")) {
+            // Elimina el producto usando el ID almacenado en data-id
             eliminarProducto(e.target.dataset.id);
         }
     });
 });
 
 
+// Función para actualizar el badge del carrito con la cantidad total de productos
 function actualizarBadge(productos) {
     const badge = document.querySelector('#cart-badge');
     let contador = 0;
     productos.forEach((producto) => {
+        // Cuenta la cantidad de cada producto en el carrito
         contador += producto.cantidad || 1;
     });
-    badge.textContent = contador;
+    badge.textContent = contador; // Muestra el total en el badge
 }
 
+// Función para renderizar los productos en el carrito
 function renderizarProductos(productos) {
     const listaProductos = document.getElementById("lista-productos");
-    const fragment = document.createDocumentFragment();
+    const fragment = document.createDocumentFragment(); // Fragmento para evitar reflujo en el DOM
 
     productos.forEach((producto) => {
-        const row = document.createElement("tr");
+        const row = document.createElement("tr"); // Crea una fila para cada producto
         const cantidadProducto = producto.cantidad || 1;
         const costoTexto = producto.cost.trim();
-        let costo = parseFloat(costoTexto.replace("UYU", "").replace("USD", "").trim());
-        const moneda = costoTexto.includes("USD") ? "USD" : "UYU";
+        let costo = parseFloat(costoTexto.replace("UYU", "").replace("USD", "").trim()); // Elimina moneda y espacios
+        const moneda = costoTexto.includes("USD") ? "USD" : "UYU"; // Determina la moneda
 
+        // Genera el HTML para la fila del producto, incluyendo imagen, nombre, costo, cantidad, subtotal y botón eliminar
         row.innerHTML = `
             <td><img src="${producto.image}" alt="${producto.name}" class="producto-imagen" style="width: 100px;"></td>
             <td>${producto.name}</td>
@@ -63,28 +84,30 @@ function renderizarProductos(productos) {
         fragment.appendChild(row);
     });
 
-    listaProductos.innerHTML = '';
-    listaProductos.appendChild(fragment);
-    convertirYActualizarSubtotal(productos);
+    listaProductos.innerHTML = ''; // Vacía la lista antes de añadir el nuevo contenido
+    listaProductos.appendChild(fragment); // Añade el fragmento con los productos
+    convertirYActualizarSubtotal(productos); // Calcula y muestra el subtotal y total
 
+    // Agrega un event listener para actualizar la cantidad de cada producto
     document.querySelectorAll(".producto-cantidad").forEach(input => {
         input.addEventListener("change", (e) => actualizarCantidad(e, productos));
     });
 }
 
+// Función para actualizar la cantidad de un producto
 function actualizarCantidad(event, productos) {
     const input = event.target;
     const nuevoCantidad = parseInt(input.value);
     const productoId = input.dataset.id;
 
     if (isNaN(nuevoCantidad) || nuevoCantidad < 1) {
-        return;
+        return; // Evita cantidades no válidas
     }
 
     const producto = productos.find(prod => prod.id === productoId);
     if (producto) {
-        producto.cantidad = nuevoCantidad;
-        localStorage.setItem("cartItems", JSON.stringify(productos));
+        producto.cantidad = nuevoCantidad; // Actualiza la cantidad en el producto
+        localStorage.setItem("cartItems", JSON.stringify(productos)); // Guarda en localStorage
 
         const fila = input.closest('tr');
         const subtotalElemento = fila.querySelector('.producto-subtotal');
@@ -92,15 +115,16 @@ function actualizarCantidad(event, productos) {
         let costo = parseFloat(costoTexto.replace("UYU", "").replace("USD", "").trim());
         const moneda = costoTexto.includes("USD") ? "USD" : "UYU";
 
+        // Actualiza el subtotal para el producto en la interfaz
         subtotalElemento.innerText = `${moneda} ${(costo * nuevoCantidad).toFixed(2)}`;
-        convertirYActualizarSubtotal(productos);
-        actualizarBadge(productos);
+        convertirYActualizarSubtotal(productos); // Actualiza el subtotal general
+        actualizarBadge(productos); // Actualiza el badge del carrito
     }
 }
 
-const TASA_DE_CAMBIO = 42;
+const TASA_DE_CAMBIO = 42; // Tasa de cambio para conversión de USD a UYU
 
-// Función para convertir y actualizar el subtotal a UYU, valor de envío y total
+// Función para convertir y actualizar el subtotal, el valor de envío y el total
 function convertirYActualizarSubtotal(productos) {
     let subtotalUYU = 0;
     let subtotalUSD = 0;
@@ -118,15 +142,14 @@ function convertirYActualizarSubtotal(productos) {
         }
     });
 
-    // Convertimos todo el subtotal a UYU
+    // Convierte el subtotal en USD a UYU y suma ambos para obtener el subtotal total en UYU
     const subtotalEnUYU = subtotalUYU + (subtotalUSD * TASA_DE_CAMBIO);
     document.getElementById("subtotal").innerText = `UYU ${subtotalEnUYU.toLocaleString("es-UY", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
-    // Determina el tipo de envío seleccionado
+    // Determina el tipo de envío seleccionado y establece el porcentaje correspondiente
     const tipoEnvio = document.querySelector('input[name="envio"]:checked').value;
     let envioPorcentaje;
 
-    // Configura el porcentaje según el tipo de envío
     switch (tipoEnvio) {
         case "premium":
             envioPorcentaje = 0.15;
@@ -141,27 +164,27 @@ function convertirYActualizarSubtotal(productos) {
             envioPorcentaje = 0;
     }
 
-    // Calcula el valor del envío y el total
+    // Calcula el valor de envío y el total (subtotal + envío)
     const valorEnvio = subtotalEnUYU * envioPorcentaje;
     const total = subtotalEnUYU + valorEnvio;
 
-    // Muestra el costo de envío y el total en la página
+    // Muestra los costos de envío y el total en la interfaz
     document.getElementById("envio").innerText = `UYU ${valorEnvio.toLocaleString("es-UY", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     document.getElementById("total").innerText = `UYU ${total.toLocaleString("es-UY", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
-
+// Función para eliminar un producto del carrito
 function eliminarProducto(id) {
     let productos = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const nuevosProductos = productos.filter(producto => producto.id !== id);
+    const nuevosProductos = productos.filter(producto => producto.id !== id); // Filtra el producto eliminado
 
-    // Actualizamos el array en localStorage
+    // Guarda el nuevo array de productos en localStorage
     localStorage.setItem("cartItems", JSON.stringify(nuevosProductos));
-    
-    // Actualizamos el badge y renderizamos nuevamente
+
+    // Actualiza el badge y vuelve a renderizar el carrito
     actualizarBadge(nuevosProductos);
 
-    // Vaciamos y actualizamos la lista de productos en el DOM
+    // Actualiza el DOM para mostrar el nuevo contenido o el mensaje de carrito vacío
     const listaProductos = document.getElementById("lista-productos");
     listaProductos.innerHTML = '';
     const mensajeVacio = document.getElementById("mensaje-vacio");
@@ -173,6 +196,151 @@ function eliminarProducto(id) {
         renderizarProductos(nuevosProductos);
     }
 
-    // Actualizamos el subtotal después de eliminar el producto
+    // Actualiza el subtotal y el costo de envío después de eliminar el producto
     convertirYActualizarSubtotal(nuevosProductos);
+}
+
+
+
+//Función para verificar que todos los campos de dirección estén llenos
+function validarDireccion() {
+  return (
+    departamentoInput.value.trim() !== "" &&
+    localidadInput.value.trim() !== "" &&
+    calleInput.value.trim() !== "" &&
+    numeroInput.value.trim() !== "" &&
+    esquinaInput.value.trim() !== ""
+  );
+}
+
+
+//// se crea la funcion para validar que se haya seleccionado un medio de pago
+function validarMedioDePago() {
+    return cardRadio.checked || transferRadio.checked;
+}
+
+//// evento de finalizar compra con las validaciones
+function finalizarCompra() {
+    if (!validarDireccion()) {
+        alert("Por favor, completa todos los campos de la dirección.");
+        return;
+    }
+
+    if (!validarMedioDePago()) {
+        alert("Por favor, selecciona un medio de pago.");
+        return;
+    }
+
+    mostrarMensajeExito();
+}
+
+//// Función para mostrar el mensaje de éxito
+function mostrarMensajeExito() {
+    mensajeExito.style.display = "block"; // Muestra el mensaje de éxito
+}
+
+//// Función para ocultar el mensaje de éxito
+function ocultarMensajeExito() {
+    mensajeExito.style.display = "none"; // Oculta el mensaje de éxito
+}
+
+//// Agregar evento al botón de cierre para ocultar el mensaje
+cerrarExitoBtn.addEventListener("click", ocultarMensajeExito);
+
+
+//// Agregar evento al botón "Finalizar compra"
+finalizarCompraBtn.addEventListener("click", finalizarCompra);
+
+///MODAL MEDIOS DE PAGO se obtienen los elementos
+const openModalBtn = document.getElementById('openModalBtn');
+const paymentModal = document.getElementById('paymentModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const cancelBtn = document.getElementById('cancelBtn');
+const confirmBtn = document.getElementById('confirmBtn');
+const cardRadio = document.getElementById('cardRadio');
+const transferRadio = document.getElementById('transferRadio');
+const cardFields = document.getElementById('cardFields');
+const transferFields = document.getElementById('transferFields');
+
+// Función para abrir el modal
+openModalBtn.addEventListener('click', function () {
+    paymentModal.style.display = "block";
+});
+
+// Función para cerrar el modal
+closeModalBtn.addEventListener('click', function () {
+    paymentModal.style.display = "none";
+});
+
+// Función para cancelar y cerrar el modal
+cancelBtn.addEventListener('click', function () {
+    paymentModal.style.display = "none";
+});
+
+// Función para confirmar la selección y cerrar el modal
+confirmBtn.addEventListener('click', function () {
+   
+    if (cardRadio.checked) {
+        // Validar los campos de tarjeta
+        const cardNumber = document.getElementById('cardNumber').value;
+        const securityCode = document.getElementById('securityCode').value;
+        const expiryDate = document.getElementById('expiryDate').value;
+
+        if (cardNumber && securityCode && expiryDate) {
+            console.log("Pago con tarjeta confirmado");
+            // Redirigir o hacer algo más con los datos
+            paymentModal.style.display = "none";
+        } else {
+            alert("Por favor, complete todos los campos de la tarjeta");
+        }
+    } else if (transferRadio.checked) {
+        console.log("Pago por transferencia confirmado");
+        paymentModal.style.display = "none";
+    } else {
+        alert("Por favor, selecciona un método de pago");
+    }
+});
+
+// Mostrar los campos de pago según la selección
+cardRadio.addEventListener('change', function () {
+    cardFields.style.display = cardRadio.checked ? 'block' : 'none';
+    transferFields.style.display = 'none';
+});
+
+transferRadio.addEventListener('change', function () {
+    transferFields.style.display = transferRadio.checked ? 'block' : 'none';
+    cardFields.style.display = 'none';
+});
+
+// Verificar el tema al cargar la página y aplicar
+document.addEventListener('DOMContentLoaded', function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+});
+function finalizarCompra() {
+    // Verifica si hay productos en el carrito
+    const productos = JSON.parse(localStorage.getItem("cartItems")) || [];
+    if (productos.length === 0) {
+        alert("No hay productos en el carrito. Por favor, agrega productos antes de finalizar la compra.");
+        return;
+    }
+
+    // Verifica que todos los campos de dirección estén llenos
+    if (!validarDireccion()) {
+        alert("Por favor, completa todos los campos de la dirección.");
+        return;
+    }
+
+    // Verificar si se seleccionó un medio de pago
+    if (!validarMedioDePago()) {
+        alert("Por favor, selecciona un medio de pago.");
+        return;
+    }
+
+    // Si todas las validaciones pasan, muestra mensaje de éxito
+    mostrarMensajeExito();
 }

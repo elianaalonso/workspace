@@ -75,54 +75,56 @@
   </nav>
   <main class="pb-5">
     <div class="container">
-   
-      <!-- Botones de ordenar asc, desc y rel, los íconos se ponen con font awesome-->
-      <div id="btnorder" class="row form-control no-border">
-        <div class="col text-end">
-          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+  
+<!-- Botones de ordenar asc, desc y rel -->
+<div id="btnorder" class="row mb-4">
+  <div class="col-12 text-end">
+    <div class="btn-group btn-group-toggle" data-bs-toggle="buttons">
+      <input type="radio" class="btn-check" name="options" id="priceAsc">
+      <label class="btn btn-light" for="priceAsc"><i class="fas fa-sort-amount-up"></i> $</label>
 
-            <input type="radio" class="btn-check" name="options" id="priceAsc">
-            <label class="btn btn-light" for="priceAsc"><i class="fas fa-sort-amount-up"></i> $</label>
-            
-            <input type="radio" class="btn-check" name="options" id="priceDesc">
-            <label class="btn btn-light" for="priceDesc"><i class="fas fa-sort-amount-down"></i> $</label>
+      <input type="radio" class="btn-check" name="options" id="priceDesc">
+      <label class="btn btn-light" for="priceDesc"><i class="fas fa-sort-amount-down"></i> $</label>
 
-            <input type="radio" class="btn-check" name="options" id="sortByPrice" checked>
-            <label class="btn btn-light" for="sortByPrice"><i class="fas fa-sort-amount-down"></i> Rel.</label>
-          </div>
-        </div>
-      </div>
-
-
-
-<!-- Campos de filtro -->
-<div class="row form-control no-border">
-  <div class="col-lg-6 offset-lg-6 col-md-12 mb-1">
-    <div class="price-filter-container">
-      <p class="font-weight-normal my-2">Precio</p>
-      <input class="form-control" type="number" placeholder="min." id="minPrice">
-      <input class="form-control" type="number" placeholder="máx." id="maxPrice">
-      <div class="btn-group" role="group">
-        <button class="btn btn-light" id="priceFilterBtn">Filtrar</button>
-        <button class="btn btn-link btn-sm" id="clearPriceFilter">Limpiar</button>
-      </div>
+      <input type="radio" class="btn-check" name="options" id="sortByPrice" checked>
+      <label class="btn btn-light" for="sortByPrice"><i class="fas fa-sort-amount-down"></i> Rel.</label>
     </div>
   </div>
 </div>
-
-<div class="search-container">
-  <div class="search-wrapper">
-    <input type="search" class="search-text" id="searchInput" placeholder="Buscar productos...">
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="orange" viewBox="0 0 24 24" class="search-icon">
-      <path d="M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/>
-    </svg>
+  
+      <!-- Campos de filtro -->
+      <div class="row mb-4">
+        <div class="col-12 col-lg-6 offset-lg-6">
+          <div class="price-filter-container">
+            <p class="font-weight-normal my-2">Precio</p>
+            <div class="d-flex flex-wrap gap-2">
+              <input class="form-control w-100 w-sm-auto" type="number" placeholder="min." id="minPrice">
+              <input class="form-control w-100 w-sm-auto" type="number" placeholder="máx." id="maxPrice">
+            </div>
+            <div class="btn-group mt-2" role="group">
+              <button class="btn btn-light" id="priceFilterBtn">Filtrar</button>
+              <button class="btn btn-link btn-sm" id="clearPriceFilter">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+<!-- Barra de búsqueda -->
+<div class="row mb-4 justify-content-end">
+  <div class="col-12 col-md-12 col-lg-6">
+    <div class="search-container d-flex align-items-center justify-content-end">
+      <input type="search" class="form-control" id="searchInput" placeholder="   Buscar productos...">
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="orange" viewBox="0 0 24 24" class="search-icon">
+        <path d="M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" />
+      </svg>
+    </div>
   </div>
 </div>
-
-      <!--Grilla de productos-->
-
+      <!-- Grilla de productos -->
       <div id="product-grid" class="row">
+        <!-- Productos responsivos -->
       </div>
+      
     </div>
   </main>
 
