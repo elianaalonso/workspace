@@ -1,6 +1,6 @@
 .login-container{
     width: 550px;
-    height: 535px;
+    height: 510px;
     background: linear-gradient(to bottom, rgba(255, 153, 0, 0.9), rgba(240, 144, 0, 0.363), rgb(230, 224, 233));
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -164,3 +164,22 @@
   }
 }
 
+/**estilos ojito**/
+.password-container {
+  position: relative;
+}
+
+.toggle-eye {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #212529;
+  background: none;
+}
+
+.toggle-eye:hover {
+  color: #FF8C00;
+}
