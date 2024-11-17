@@ -11,6 +11,7 @@ const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
 
+
 //// Se crea una función para almacenar los datos en el localStorage
 function saveToLocalStorage(key, value) {
   localStorage.setItem(key, value);
@@ -77,6 +78,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const album = document.querySelector('.album');
     const bgImg = document.querySelector('.jumbotron');
 
+     for (let id = 101; id <= 109; id++) {
+    document.getElementById(id.toString()).addEventListener("click", function () {
+        localStorage.setItem("catID", id);
+        window.location = "products.html";
+    });
+}
+
+
+document.getElementById("logout").addEventListener("click", function () {
+// Eliminar el nombre de usuario de localStorage
+localStorage.removeItem("usuario");
+// Eliminar el estado de sesión
+sessionStorage.removeItem("isLoggedIn");
+// Redirigir a la página de inicio de sesión
+window.location.href = "login.html";
+});
+
+
+window.onload = checkLogin;
+
+// checkLogin antes estaba presente al final de cada código en los siguientes js: 
+// products.js, sell.js, product-info.js (excepcionalmente se encontraba al principio), 
+// my-profile.js, index.js, categories.js, cart.js.
     
 //// se crea el evento que se activa cuando el estado del switch cambia
 themeSwitch.addEventListener('change', () => {
@@ -126,14 +150,6 @@ bgImg.style.backgroundPosition = 'center';
   bgImg.style.backgroundSize = 'cover';
   bgImg.style.backgroundPosition = 'center';
 
-  
-  for (let id = 101; id <= 109; id++) {
-    document.getElementById(id.toString()).addEventListener("click", function () {
-        localStorage.setItem("catID", id);
-        window.location = "products.html";
-    });
-}
-
 });
 
 document.getElementById("logout").addEventListener("click", function () {
@@ -151,6 +167,7 @@ window.onload = checkLogin;
 // checkLogin antes estaba presente al final de cada código en los siguientes js: 
 // products.js, sell.js, product-info.js (excepcionalmente se encontraba al principio), 
 // my-profile.js, index.js, categories.js, cart.js.
+
 
 
 
