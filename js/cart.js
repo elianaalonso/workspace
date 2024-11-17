@@ -1,5 +1,4 @@
-
-// Obtener elementos de la página
+////se obtienen con id los elementos de la página
 const finalizarCompraBtn = document.getElementById("comprar");
 const departamentoInput = document.getElementById("departamento");
 const localidadInput = document.getElementById("localidad");
@@ -7,14 +6,12 @@ const calleInput = document.getElementById("calle");
 const numeroInput = document.getElementById("numero");
 const esquinaInput = document.getElementById("esquina");
 const tipoEnvioRadios = document.getElementsByName("envio");
-// Obtener el contenedor del mensaje de éxito y el botón de cierre
 const mensajeExito = document.getElementById("mensaje-exito");
 const cerrarExitoBtn = document.getElementById("cerrar-exito");
 
 
-// Espera a que el documento HTML esté completamente cargado antes de ejecutar el código
 document.addEventListener("DOMContentLoaded", () => {
-    // Recupera los productos del carrito desde localStorage, o un array vacío si no hay productos
+    // se recuperan los productos del carrito desde localStorage, o un array vacío si no hay productos
     const productos = JSON.parse(localStorage.getItem("cartItems")) || [];
     const listaProductos = document.getElementById("lista-productos"); // Elemento donde se mostrarán los productos
     const mensajeVacio = document.getElementById("mensaje-vacio"); // Elemento para el mensaje de carrito vacío
@@ -204,7 +201,8 @@ function eliminarProducto(id) {
 }
 
 
-// Función para verificar que todos los campos de dirección estén llenos
+
+//Función para verificar que todos los campos de dirección estén llenos
 function validarDireccion() {
   return (
     departamentoInput.value.trim() !== "" &&
@@ -216,31 +214,110 @@ function validarDireccion() {
 }
 
 
+//// se crea la funcion para validar que se haya seleccionado un medio de pago
+function validarMedioDePago() {
+    return cardRadio.checked || transferRadio.checked;
+}
 
-// Función para mostrar el mensaje de éxito
+//// evento de finalizar compra con las validaciones
+function finalizarCompra() {
+    if (!validarDireccion()) {
+        alert("Por favor, completa todos los campos de la dirección.");
+        return;
+    }
+
+    if (!validarMedioDePago()) {
+        alert("Por favor, selecciona un medio de pago.");
+        return;
+    }
+
+    mostrarMensajeExito();
+}
+
+//// Función para mostrar el mensaje de éxito
 function mostrarMensajeExito() {
     mensajeExito.style.display = "block"; // Muestra el mensaje de éxito
 }
 
-// Función para ocultar el mensaje de éxito
+//// Función para ocultar el mensaje de éxito
 function ocultarMensajeExito() {
     mensajeExito.style.display = "none"; // Oculta el mensaje de éxito
 }
 
-// Agregar evento al botón de cierre para ocultar el mensaje
+//// Agregar evento al botón de cierre para ocultar el mensaje
 cerrarExitoBtn.addEventListener("click", ocultarMensajeExito);
 
-// Ajustar el evento de finalizar compra para usar el mensaje personalizado
-function finalizarCompra() {
-    if (!validarDireccion()) {
-      alert("Por favor, completa todos los campos de la dirección.");
-      return;
-    }
-    // Si todas las validaciones pasan, muestra mensaje de éxito
-    mostrarMensajeExito();
-}
 
-// Agregar evento al botón "Finalizar compra"
+//// Agregar evento al botón "Finalizar compra"
 finalizarCompraBtn.addEventListener("click", finalizarCompra);
 
-  
+///MODAL MEDIOS DE PAGO se obtienen los elementos
+const openModalBtn = document.getElementById('openModalBtn');
+const paymentModal = document.getElementById('paymentModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const cancelBtn = document.getElementById('cancelBtn');
+const confirmBtn = document.getElementById('confirmBtn');
+const cardRadio = document.getElementById('cardRadio');
+const transferRadio = document.getElementById('transferRadio');
+const cardFields = document.getElementById('cardFields');
+const transferFields = document.getElementById('transferFields');
+
+// Función para abrir el modal
+openModalBtn.addEventListener('click', function () {
+    paymentModal.style.display = "block";
+});
+
+// Función para cerrar el modal
+closeModalBtn.addEventListener('click', function () {
+    paymentModal.style.display = "none";
+});
+
+// Función para cancelar y cerrar el modal
+cancelBtn.addEventListener('click', function () {
+    paymentModal.style.display = "none";
+});
+
+// Función para confirmar la selección y cerrar el modal
+confirmBtn.addEventListener('click', function () {
+   
+    if (cardRadio.checked) {
+        // Validar los campos de tarjeta
+        const cardNumber = document.getElementById('cardNumber').value;
+        const securityCode = document.getElementById('securityCode').value;
+        const expiryDate = document.getElementById('expiryDate').value;
+
+        if (cardNumber && securityCode && expiryDate) {
+            console.log("Pago con tarjeta confirmado");
+            // Redirigir o hacer algo más con los datos
+            paymentModal.style.display = "none";
+        } else {
+            alert("Por favor, complete todos los campos de la tarjeta");
+        }
+    } else if (transferRadio.checked) {
+        console.log("Pago por transferencia confirmado");
+        paymentModal.style.display = "none";
+    } else {
+        alert("Por favor, selecciona un método de pago");
+    }
+});
+
+// Mostrar los campos de pago según la selección
+cardRadio.addEventListener('change', function () {
+    cardFields.style.display = cardRadio.checked ? 'block' : 'none';
+    transferFields.style.display = 'none';
+});
+
+transferRadio.addEventListener('change', function () {
+    transferFields.style.display = transferRadio.checked ? 'block' : 'none';
+    cardFields.style.display = 'none';
+});
+
+// Verificar el tema al cargar la página y aplicar
+document.addEventListener('DOMContentLoaded', function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+});
