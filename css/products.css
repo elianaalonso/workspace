@@ -125,6 +125,7 @@ text-align: right;
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
+  margin-left: 8px;
 }
 
 /* Ajustes en el contenedor del filtro de precio */

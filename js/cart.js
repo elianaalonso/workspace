@@ -32,8 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Añade un event listener a cada opción de envío para actualizar el subtotal al seleccionar un tipo de envío
     inputEnvio.forEach(radio => {
         radio.addEventListener("change", () => {
-            // Actualiza el subtotal cada vez que se cambia el tipo de envío
-            convertirYActualizarSubtotal(productos);
+            // Recupera los productos actualizados desde localStorage antes de recalcular el subtotal
+            const productosActualizados = JSON.parse(localStorage.getItem("cartItems")) || [];
+            convertirYActualizarSubtotal(productosActualizados);
         });
     });
 
