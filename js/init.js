@@ -59,7 +59,7 @@ let usuario = localStorage.getItem("usuario");
 
 // Si hay un nombre de usuario, mostrarlo en el botón del menú desplegable
 if (usuario) {
-    document.querySelector(".dropdown-toggle").textContent = usuario;
+    document.querySelector("#user-menu").textContent = usuario;
 }
 
 // Función para verificar si el usuario ha iniciado sesión
@@ -83,11 +83,12 @@ themeSwitch.addEventListener('change', () => {
   document.body.classList.toggle('dark-mode'); //se añade la clase dark-mode al bod si no está presente, o la elimina si ya está presente.
   
 // Alternar clase 'bg-light' y 'bg-dark' en la clase album
-if (album.classList.contains('bg-light')) {
-  album.classList.replace('bg-light', 'bg-dark');
-} else {
-  album.classList.replace('bg-dark', 'bg-light');
-}
+  if (album.classList.contains('bg-light')) {
+    album.classList.replace('bg-light', 'bg-dark');
+  } else {
+    album.classList.replace('bg-dark', 'bg-light');
+  };
+
   
 // Cambiar imagen de fondo en la jumbotron según el tema
 if (document.body.classList.contains('dark-mode')) {
@@ -117,7 +118,6 @@ bgImg.style.backgroundPosition = 'center';
   if (savedTheme === 'dark') {
     album.classList.replace('bg-light', 'bg-dark');
     bgImg.style.background = 'url("img/cover-back_Dark-mode-1.png")';
-
   } else {
     album.classList.replace('bg-dark', 'bg-light');
     bgImg.style.background = 'url("img/cover_back.png")';
@@ -126,7 +126,43 @@ bgImg.style.backgroundPosition = 'center';
   bgImg.style.backgroundSize = 'cover';
   bgImg.style.backgroundPosition = 'center';
 
-
+  
+  document.getElementById("101").addEventListener("click", function() {
+        localStorage.setItem("catID", 101);
+        window.location = "products.html"
+    });
+    document.getElementById("102").addEventListener("click", function() {
+        localStorage.setItem("catID", 102);
+        window.location = "products.html"
+    });
+    document.getElementById("103").addEventListener("click", function() {
+        localStorage.setItem("catID", 103);
+        window.location = "products.html"
+    });
+    document.getElementById("104").addEventListener("click", function() {
+      localStorage.setItem("catID", 104);
+      window.location = "products.html"
+  });
+  document.getElementById("105").addEventListener("click", function() {
+    localStorage.setItem("catID", 105);
+    window.location = "products.html"
+});
+document.getElementById("106").addEventListener("click", function() {
+  localStorage.setItem("catID", 106);
+  window.location = "products.html"
+});
+document.getElementById("107").addEventListener("click", function() {
+  localStorage.setItem("catID", 107);
+  window.location = "products.html"
+});
+document.getElementById("108").addEventListener("click", function() {
+  localStorage.setItem("catID", 108);
+  window.location = "products.html"
+});
+document.getElementById("109").addEventListener("click", function() {
+  localStorage.setItem("catID", 109);
+  window.location = "products.html"
+});
 });
 
 document.getElementById("logout").addEventListener("click", function () {

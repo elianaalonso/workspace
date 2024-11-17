@@ -40,15 +40,30 @@
           <li class="nav-item">
             <a class="nav-link" href="index.html">Inicio</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
+          <!-- Menú desplegable de Categorías corregido -->
+          <li class="nav-item dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="categoryMenu" data-bs-toggle="dropdown" aria-expanded="false">
+              Categorías
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="categoryMenu">
+              <li><a class="dropdown-item" id="101" href="#">Autos</a></li>
+              <li><a class="dropdown-item" id="102" href="#">Juguetes</a></li>
+              <li><a class="dropdown-item" id="103" href="#">Muebles</a></li>
+              <li><a class="dropdown-item" id="104" href="#">Herramientas</a></li>
+              <li><a class="dropdown-item" id="105" href="#">Computadoras</a></li>
+              <li><a class="dropdown-item" id="106" href="#">Vestimenta</a></li>
+              <li><a class="dropdown-item" id="107" href="#">Electrodomésticos</a></li>
+              <li><a class="dropdown-item" id="108" href="#">Deporte</a></li>
+              <li><a class="dropdown-item" id="109" href="#">Celulares</a></li>
+              <li><a class="dropdown-item" href="categories.html">Mostrar todo</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
 
           <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="nav-item" id="usuario">
+            <a class="btn btn-secondary dropdown-toggle" id="user-menu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="nav-item" id="usuario">
               Nombre de Usuario
             </a>
             <ul class="dropdown-menu">
